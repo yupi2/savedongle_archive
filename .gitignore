@@ -1,0 +1,4 @@
+*.pdb
+a.out
+*.o
+sdbt
