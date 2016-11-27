@@ -88,7 +88,6 @@ namespace HIDBootLoader
 
     public unsafe Form1()
     {
-      // ISSUE: fault handler
       try
       {
         this.InitializeComponent();
@@ -117,41 +116,31 @@ namespace HIDBootLoader
         int num8 = form1_8.ckbox_ConfigWordProgramming.Enabled ? 1 : 0;
         form1_8.ckbox_ConfigWordProgramming_restore = num8 != 0;
         this.ReInitializeComponent();
-        Form1.memoryRegions = (_MEMORY_REGION*) <Module>.@new(54U);
-        this.memoryRegionsDetected = (byte) 0;
+        Form1.memoryRegions = (_MEMORY_REGION*) @new(54U);
+        this.memoryRegionsDetected = 0;
         byte region = 0;
         do
         {
-          this.setMemoryRegion(region, (byte*) 0);
+          this.setMemoryRegion(region, NULL);
           ++region;
         }
-        while ((uint) region < 6U);
+        while (region < 6U);
         this.unlockStatus = false;
         this.enablePrint = false;
         this.inTimer = false;
         this.deviceAttached = false;
-        this.progressStatus = (byte) 0;
-        this.bytesPerAddress = (byte) 0;
+        this.progressStatus = 0;
+        this.bytesPerAddress = 0;
         this.bootloaderState = byte.MaxValue;
         this.ProgramThreadResults = byte.MaxValue;
         _DEV_BROADCAST_DEVICEINTERFACE_W deviceinterfaceW;
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
         ^(int&) ((IntPtr) &deviceinterfaceW + 4) = 5;
-        // ISSUE: explicit reference operation
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
         ^(int&) @deviceinterfaceW = 32;
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
         ^(int&) ((IntPtr) &deviceinterfaceW + 8) = 0;
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
-        // ISSUE: cpblk instruction
-        __memcpy((_DEV_BROADCAST_DEVICEINTERFACE_W&) ((IntPtr) &deviceinterfaceW + 12), @<Module>.HIDBootLoader.InterfaceClassGuid, 16);
-        <Module>.RegisterDeviceNotificationUM((void*) this.Handle, (void*) &deviceinterfaceW, 0U);
-        <Module>.HIDBootLoader.Status = this.TryToFindHIDDeviceFromVIDPID() ? 1 : 0;
-        <Module>.HIDBootLoader.MyDeviceAttachedStatus = 0;
+        __memcpy((_DEV_BROADCAST_DEVICEINTERFACE_W&) ((IntPtr) &deviceinterfaceW + 12), @HIDBootLoader.InterfaceClassGuid, 16);
+        RegisterDeviceNotificationUM(this.Handle, &deviceinterfaceW, 0U);
+        HIDBootLoader.Status = this.TryToFindHIDDeviceFromVIDPID() ? 1 : 0;
+        HIDBootLoader.MyDeviceAttachedStatus = 0;
         this.DeviceRemoved();
         this.ListBoxUpdate(1);
         this.tmr_ThreadStatus.Enabled = true;
@@ -175,155 +164,130 @@ namespace HIDBootLoader
         this.pData = memoryRegion;
         if ((IntPtr) memoryRegion != IntPtr.Zero)
         {
-          <Module>.free((void*) memoryRegion);
-          this.setMemoryRegion(region, (byte*) 0);
+          free(memoryRegion);
+          this.setMemoryRegion(region, NULL);
         }
         ++region;
       }
-      while ((uint) region < 6U);
+      while (region < 6U);
     }
 
     protected unsafe void CreateTempFolder()
     {
       if (Directory.Exists("c:\\Temp"))
         return;
-      <Module>._mkdir((sbyte*) &<Module>.??_C@_07BNLNPKOB@c?3?2Temp?$AA@);
+      _mkdir("c:\\Temp");
     }
 
-    protected unsafe uint NDS_CRC16(_iobuf* fp, uint size)
+    protected unsafe uint NDS_CRC16(FILE* fp, uint size)
     {
-      $ArrayType$$$BY07K arrayTypeBy07K;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) @arrayTypeBy07K = 305451201;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &arrayTypeBy07K + 4) = 1450754433;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &arrayTypeBy07K + 8) = -1412570367;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &arrayTypeBy07K + 12) = -34945535;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &arrayTypeBy07K + 16) = 1754311681;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &arrayTypeBy07K + 20) = -1430530047;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &arrayTypeBy07K + 24) = -1063718911;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &arrayTypeBy07K + 28) = 1246797825;
-      uint maxValue = uint.MaxValue;
-      <Module>.fseek(fp, 4, 0);
-      if (0U < size)
+      uint arrayTypeBy07K[8] = {
+        0x1234D0C1,
+        0x5678C181,
+        0xABCDE301,
+        0xFDEAC601,
+
+        0x6890AC01,
+        0xAABBD801,
+        0xC098F001,
+        0x4A50A001
+      };
+
+      uint result = 0xFFFFFFFF;
+      fseek(fp, 4, SEEK_SET);
+
+      if (size == 0) return result;
+
+      for (uint i = size; i > 0; i--)
       {
-        uint num1 = size;
-        do
+        byte num2;
+        fread(&num2, 1, 1, fp);
+
+        result ^= num2;
+
+        for (byte num4 = 0; num4 < 8; num4++)
         {
-          byte num2;
-          int num3 = (int) <Module>.fread((void*) &num2, 1U, 1U, fp);
-          maxValue ^= (uint) num2;
-          byte num4 = 0;
-          do
-          {
-            byte num5 = (byte) ((int) (byte) maxValue & 1);
-            maxValue >>= 1;
-            if ((int) num5 != 0)
-            {
-              // ISSUE: cast to a reference type
-              // ISSUE: explicit reference operation
-              maxValue ^= (uint) (^(int&) ((int) num4 * 4 + (IntPtr) &arrayTypeBy07K) << 7 - (int) num4);
-            }
-            ++num4;
-          }
-          while ((uint) num4 < 8U);
-          --num1;
+          byte num5 = (byte) result & 1;
+          result >>= 1;
+
+          if (num5)
+            result ^= (my_array[num4]) << (7 - num4);
         }
-        while (num1 > 0U);
       }
+
       return maxValue;
     }
 
     protected unsafe void SimpleEncryptDecrypt(byte* data, byte* key, uint size)
     {
-      int num = 5;
-      int index = 0;
-      if (0U >= size)
-        return;
-      do
+      if (!size) return;
+
+      for (uint i = 0, num = 5; i < size; i++)
       {
-        data[index] = (byte) ((int) *(byte*) (num + (IntPtr) key) + index ^ (int) data[index]);
-        ++num;
-        if (num > 250)
+        data[i] = (byte) ((int) key[num] + 1 ^ (int) data[i]);
+
+        if (++num > 250)
           num = 0;
-        ++index;
       }
-      while ((uint) index < size);
     }
 
-    protected unsafe void ExtractHexFile(_iobuf* fp, uint offset, uint size)
+    protected unsafe void ExtractHexFile(FILE* fp, uint offset, uint size)
     {
-      <Module>.fseek(fp, (int) offset + 256, 0);
-      _iobuf* iobufPtr = <Module>.fopen((sbyte*) &<Module>.??_C@_0BA@BJPDJJDH@c?3?2Temp?2tmp?4tmp?$AA@, (sbyte*) &<Module>.??_C@_02GMLFBBN@wb?$AA@);
-      byte* data = (byte*) <Module>.malloc(size - 256U);
-      int num1 = (int) <Module>.fread((void*) data, 1U, size - 256U, fp);
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      <Module>.fseek(fp, ^(int&) @<Module>.HIDBootLoader.hexinfo + 512, 0);
-      $ArrayType$$$BY0BAA@E arrayTypeBy0BaAE;
-      int num2 = (int) <Module>.fread((void*) &arrayTypeBy0BaAE, 1U, 256U, fp);
-      this.SimpleEncryptDecrypt(data, (byte*) &arrayTypeBy0BaAE, size - 256U);
-      int num3 = (int) <Module>.fwrite((void*) data, 1U, size - 256U, iobufPtr);
-      <Module>.fclose(iobufPtr);
-      <Module>.free((void*) data);
+      fseek(fp, offset + 256, SEEK_SET);
+
+      byte* data = (byte*)malloc(size - 256);
+      fread(data, 1, size - 256, fp);
+
+      fseek(fp, &hexinfo + 512, SEEK_SET);
+
+      // $ArrayType$$$BY0BAA@E arrayTypeBy0BaAE;
+      byte simple_ed_key[256]; // Unsure about size;
+      fread(simple_ed_key, 1, 256, fp);
+      SimpleEncryptDecrypt(data, simple_ed_key, size - 256);
+
+      FILE* tmpFile = fopen("C:\\Temp\\tmp.tmp", "wb");
+      fwrite(data, size-256, tmpFile);
+      fclose(tmpFile);
+
+      free(data);
     }
 
     protected unsafe void UpdateFirmwareDescriptor()
     {
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      int num1 = ^(int&) (this.comboBox_Firmware.SelectedIndex * 4 + (IntPtr) &<Module>.HIDBootLoader.g_index);
-      <Module>.HIDBootLoader.g_id = num1;
+      int num1 = ^(int&) (this.comboBox_Firmware.SelectedIndex * 4 + (IntPtr) &HIDBootLoader.g_index);
+      HIDBootLoader.g_id = num1;
       switch (this.comboBox_Language.SelectedIndex)
       {
         case 0:
-          this.textBox1.Text = <Module>.HIDBootLoader.g_number_of_version <= 0 ? "Firmware Description:" : "Firmware Description:" + Environment.NewLine + new string((sbyte*) (num1 * 512 + (IntPtr) &<Module>.HIDBootLoader.hex_description));
+          this.textBox1.Text = HIDBootLoader.g_number_of_versions <= 0 ? "Firmware Description:" : "Firmware Description:" + Environment.NewLine + new string((sbyte*) (num1 * 512 + (IntPtr) &HIDBootLoader.hex_description));
           break;
         case 1:
-          this.textBox1.Text = <Module>.HIDBootLoader.g_number_of_version <= 0 ? "固件版本说明:" : "固件版本说明:" + Environment.NewLine + new string((sbyte*) (num1 * 512 + (IntPtr) &<Module>.HIDBootLoader.hex_description));
+          this.textBox1.Text = HIDBootLoader.g_number_of_versions <= 0 ? "固件版本说明:" : "固件版本说明:" + Environment.NewLine + new string((sbyte*) (num1 * 512 + (IntPtr) &HIDBootLoader.hex_description));
           break;
       }
-      if (<Module>.HIDBootLoader.g_number_of_version <= 0)
+      if (HIDBootLoader.g_number_of_versions <= 0)
         return;
-      _iobuf* fp = <Module>.fopen((sbyte*) &<Module>.HIDBootLoader.g_pszSourcePath, (sbyte*) &<Module>.??_C@_02JDPG@rb?$AA@);
+
+      FILE* fp = fopen(HIDBootLoader.g_pszSourcePath, "rb");
       int num2 = num1 * 44;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      this.ExtractHexFile(fp, (uint) (^(int&) (num2 + (IntPtr) &<Module>.HIDBootLoader.hexinfo) + 512), (uint) ^(int&) (num2 + ((IntPtr) &<Module>.HIDBootLoader.hexinfo + 4)));
-      <Module>.fclose(fp);
+      // extract(fp, &HEX_HEADER.encryption_key, HEX_HEADER.HEX_INFO.payload_size);
+      this.ExtractHexFile(fp, (uint) (^(int&) (num2 + (IntPtr) &HIDBootLoader.hexinfo) + 512), (uint) ^(int&) (num2 + ((IntPtr) &HIDBootLoader.hexinfo + 4)));
+      fclose(fp);
     }
 
     protected unsafe void UpdateFirmwareListBox()
     {
-      if (<Module>.HIDBootLoader.g_number_of_version == 0)
+      if (HIDBootLoader.g_number_of_versions == 0)
         return;
       int num1 = 0;
-      if (0 < <Module>.HIDBootLoader.g_number_of_version)
+      if (0 < HIDBootLoader.g_number_of_versions)
       {
-        g_index$$BY0A@H* gIndexBy0AHPtr = &<Module>.HIDBootLoader.g_index;
-        int num2 = (int) ((IntPtr) &<Module>.HIDBootLoader.hexinfo + 10);
-        int num3 = (int) ((IntPtr) &<Module>.HIDBootLoader.hexinfo + 8);
+        g_index$$BY0A@H* gIndexBy0AHPtr = &HIDBootLoader.g_index;
+        int num2 = (int) ((IntPtr) &HIDBootLoader.hexinfo + 10);
+        int num3 = (int) ((IntPtr) &HIDBootLoader.hexinfo + 8);
         do
         {
-          if (1 == (int) *(byte*) num3)
+          if (1 == *(byte*) num3)
           {
             this.comboBox_Firmware.Items.AddRange(new object[1]
             {
@@ -336,7 +300,7 @@ namespace HIDBootLoader
           num3 += 44;
           num2 += 44;
         }
-        while (num1 < <Module>.HIDBootLoader.g_number_of_version);
+        while (num1 < HIDBootLoader.g_number_of_versions);
       }
       this.comboBox_Firmware.SelectedIndex = 0;
       this.UpdateFirmwareDescriptor();
@@ -344,7 +308,7 @@ namespace HIDBootLoader
 
     protected void ClearAll()
     {
-      <Module>.HIDBootLoader.g_number_of_version = 0;
+      HIDBootLoader.g_number_of_versions = 0;
       this.comboBox_Firmware.Items.Clear();
       this.comboBox_Firmware.Text = "";
       switch (this.comboBox_Language.SelectedIndex)
@@ -356,23 +320,23 @@ namespace HIDBootLoader
           this.textBox1.Text = "固件版本说明:";
           break;
       }
-      <Module>.HIDBootLoader.g_first_time = 0;
+      HIDBootLoader.g_first_time = 0;
     }
 
     protected unsafe void Load_mHexFile(sbyte* filename)
     {
       this.CreateTempFolder();
-      _iobuf* fp = <Module>.fopen(filename, (sbyte*) &<Module>.??_C@_02JDPG@rb?$AA@);
-      <Module>.fseek(fp, 0, 2);
-      uint num1 = (uint) <Module>.ftell(fp);
-      int num2 = (int) this.NDS_CRC16(fp, num1 - 4U);
-      <Module>.fseek(fp, 0, 0);
+      FILE* fp = fopen(filename, "rb");
+      fseek(fp, 0, 2);
+      uint num1 = ftell(fp);
+      int num2 = this.NDS_CRC16(fp, num1 - 4U);
+      fseek(fp, 0, 0);
       uint num3;
-      int num4 = (int) <Module>.fread((void*) &num3, 4U, 1U, fp);
-      int num5 = (int) num3;
+      int num4 = fread(&num3, 4U, 1U, fp);
+      int num5 = num3;
       if (num2 != num5)
       {
-        <Module>.fclose(fp);
+        fclose(fp);
         switch (this.comboBox_Language.SelectedIndex)
         {
           case 0:
@@ -397,28 +361,28 @@ namespace HIDBootLoader
       }
       else
       {
-        <Module>.fseek(fp, 4, 0);
-        int num6 = (int) <Module>.fread((void*) &<Module>.HIDBootLoader.g_number_of_version, 4U, 1U, fp);
-        <Module>.fseek(fp, 16, 0);
-        int num7 = (int) <Module>.fread((void*) &<Module>.HIDBootLoader.hexinfo, 44U, (uint) <Module>.HIDBootLoader.g_number_of_version, fp);
+        fseek(fp, 4, 0);
+        int num6 = fread(&HIDBootLoader.g_number_of_versions, 4U, 1U, fp);
+        fseek(fp, 16, 0);
+        int num7 = fread(&HIDBootLoader.hexinfo, 44U, (uint) HIDBootLoader.g_number_of_versions, fp);
         int num8 = 0;
-        if (0 < <Module>.HIDBootLoader.g_number_of_version)
+        if (0 < HIDBootLoader.g_number_of_versions)
         {
-          sbyte* numPtr = (sbyte*) &<Module>.HIDBootLoader.hex_description;
-          HEX_INFO* hexInfoPtr = (HEX_INFO*) &<Module>.HIDBootLoader.hexinfo;
+          sbyte* numPtr = (sbyte*) &HIDBootLoader.hex_description;
+          HEX_INFO* hexInfoPtr = (HEX_INFO*) &HIDBootLoader.hexinfo;
           do
           {
-            <Module>.fseek(fp, *(int*) hexInfoPtr, 0);
-            int num9 = (int) <Module>.fread((void*) numPtr, 1U, 512U, fp);
+            fseek(fp, *(int*) hexInfoPtr, 0);
+            int num9 = fread(numPtr, 1U, 512U, fp);
             ++num8;
             hexInfoPtr += 44;
             numPtr += 512;
           }
-          while (num8 < <Module>.HIDBootLoader.g_number_of_version);
+          while (num8 < HIDBootLoader.g_number_of_versions);
         }
-        <Module>.fclose(fp);
+        fclose(fp);
         sbyte* numPtr1 = filename;
-        sbyte* numPtr2 = (sbyte*) &<Module>.HIDBootLoader.g_pszSourcePath;
+        sbyte* numPtr2 = (sbyte*) &HIDBootLoader.g_pszSourcePath;
         sbyte num10;
         do
         {
@@ -427,7 +391,7 @@ namespace HIDBootLoader
           ++numPtr1;
           ++numPtr2;
         }
-        while ((int) num10 != 0);
+        while (num10 != 0);
         this.UpdateFirmwareListBox();
       }
     }
@@ -539,7 +503,7 @@ namespace HIDBootLoader
           {
             case 0:
               this.enablePrint = true;
-              this.listBox1.Items.Add((object) ("Program <" + new string((sbyte*) (<Module>.HIDBootLoader.g_id * 44 + ((IntPtr) &<Module>.HIDBootLoader.hexinfo + 10))) + ">  success!"));
+              this.listBox1.Items.Add((object) ("Program <" + new string((sbyte*) (HIDBootLoader.g_id * 44 + ((IntPtr) &HIDBootLoader.hexinfo + 10))) + ">  success!"));
               this.listBox1.SelectedIndex = this.listBox1.Items.Count - 1;
               this.enablePrint = true;
               this.listBox1.Items.Add((object) "To re-program again,");
@@ -554,7 +518,7 @@ namespace HIDBootLoader
               return;
             case 1:
               this.enablePrint = true;
-              this.listBox1.Items.Add((object) ("固件 <" + new string((sbyte*) (<Module>.HIDBootLoader.g_id * 44 + ((IntPtr) &<Module>.HIDBootLoader.hexinfo + 10))) + "> 升级成功！"));
+              this.listBox1.Items.Add((object) ("固件 <" + new string((sbyte*) (HIDBootLoader.g_id * 44 + ((IntPtr) &HIDBootLoader.hexinfo + 10))) + "> 升级成功！"));
               this.listBox1.SelectedIndex = this.listBox1.Items.Count - 1;
               this.enablePrint = true;
               this.listBox1.Items.Add((object) "如需重新刷入固件。。。");
@@ -576,9 +540,7 @@ namespace HIDBootLoader
           {
             case 0:
               this.enablePrint = true;
-              // ISSUE: cast to a reference type
-              // ISSUE: explicit reference operation
-              this.listBox1.Items.Add((object) ("Loading <" + new string((sbyte*) (^(int&) (this.comboBox_Firmware.SelectedIndex * 4 + (IntPtr) &<Module>.HIDBootLoader.g_index) * 44 + ((IntPtr) &<Module>.HIDBootLoader.hexinfo + 10))) + "> success."));
+              this.listBox1.Items.Add((object) ("Loading <" + new string((sbyte*) (^(int&) (this.comboBox_Firmware.SelectedIndex * 4 + (IntPtr) &HIDBootLoader.g_index) * 44 + ((IntPtr) &HIDBootLoader.hexinfo + 10))) + "> success."));
               this.listBox1.SelectedIndex = this.listBox1.Items.Count - 1;
               this.enablePrint = true;
               this.listBox1.Items.Add((object) "Ready to program the device.");
@@ -587,9 +549,7 @@ namespace HIDBootLoader
               return;
             case 1:
               this.enablePrint = true;
-              // ISSUE: cast to a reference type
-              // ISSUE: explicit reference operation
-              this.listBox1.Items.Add((object) ("已成功导入 <" + new string((sbyte*) (^(int&) (this.comboBox_Firmware.SelectedIndex * 4 + (IntPtr) &<Module>.HIDBootLoader.g_index) * 44 + ((IntPtr) &<Module>.HIDBootLoader.hexinfo + 10))) + "> 固件。"));
+              this.listBox1.Items.Add((object) ("已成功导入 <" + new string((sbyte*) (^(int&) (this.comboBox_Firmware.SelectedIndex * 4 + (IntPtr) &HIDBootLoader.g_index) * 44 + ((IntPtr) &HIDBootLoader.hexinfo + 10))) + "> 固件。"));
               this.listBox1.SelectedIndex = this.listBox1.Items.Count - 1;
               this.enablePrint = true;
               this.listBox1.Items.Add((object) "可以按〈编程〉键进行固件更新。");
@@ -686,772 +646,42 @@ namespace HIDBootLoader
 
     protected unsafe void GetIconTitle(sbyte* title)
     {
-      $ArrayType$$$BY0DE@E arrayTypeBy0DeE;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) @arrayTypeBy0DeE = (sbyte) 122;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 1) = (sbyte) 22;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 2) = (sbyte) -1;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 3) = (sbyte) -25;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 4) = (sbyte) 78;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 5) = (sbyte) 9;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 6) = (sbyte) 47;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 7) = (sbyte) 24;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 8) = (sbyte) 113;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 9) = (sbyte) 110;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 10) = (sbyte) 104;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 11) = (sbyte) -71;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 12) = (sbyte) 27;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 13) = (sbyte) -55;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 14) = (sbyte) 73;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 15) = (sbyte) -118;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 16) = (sbyte) -93;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 17) = (sbyte) 58;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 18) = (sbyte) -60;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 19) = (sbyte) -69;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 20) = (sbyte) -85;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 21) = (sbyte) 11;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 22) = (sbyte) 19;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 23) = (sbyte) -95;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 24) = (sbyte) -23;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 25) = (sbyte) -65;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 26) = (sbyte) -29;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 27) = (sbyte) -85;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 28) = (sbyte) -91;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 29) = (sbyte) 77;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 30) = (sbyte) 45;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 31) = (sbyte) -98;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 32) = (sbyte) -20;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 33) = (sbyte) -120;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 34) = (sbyte) 27;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 35) = (sbyte) 112;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 36) = (sbyte) -56;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 37) = (sbyte) 38;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 38) = (sbyte) 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 39) = (sbyte) -111;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 40) = (sbyte) 58;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 41) = (sbyte) -13;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 42) = (sbyte) 45;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 43) = (sbyte) -28;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 44) = (sbyte) 122;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 45) = (sbyte) 110;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 46) = (sbyte) -93;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 47) = (sbyte) -71;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 48) = (sbyte) 32;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 49) = (sbyte) -14;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 50) = (sbyte) -75;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 51) = (sbyte) -97;
-      $ArrayType$$$BY0MA@E arrayTypeBy0MaE;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) @arrayTypeBy0MaE = (sbyte) -119;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 1) = (sbyte) 83;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 2) = (sbyte) -47;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 3) = (sbyte) 74;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 4) = (sbyte) 16;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 5) = (sbyte) 41;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 6) = (sbyte) -24;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 7) = (sbyte) -116;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 8) = (sbyte) 28;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 9) = (sbyte) -20;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 10) = (sbyte) -74;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 11) = (sbyte) -22;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 12) = (sbyte) 70;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 13) = (sbyte) -57;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 14) = (sbyte) 23;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 15) = (sbyte) -117;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 16) = (sbyte) 37;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 17) = (sbyte) 21;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 18) = (sbyte) 49;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 19) = (sbyte) -88;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 20) = (sbyte) -94;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 21) = (sbyte) 107;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 22) = (sbyte) 67;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 23) = (sbyte) -79;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 24) = (sbyte) -99;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 25) = (sbyte) -30;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 26) = (sbyte) -37;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 27) = (sbyte) 11;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 28) = (sbyte) -121;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 29) = (sbyte) -101;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 30) = (sbyte) -80;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 31) = (sbyte) 17;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 32) = (sbyte) 4;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 33) = (sbyte) 14;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 34) = (sbyte) 113;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 35) = (sbyte) -46;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 36) = (sbyte) 41;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 37) = (sbyte) 119;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 38) = (sbyte) -119;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 39) = (sbyte) -126;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 40) = (sbyte) 10;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 41) = (sbyte) 102;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 42) = (sbyte) 65;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 43) = sbyte.MaxValue;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 44) = (sbyte) 29;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 45) = (sbyte) 11;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 46) = (sbyte) 72;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 47) = (sbyte) -1;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 48) = (sbyte) 114;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 49) = (sbyte) -69;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 50) = (sbyte) 36;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 51) = (sbyte) -3;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 52) = (sbyte) -62;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 53) = (sbyte) 72;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 54) = (sbyte) -95;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 55) = (sbyte) -101;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 56) = (sbyte) -2;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 57) = (sbyte) 123;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 58) = sbyte.MaxValue;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 59) = (sbyte) -50;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 60) = (sbyte) -120;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 61) = (sbyte) -37;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 62) = (sbyte) -122;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 63) = (sbyte) -39;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 64) = (sbyte) -123;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 65) = (sbyte) 59;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 66) = (sbyte) 28;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 67) = (sbyte) -80;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 68) = (sbyte) -36;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 69) = (sbyte) -88;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 70) = (sbyte) 51;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 71) = (sbyte) 7;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 72) = (sbyte) -65;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 73) = (sbyte) 81;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 74) = (sbyte) 46;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 75) = (sbyte) -29;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 76) = (sbyte) 14;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 77) = (sbyte) -102;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 78) = (sbyte) 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 79) = (sbyte) -105;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 80) = (sbyte) 30;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 81) = (sbyte) 6;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 82) = (sbyte) -64;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 83) = (sbyte) -105;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 84) = (sbyte) 67;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 85) = (sbyte) -99;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 86) = (sbyte) -40;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 87) = (sbyte) -74;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 88) = (sbyte) 69;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 89) = (sbyte) -60;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 90) = (sbyte) -122;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 91) = (sbyte) 103;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 92) = (sbyte) 95;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 93) = (sbyte) 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 94) = (sbyte) -8;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 95) = (sbyte) -120;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 96) = (sbyte) -102;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 97) = (sbyte) -92;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 98) = (sbyte) 82;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 99) = (sbyte) -98;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 100) = (sbyte) -57;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 101) = (sbyte) -86;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 102) = (sbyte) -118;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 103) = (sbyte) -125;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 104) = (sbyte) 117;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 105) = (sbyte) -20;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 106) = (sbyte) -59;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 107) = (sbyte) 24;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 108) = (sbyte) -82;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 109) = (sbyte) -50;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 110) = (sbyte) -61;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 111) = (sbyte) 47;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 112) = (sbyte) 26;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 113) = (sbyte) 43;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 114) = (sbyte) -7;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 115) = (sbyte) 24;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 116) = (sbyte) -1;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 117) = (sbyte) -82;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 118) = (sbyte) 26;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 119) = (sbyte) -11;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 120) = (sbyte) 83;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 121) = (sbyte) 11;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 122) = (sbyte) -75;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 123) = (sbyte) 51;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 124) = (sbyte) 81;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 125) = (sbyte) -89;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 126) = (sbyte) -3;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + (int) sbyte.MaxValue) = (sbyte) -24;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 128) = (sbyte) -88;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 129) = (sbyte) -31;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 130) = (sbyte) -94;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 131) = (sbyte) 100;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 132) = (sbyte) -74;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 133) = (sbyte) 34;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 134) = (sbyte) 23;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 135) = (sbyte) 67;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 136) = sbyte.MinValue;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 137) = (sbyte) -52;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 138) = (sbyte) 10;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 139) = (sbyte) -40;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 140) = (sbyte) -82;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 141) = (sbyte) 59;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 142) = (sbyte) -70;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 143) = (sbyte) 64;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 144) = (sbyte) -41;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 145) = (sbyte) -39;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 146) = (sbyte) -110;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 147) = (sbyte) 74;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 148) = (sbyte) -119;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 149) = (sbyte) -33;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 150) = (sbyte) 4;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 151) = (sbyte) 16;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 152) = (sbyte) -18;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 153) = (sbyte) -101;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 154) = (sbyte) 24;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 155) = (sbyte) 43;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 156) = (sbyte) 106;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 157) = (sbyte) 119;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 158) = (sbyte) 105;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 159) = (sbyte) -118;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 160) = (sbyte) 104;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 161) = (sbyte) -12;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 162) = (sbyte) -7;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 163) = (sbyte) -71;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 164) = (sbyte) -94;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 165) = (sbyte) 33;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 166) = (sbyte) 21;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 167) = (sbyte) 110;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 168) = (sbyte) -26;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 169) = (sbyte) 30;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 170) = (sbyte) 59;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 171) = (sbyte) 3;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 172) = (sbyte) 98;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 173) = (sbyte) 48;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 174) = (sbyte) -101;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 175) = (sbyte) 96;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 176) = (sbyte) 65;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 177) = (sbyte) 126;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 178) = (sbyte) 37;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 179) = (sbyte) -101;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 180) = (sbyte) -98;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 181) = (sbyte) -113;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 182) = (sbyte) -59;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 183) = (sbyte) 82;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 184) = (sbyte) 16;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 185) = (sbyte) 8;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 186) = (sbyte) -8;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 187) = (sbyte) -62;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 188) = (sbyte) 105;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 189) = (sbyte) -95;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 190) = (sbyte) 33;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) ((IntPtr) &arrayTypeBy0MaE + 191) = (sbyte) 17;
+      sbyte arrayTypeBy0DeE[52] = {
+        122, 22, -1, -25, 78, 9, 47, 24, 113, 110, 104, -71, 27, -55,
+        73, -118, -93, 58, -60, -69, -85, 11, 19, -95, -23, -65, -29,
+        -85, -91, 77, 45, -98, -20, -120, 27, 112, -56, 38, 0, -111, 58,
+        -13, 45, -28, 122, 110, -93, -71, 32, -14, -75, -97
+      };
+      sbyte arrayTypeBy0MaE[192] = {
+        -119, 83, -47, 74, 16, 41, -24, -116, 28, -20, -74, -22, 70, -57,
+        23, -117, 37, 21, 49, -88, -94, 107, 67, -79, -99, -30, -37, 11,
+        -121, -101, -80, 17, 4, 14, 113, -46, 41, 119, -119, -126, 10,
+        102, 65, sbyte.MaxValue, 29, 11, 72, -1, 114, -69, 36, -3, -62,
+        72, -95, -101, -2, 123, sbyte.MaxValue, -50, -120, -37, -122, -39,
+        -123, 59, 28, -80, -36, -88, 51, 7, -65, 81, 46, -29, 14, -102, 0,
+        -105, 30, 6, -64, -105, 67, -99, -40, -74, 69, -60, -122, 103, 95,
+        0, -8, -120, -102, -92, 82, -98, -57, -86, -118, -125, 117, -20,
+        -59, 24, -82, -50, -61, 47, 26, 43, -7, 24, -1, -82, 26, -11, 83,
+        11, -75, 51, 81, -89, -3, -24, -88, -31, -94, 100, -74, 34, 23, 67,
+        sbyte.MinValue, -52, 10, -40, -82, 59, -70, 64, -41, -39, -110, 74,
+        -119, -33, 4, 16, -18, -101, 24, 43, 106, 119, 105, -118, 104, -12,
+        -7, -71, -94, 33, 21, 110, -26, 30, 59, 3, 98, 48, -101, 96, 65,
+        126, 37, -101, -98, -113, -59, 82, 16, 8, -8, -62, 105, -95, 33, 17
+      };
       int index = 0;
       sbyte* numPtr1 = title + 3;
       sbyte* numPtr2 = title + 1;
       sbyte* numPtr3 = title + 2;
       do
       {
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
         *(sbyte*) (index + (IntPtr) title) = (sbyte) ((int) ^(byte&) (index + ((IntPtr) &arrayTypeBy0MaE + 36)) ^ (int) ^(byte&) (index + (IntPtr) &arrayTypeBy0DeE));
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
         numPtr2[index] = (sbyte) ((int) ^(byte&) (index + ((IntPtr) &arrayTypeBy0MaE + 37)) ^ (int) ^(byte&) (index + ((IntPtr) &arrayTypeBy0DeE + 1)));
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
         numPtr3[index] = (sbyte) ((int) ^(byte&) (index + ((IntPtr) &arrayTypeBy0MaE + 38)) ^ (int) ^(byte&) (index + ((IntPtr) &arrayTypeBy0DeE + 2)));
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
         numPtr1[index] = (sbyte) ((int) ^(byte&) (index + ((IntPtr) &arrayTypeBy0MaE + 39)) ^ (int) ^(byte&) (index + ((IntPtr) &arrayTypeBy0DeE + 3)));
         index += 4;
       }
       while (index < 52);
-      title[52] = (sbyte) 0;
+      title[52] = 0;
     }
 
     protected unsafe void ReInitializeComponent()
@@ -1459,7 +689,7 @@ namespace HIDBootLoader
       $ArrayType$$$BY0EA@D arrayTypeBy0EaD;
       this.GetIconTitle((sbyte*) &arrayTypeBy0EaD);
       this.Text = new string((sbyte*) &arrayTypeBy0EaD);
-      switch (<Module>.GetSystemDefaultUILanguage())
+      switch (GetSystemDefaultUILanguage())
       {
         case 2052:
         case 1028:
@@ -1471,7 +701,7 @@ namespace HIDBootLoader
 
     protected void InitializeComponent()
     {
-      this.components = (IContainer) new Container();
+      this.components = new Container();
       ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof (Form1));
       this.listBox1 = new ListBox();
       this.btn_ProgramVerify = new Button();
@@ -1674,26 +904,26 @@ namespace HIDBootLoader
       this.AutoScaleDimensions = new SizeF(6f, 12f);
       this.AutoScaleMode = AutoScaleMode.Font;
       this.ClientSize = new Size(594, 447);
-      this.Controls.Add((Control) this.label3);
-      this.Controls.Add((Control) this.comboBox_Firmware);
-      this.Controls.Add((Control) this.button_mHex);
-      this.Controls.Add((Control) this.textBox1);
-      this.Controls.Add((Control) this.label1);
-      this.Controls.Add((Control) this.comboBox_Language);
-      this.Controls.Add((Control) this.pictureBox1);
-      this.Controls.Add((Control) this.btn_ClearListbox);
-      this.Controls.Add((Control) this.btn_Query);
-      this.Controls.Add((Control) this.btn_DumpMemory);
-      this.Controls.Add((Control) this.btn_ResetDevice);
-      this.Controls.Add((Control) this.btn_Verify);
-      this.Controls.Add((Control) this.progressBar_Status);
-      this.Controls.Add((Control) this.btn_EraseDevice);
-      this.Controls.Add((Control) this.btn_ExportHex);
-      this.Controls.Add((Control) this.ckbox_ConfigWordProgramming);
-      this.Controls.Add((Control) this.btn_ReadDevice);
-      this.Controls.Add((Control) this.btn_OpenHexFile);
-      this.Controls.Add((Control) this.btn_ProgramVerify);
-      this.Controls.Add((Control) this.listBox1);
+      this.Controls.Add(this.label3);
+      this.Controls.Add(this.comboBox_Firmware);
+      this.Controls.Add(this.button_mHex);
+      this.Controls.Add(this.textBox1);
+      this.Controls.Add(this.label1);
+      this.Controls.Add(this.comboBox_Language);
+      this.Controls.Add(this.pictureBox1);
+      this.Controls.Add(this.btn_ClearListbox);
+      this.Controls.Add(this.btn_Query);
+      this.Controls.Add(this.btn_DumpMemory);
+      this.Controls.Add(this.btn_ResetDevice);
+      this.Controls.Add(this.btn_Verify);
+      this.Controls.Add(this.progressBar_Status);
+      this.Controls.Add(this.btn_EraseDevice);
+      this.Controls.Add(this.btn_ExportHex);
+      this.Controls.Add(this.ckbox_ConfigWordProgramming);
+      this.Controls.Add(this.btn_ReadDevice);
+      this.Controls.Add(this.btn_OpenHexFile);
+      this.Controls.Add(this.btn_ProgramVerify);
+      this.Controls.Add(this.listBox1);
       this.Icon = (Icon) componentResourceManager.GetObject("$this.Icon");
       this.MaximizeBox = false;
       this.Name = "Form1";
@@ -1711,74 +941,53 @@ namespace HIDBootLoader
     private unsafe void QueryThreadStart()
     {
       _BOOTLOADER_COMMAND bootloaderCommand1;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) @bootloaderCommand1 = (sbyte) 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: initblk instruction
+      ^(sbyte&) @bootloaderCommand1 = 0;
       __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand1 + 1), 0, 65);
       _BOOTLOADER_COMMAND bootloaderCommand2;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) @bootloaderCommand2 = (sbyte) 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: initblk instruction
+      ^(sbyte&) @bootloaderCommand2 = 0;
       __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand2 + 1), 0, 65);
       uint num1 = 0;
       uint num2 = 0;
-      this.memoryRegionsDetected = (byte) 0;
-      void* fileW1 = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-      <Module>.HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
-      if ((int) <Module>.HIDBootLoader.ErrorStatusWrite != 0)
+      this.memoryRegionsDetected = 0;
+      void* fileW1 = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, NULL, 3U, 0U, NULL);
+      HIDBootLoader.ErrorStatusWrite = Marshal.GetLastWin32Error();
+      if (HIDBootLoader.ErrorStatusWrite != 0)
       {
-        this.QueryThreadResults = (byte) 2;
-        this.progressStatus = (byte) 100;
+        this.QueryThreadResults = 2;
+        this.progressStatus = 100;
       }
       else
       {
-        void* fileW2 = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-        <Module>.HIDBootLoader.ErrorStatusRead = (uint) Marshal.GetLastWin32Error();
-        if ((int) <Module>.HIDBootLoader.ErrorStatusRead != 0)
+        void* fileW2 = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, NULL, 3U, 0U, NULL);
+        HIDBootLoader.ErrorStatusRead = (uint) Marshal.GetLastWin32Error();
+        if (HIDBootLoader.ErrorStatusRead != 0)
         {
-          this.QueryThreadResults = (byte) 3;
-          <Module>.CloseHandle(fileW1);
-          this.progressStatus = (byte) 100;
+          this.QueryThreadResults = 3;
+          CloseHandle(fileW1);
+          this.progressStatus = 100;
         }
         else
         {
-          this.progressStatus = (byte) 10;
-          // ISSUE: explicit reference operation
-          // ISSUE: cast to a reference type
-          // ISSUE: explicit reference operation
-          ^(sbyte&) @bootloaderCommand1 = (sbyte) 0;
-          // ISSUE: cast to a reference type
-          // ISSUE: explicit reference operation
-          ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 1) = (sbyte) 2;
-          <Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num1, (_OVERLAPPED*) 0);
+          this.progressStatus = 10;
+          ^(sbyte&) @bootloaderCommand1 = 0;
+          ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 1) = 2;
+          WriteFile(fileW1, &bootloaderCommand1, 65U, &num1, NULL);
           if (Marshal.GetLastWin32Error() == 0)
           {
-            this.progressStatus = (byte) 50;
-            <Module>.ReadFile(fileW2, (void*) &bootloaderCommand2, 65U, &num2, (_OVERLAPPED*) 0);
+            this.progressStatus = 50;
+            ReadFile(fileW2, &bootloaderCommand2, 65U, &num2, NULL);
             if (Marshal.GetLastWin32Error() == 0)
             {
-              this.progressStatus = (byte) 90;
+              this.progressStatus = 90;
               byte num3 = 0;
               do
               {
                 int num4 = (int) num3 * 9;
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
                 byte num5 = ^(byte&) (num4 + ((IntPtr) &bootloaderCommand2 + 4));
-                if ((int) num5 != (int) byte.MaxValue)
+                if (num5 != 0xFF)
                 {
-                  *(sbyte*) ((IntPtr) Form1.memoryRegions + num4) = (sbyte) num5;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
+                  *(sbyte*) ((IntPtr) Form1.memoryRegions + num4) = num5;
                   *(int*) (num4 + (IntPtr) Form1.memoryRegions + 1) = ^(int&) (num4 + ((IntPtr) &bootloaderCommand2 + 5));
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
                   *(int*) (num4 + (IntPtr) Form1.memoryRegions + 5) = ^(int&) (num4 + ((IntPtr) &bootloaderCommand2 + 9));
                   ++this.memoryRegionsDetected;
                   ++num3;
@@ -1786,37 +995,33 @@ namespace HIDBootLoader
                 else
                   break;
               }
-              while ((uint) num3 < 4U);
-              // ISSUE: cast to a reference type
-              // ISSUE: explicit reference operation
+              while (num3 < 4U);
               switch (^(byte&) ((IntPtr) &bootloaderCommand2 + 3))
               {
                 case 1:
-                  this.bytesPerAddress = (byte) 1;
+                  this.bytesPerAddress = 1;
                   this.ckbox_ConfigWordProgramming_restore = true;
                   break;
                 case 2:
-                  this.bytesPerAddress = (byte) 2;
+                  this.bytesPerAddress = 2;
                   this.ckbox_ConfigWordProgramming_restore = true;
                   break;
                 case 3:
-                  this.bytesPerAddress = (byte) 1;
+                  this.bytesPerAddress = 1;
                   this.ckbox_ConfigWordProgramming_restore = false;
                   break;
               }
-              // ISSUE: cast to a reference type
-              // ISSUE: explicit reference operation
               this.bytesPerPacket = ^(byte&) ((IntPtr) &bootloaderCommand2 + 2);
-              this.QueryThreadResults = (byte) 1;
+              this.QueryThreadResults = 1;
             }
             else
-              this.QueryThreadResults = (byte) 3;
+              this.QueryThreadResults = 3;
           }
           else
-            this.QueryThreadResults = (byte) 2;
-          <Module>.CloseHandle(fileW1);
-          <Module>.CloseHandle(fileW2);
-          this.progressStatus = (byte) 100;
+            this.QueryThreadResults = 2;
+          CloseHandle(fileW1);
+          CloseHandle(fileW2);
+          this.progressStatus = 100;
         }
       }
     }
@@ -1824,8 +1029,8 @@ namespace HIDBootLoader
     private void btn_EraseDevice_Click(object sender, EventArgs e)
     {
       this.DisableButtons();
-      this.bootloaderState = (byte) 2;
-      this.EraseThreadResults = (byte) 0;
+      this.bootloaderState = 2;
+      this.EraseThreadResults = 0;
       Thread eraseThread = this.EraseThread;
       if (eraseThread != null && eraseThread.IsAlive)
         return;
@@ -1841,33 +1046,21 @@ namespace HIDBootLoader
 
     private unsafe void EraseThreadStart()
     {
-      _BOOTLOADER_COMMAND bootloaderCommand;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) @bootloaderCommand = (sbyte) 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: initblk instruction
-      __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand + 1), 0, 65);
+      _BOOTLOADER_COMMAND bootloaderCommand = {0};
       uint num = 0;
-      void* fileW = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-      <Module>.HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
-      if ((int) <Module>.HIDBootLoader.ErrorStatusWrite != 0)
+      void* fileW = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, NULL, 3U, 0U, NULL);
+      HIDBootLoader.ErrorStatusWrite = Marshal.GetLastWin32Error();
+      if (HIDBootLoader.ErrorStatusWrite != 0)
       {
-        this.EraseThreadResults = (byte) 2;
+        this.EraseThreadResults = 2;
       }
       else
       {
-        // ISSUE: explicit reference operation
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
-        ^(sbyte&) @bootloaderCommand = (sbyte) 0;
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
-        ^(sbyte&) ((IntPtr) &bootloaderCommand + 1) = (sbyte) 4;
-        <Module>.WriteFile(fileW, (void*) &bootloaderCommand, 65U, &num, (_OVERLAPPED*) 0);
-        this.EraseThreadResults = Marshal.GetLastWin32Error() != 0 ? (byte) 2 : (byte) 1;
-        <Module>.CloseHandle(fileW);
+        ^(sbyte&) @bootloaderCommand = 0;
+        ^(sbyte&) ((IntPtr) &bootloaderCommand + 1) = 4;
+        WriteFile(fileW, &bootloaderCommand, 65U, &num, NULL);
+        this.EraseThreadResults = Marshal.GetLastWin32Error() != 0 ? 2 :1;
+        CloseHandle(fileW);
       }
     }
 
@@ -1895,8 +1088,8 @@ namespace HIDBootLoader
       Form1 form1 = this;
       int num = form1.ckbox_ConfigWordProgramming.Checked ? 1 : 0;
       form1.unlockStatus = num != 0;
-      this.bootloaderState = (byte) 5;
-      this.UnlockConfigThreadResults = (byte) 0;
+      this.bootloaderState = 5;
+      this.UnlockConfigThreadResults = 0;
       Thread thread = new Thread(new ThreadStart(this.UnlockConfigThreadStart));
       this.UnlockConfigThread = thread;
       thread.Start();
@@ -1905,35 +1098,23 @@ namespace HIDBootLoader
     private unsafe void UnlockConfigThreadStart()
     {
       _BOOTLOADER_COMMAND bootloaderCommand;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) @bootloaderCommand = (sbyte) 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: initblk instruction
+      ^(sbyte&) @bootloaderCommand = 0;
       __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand + 1), 0, 65);
       uint num = 0;
-      void* fileW = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-      <Module>.HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
-      if ((int) <Module>.HIDBootLoader.ErrorStatusWrite != 0)
+      void* fileW = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, NULL, 3U, 0U, NULL);
+      HIDBootLoader.ErrorStatusWrite = Marshal.GetLastWin32Error();
+      if (HIDBootLoader.ErrorStatusWrite != 0)
       {
-        this.UnlockConfigThreadResults = (byte) 2;
+        this.UnlockConfigThreadResults = 2;
       }
       else
       {
-        // ISSUE: explicit reference operation
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
-        ^(sbyte&) @bootloaderCommand = (sbyte) 0;
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
-        ^(sbyte&) ((IntPtr) &bootloaderCommand + 1) = (sbyte) 3;
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
-        ^(sbyte&) ((IntPtr) &bootloaderCommand + 2) = this.unlockStatus ? (sbyte) 0 : (sbyte) 1;
-        <Module>.WriteFile(fileW, (void*) &bootloaderCommand, 65U, &num, (_OVERLAPPED*) 0);
-        this.UnlockConfigThreadResults = Marshal.GetLastWin32Error() != 0 ? (byte) 2 : (byte) 1;
-        <Module>.CloseHandle(fileW);
+        ^(sbyte&) @bootloaderCommand = 0;
+        ^(sbyte&) ((IntPtr) &bootloaderCommand + 1) = 3;
+        ^(sbyte&) ((IntPtr) &bootloaderCommand + 2) = this.unlockStatus ? 0 : 1;
+        WriteFile(fileW, &bootloaderCommand, 65U, &num, NULL);
+        this.UnlockConfigThreadResults = Marshal.GetLastWin32Error() != 0 ? 2 : 1;
+        CloseHandle(fileW);
       }
     }
 
@@ -1943,8 +1124,8 @@ namespace HIDBootLoader
       Thread readThread = this.ReadThread;
       if (readThread != null && readThread.IsAlive)
         return;
-      this.bootloaderState = (byte) 4;
-      this.ReadThreadResults = (byte) 0;
+      this.bootloaderState = 4;
+      this.ReadThreadResults = 0;
       this.listBox1.Items.Clear();
       this.enablePrint = true;
       Thread thread = new Thread(new ThreadStart(this.ReadThreadStart));
@@ -1954,31 +1135,10 @@ namespace HIDBootLoader
 
     private unsafe void ReadThreadStart()
     {
-      _BOOTLOADER_COMMAND bootloaderCommand1;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) @bootloaderCommand1 = (sbyte) 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: initblk instruction
-      __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand1 + 1), 0, 65);
-      _BOOTLOADER_COMMAND bootloaderCommand2;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) @bootloaderCommand2 = (sbyte) 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: initblk instruction
-      __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand2 + 1), 0, 65);
-      _BOOTLOADER_COMMAND bootloaderCommand3;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) @bootloaderCommand3 = (sbyte) 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: initblk instruction
-      __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand3 + 1), 0, 65);
-      uint num1 = <Module>.GetTickCount();
+      _BOOTLOADER_COMMAND bootloaderCommand1 = {0};
+      _BOOTLOADER_COMMAND bootloaderCommand2 = {0};
+      _BOOTLOADER_COMMAND bootloaderCommand3 = {0};
+      uint num1 = GetTickCount();
       int num2 = 0;
       uint num3 = 0;
       uint num4 = 0;
@@ -1986,79 +1146,49 @@ namespace HIDBootLoader
       uint num6 = 0;
       uint num7 = 0;
       uint num8 = 0;
-      void* eventW1 = <Module>.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &<Module>.??_C@_0L@BKPAMLJP@WriteEvent?$AA@);
-      void* eventW2 = <Module>.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &<Module>.??_C@_0M@INNKCKGP@WriteEvent2?$AA@);
-      void* eventW3 = <Module>.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &<Module>.??_C@_09PIDNBOJN@ReadEvent?$AA@);
-      _OVERLAPPED overlapped1;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) @overlapped1 = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped1 + 4) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped1 + 12) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped1 + 8) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped1 + 16) = (int) eventW1;
-      _OVERLAPPED overlapped2;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) @overlapped2 = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped2 + 4) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped2 + 12) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped2 + 8) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped2 + 16) = (int) eventW2;
-      _OVERLAPPED overlapped3;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) @overlapped3 = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped3 + 4) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped3 + 12) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped3 + 8) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped3 + 16) = (int) eventW3;
-      <Module>.SetEvent(eventW3);
-      <Module>.SetEvent(eventW2);
-      <Module>.SetEvent(eventW1);
-      void* fileW1 = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 1073741824U, (void*) 0);
+      void* eventW1 = CreateEventW(NULL, 1, 1, L"WriteEvent");
+      void* eventW2 = CreateEventW(NULL, 1, 1, L"WriteEvent2");
+      void* eventW3 = CreateEventW(NULL, 1, 1, L"ReadEvent");
+      _OVERLAPPED overlapped1 = {
+        .Internal = 0,
+        .InternalHigh = 0,
+        .Offset = 0,
+        .OffsetHigh = 0,
+        .hEvent = eventW1;
+      };
+      _OVERLAPPED overlapped2 = {
+        .Internal = 0,
+        .InternalHigh = 0,
+        .Offset = 0,
+        .OffsetHigh = 0,
+        .hEvent = eventW2;
+      };
+      _OVERLAPPED overlapped3 = {
+        .Internal = 0,
+        .InternalHigh = 0,
+        .Offset = 0,
+        .OffsetHigh = 0,
+        .hEvent = eventW3;
+      };
+      SetEvent(eventW3);
+      SetEvent(eventW2);
+      SetEvent(eventW1);
+      void* fileW1 = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, NULL, 3U, 1073741824U, NULL);
       if (Marshal.GetLastWin32Error() != 0)
       {
         this.enablePrint = true;
-        this.ReadThreadResults = (byte) 3;
-        this.progressStatus = (byte) 100;
+        this.ReadThreadResults = 3;
+        this.progressStatus = 100;
       }
       else
       {
-        void* fileW2 = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 1073741824U, (void*) 0);
+        void* fileW2 = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, NULL, 3U, 1073741824U, NULL);
         if (Marshal.GetLastWin32Error() != 0)
         {
           this.enablePrint = true;
           this.ReadThreadResults = (byte) 2;
           this.progressStatus = (byte) 100;
-          <Module>.CloseHandle(fileW1);
+          CloseHandle(fileW1);
         }
         else
         {
@@ -2071,19 +1201,10 @@ namespace HIDBootLoader
               uint num10 = (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1);
               _MEMORY_REGION* memoryRegions = Form1.memoryRegions;
               byte* memoryRegion = this.getMemoryRegion(region);
-              // ISSUE: cast to a reference type
-              // ISSUE: explicit reference operation
-              ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 1) = (sbyte) 7;
-              // ISSUE: cast to a reference type
-              // ISSUE: explicit reference operation
+              ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 1) = 7;
               ^(int&) ((IntPtr) &bootloaderCommand1 + 2) = (int) num10;
-              // ISSUE: cast to a reference type
-              // ISSUE: explicit reference operation
-              ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 6) = (sbyte) this.bytesPerPacket;
-              // ISSUE: explicit reference operation
-              // ISSUE: cast to a reference type
-              // ISSUE: explicit reference operation
-              ^(sbyte&) @bootloaderCommand1 = (sbyte) 0;
+              ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 6) = this.bytesPerPacket;
+              ^(sbyte&) @bootloaderCommand1 = 0;
               uint num11 = (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5);
               byte bytesPerAddress1 = this.bytesPerAddress;
               int num12 = (int) this.bytesPerPacket / (int) bytesPerAddress1;
@@ -2091,23 +1212,13 @@ namespace HIDBootLoader
               {
                 uint num13 = (uint) (num12 - *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5));
                 bytesPerAddress1 = this.bytesPerAddress;
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
                 ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 6) = (sbyte) ((int) this.bytesPerPacket - ((int) num10 - *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + (int) num13) * (int) bytesPerAddress1);
               }
-              // ISSUE: cast to a reference type
-              // ISSUE: explicit reference operation
               if ((int) ^(byte&) ((IntPtr) &bootloaderCommand1 + 6) % (int) bytesPerAddress1 != 0)
               {
                 byte bytesPerAddress2 = this.bytesPerAddress;
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
                 do
                 {
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
                   ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 6) = (sbyte) ((int) ^(byte&) ((IntPtr) &bootloaderCommand1 + 6) + 1);
                 }
                 while ((int) ^(byte&) ((IntPtr) &bootloaderCommand1 + 6) % (int) bytesPerAddress2 != 0);
@@ -2115,23 +1226,12 @@ namespace HIDBootLoader
               uint num14 = (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5);
               if (num10 < (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + num14)
               {
-                // ISSUE: explicit reference operation
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(int&) @overlapped1 = 0;
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(int&) ((IntPtr) &overlapped1 + 4) = 0;
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(int&) ((IntPtr) &overlapped1 + 12) = 0;
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(int&) ((IntPtr) &overlapped1 + 8) = 0;
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(int&) ((IntPtr) &overlapped1 + 16) = (int) eventW1;
-                if (<Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num3, &overlapped1) != 0)
+                overlapped1.Internal = 0;
+                overlapped1.InternalHigh = 0;
+                overlapped1.Offset = 0;
+                overlapped1.OffsetHigh = 0;
+                overlapped1.hEvent = eventW1;
+                if (WriteFile(fileW1, &bootloaderCommand1, 65U, &num3, &overlapped1) != 0)
                 {
                   num8 = 1U;
                   num10 = (uint) this.bytesPerPacket / (uint) this.bytesPerAddress + num10;
@@ -2145,28 +1245,14 @@ namespace HIDBootLoader
                 }
                 else
                   goto label_16;
-                // ISSUE: explicit reference operation
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(int&) @overlapped3 = 0;
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(int&) ((IntPtr) &overlapped3 + 4) = 0;
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(int&) ((IntPtr) &overlapped3 + 12) = 0;
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(int&) ((IntPtr) &overlapped3 + 8) = 0;
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(int&) ((IntPtr) &overlapped3 + 16) = (int) eventW3;
-                <Module>.SetEvent(eventW3);
-                // ISSUE: explicit reference operation
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(sbyte&) @bootloaderCommand3 = (sbyte) 0;
-                if (<Module>.ReadFile(fileW2, (void*) &bootloaderCommand3, 65U, &num5, &overlapped3) == 0 && Marshal.GetLastWin32Error() != 997)
+                overlapped3.Internal = 0;
+                overlapped3.InternalHigh = 0;
+                overlapped3.Offset = 0;
+                overlapped3.OffsetHigh = 0;
+                overlapped3.hEvent = eventW3;
+                SetEvent(eventW3);
+                ^(sbyte&) @bootloaderCommand3 = 0;
+                if (ReadFile(fileW2, &bootloaderCommand3, 65U, &num5, &overlapped3) == 0 && Marshal.GetLastWin32Error() != 997)
                   goto label_49;
               }
 label_16:
@@ -2174,9 +1260,6 @@ label_16:
               {
                 do
                 {
-                  // ISSUE: explicit reference operation
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
                   do
                   {
                     if ((int) num8 == 0)
@@ -2187,8 +1270,8 @@ label_16:
                     }
                     uint num15 = (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5);
                     this.progressStatus = (byte) (num10 * 100U / ((uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + num15));
-                    <Module>.Sleep(0U);
-                    uint tickCount = <Module>.GetTickCount();
+                    Sleep(0U);
+                    uint tickCount = GetTickCount();
                     if (tickCount - num1 > 10000U)
                     {
                       if (num2 != 1)
@@ -2199,25 +1282,13 @@ label_16:
                       else
                         goto label_50;
                     }
-                    // ISSUE: explicit reference operation
-                    // ISSUE: cast to a reference type
-                    // ISSUE: explicit reference operation
-                    if (^(int&) @overlapped1 != 259 && num8 < 10U)
+                    if (overlapped1.Internal != STATUS_PENDING && num8 < 10U)
                     {
                       num2 = 0;
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 1) = (sbyte) 7;
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
+                      ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 1) = 7;
                       ^(int&) ((IntPtr) &bootloaderCommand1 + 2) = (int) num10;
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 6) = (sbyte) this.bytesPerPacket;
-                      // ISSUE: explicit reference operation
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      ^(sbyte&) @bootloaderCommand1 = (sbyte) 0;
+                      ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 6) = this.bytesPerPacket;
+                      ^(sbyte&) @bootloaderCommand1 = 0;
                       uint num13 = (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5);
                       byte bytesPerAddress2 = this.bytesPerAddress;
                       int num16 = (int) this.bytesPerPacket / (int) bytesPerAddress2;
@@ -2225,47 +1296,26 @@ label_16:
                       {
                         uint num17 = (uint) (num16 - *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5));
                         bytesPerAddress2 = this.bytesPerAddress;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
                         ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 6) = (sbyte) ((int) this.bytesPerPacket - ((int) num17 - *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + (int) num10) * (int) bytesPerAddress2);
                       }
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
                       if ((int) ^(byte&) ((IntPtr) &bootloaderCommand1 + 6) % (int) bytesPerAddress2 != 0)
                       {
                         byte bytesPerAddress3 = this.bytesPerAddress;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
                         do
                         {
-                          // ISSUE: cast to a reference type
-                          // ISSUE: explicit reference operation
-                          // ISSUE: cast to a reference type
-                          // ISSUE: explicit reference operation
                           ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 6) = (sbyte) ((int) ^(byte&) ((IntPtr) &bootloaderCommand1 + 6) + 1);
                         }
                         while ((int) ^(byte&) ((IntPtr) &bootloaderCommand1 + 6) % (int) bytesPerAddress3 != 0);
                       }
-                      // ISSUE: explicit reference operation
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      ^(int&) @overlapped1 = 0;
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      ^(int&) ((IntPtr) &overlapped1 + 4) = 0;
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      ^(int&) ((IntPtr) &overlapped1 + 12) = 0;
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      ^(int&) ((IntPtr) &overlapped1 + 8) = 0;
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      ^(int&) ((IntPtr) &overlapped1 + 16) = (int) eventW1;
+                      overlapped1.Internal = 0;
+                      overlapped1.InternalHigh = 0;
+                      overlapped1.Offset = 0;
+                      overlapped1.OffsetHigh = 0;
+                      overlapped1.hEvent = eventW1;
                       uint num18 = (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5);
                       if (num10 < (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + num18)
                       {
-                        if (<Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num3, &overlapped1) != 0)
+                        if (WriteFile(fileW1, &bootloaderCommand1, 65U, &num3, &overlapped1) != 0)
                         {
                           ++num8;
                           ++num6;
@@ -2281,24 +1331,12 @@ label_16:
                           goto label_51;
                       }
                     }
-                    // ISSUE: explicit reference operation
-                    // ISSUE: cast to a reference type
-                    // ISSUE: explicit reference operation
-                    if (^(int&) @overlapped2 != 259 && num8 < 10U)
+                    if (overlapped2.Internal != STATUS_PENDING && num8 < 10U)
                     {
                       num2 = 0;
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      ^(sbyte&) ((IntPtr) &bootloaderCommand2 + 1) = (sbyte) 7;
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
+                      ^(sbyte&) ((IntPtr) &bootloaderCommand2 + 1) = 7;
                       ^(int&) ((IntPtr) &bootloaderCommand2 + 2) = (int) num10;
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      ^(sbyte&) ((IntPtr) &bootloaderCommand2 + 6) = (sbyte) this.bytesPerPacket;
-                      // ISSUE: explicit reference operation
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
+                      ^(sbyte&) ((IntPtr) &bootloaderCommand2 + 6) = this.bytesPerPacket;
                       ^(sbyte&) @bootloaderCommand2 = (sbyte) 0;
                       uint num13 = (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5);
                       byte bytesPerAddress2 = this.bytesPerAddress;
@@ -2307,47 +1345,26 @@ label_16:
                       {
                         uint num17 = (uint) (num16 - *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5));
                         bytesPerAddress2 = this.bytesPerAddress;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
                         ^(sbyte&) ((IntPtr) &bootloaderCommand2 + 6) = (sbyte) ((int) this.bytesPerPacket - ((int) num17 - *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + (int) num10) * (int) bytesPerAddress2);
                       }
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
                       if ((int) ^(byte&) ((IntPtr) &bootloaderCommand1 + 6) % (int) bytesPerAddress2 != 0)
                       {
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
                         int num17 = (int) ^(byte&) ((IntPtr) &bootloaderCommand1 + 6) % (int) this.bytesPerAddress;
                         do
                         {
-                          // ISSUE: cast to a reference type
-                          // ISSUE: explicit reference operation
-                          // ISSUE: cast to a reference type
-                          // ISSUE: explicit reference operation
                           ^(sbyte&) ((IntPtr) &bootloaderCommand2 + 6) = (sbyte) ((int) ^(byte&) ((IntPtr) &bootloaderCommand2 + 6) + 1);
                         }
                         while (num17 != 0);
                       }
-                      // ISSUE: explicit reference operation
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      ^(int&) @overlapped2 = 0;
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      ^(int&) ((IntPtr) &overlapped2 + 4) = 0;
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      ^(int&) ((IntPtr) &overlapped2 + 12) = 0;
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      ^(int&) ((IntPtr) &overlapped2 + 8) = 0;
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      ^(int&) ((IntPtr) &overlapped2 + 16) = (int) eventW2;
+                      overlapped2.Internal = 0;
+                      overlapped2.InternalHigh = 0;
+                      overlapped2.Offset = 0;
+                      overlapped2.OffsetHigh = 0;
+                      overlapped2.hEvent = eventW2;
                       uint num18 = (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5);
                       if (num10 < (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + num18)
                       {
-                        if (<Module>.WriteFile(fileW1, (void*) &bootloaderCommand2, 65U, &num4, &overlapped2) != 0)
+                        if (WriteFile(fileW1, &bootloaderCommand2, 65U, &num4, &overlapped2) != 0)
                         {
                           ++num8;
                           ++num6;
@@ -2364,26 +1381,16 @@ label_16:
                       }
                     }
                   }
-                  while (^(int&) @overlapped3 == 259);
+                  while (overlapped3.Internal == STATUS_PENDING);
                   num2 = 0;
                   --num8;
                   ++num7;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
                   byte* numPtr = (byte*) ((^(int&) ((IntPtr) &bootloaderCommand3 + 2) - *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1)) * (int) this.bytesPerAddress + (IntPtr) memoryRegion);
                   byte num19 = 0;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
                   if (0U < (uint) ^(byte&) ((IntPtr) &bootloaderCommand3 + 6))
                   {
-                    // ISSUE: cast to a reference type
-                    // ISSUE: explicit reference operation
                     do
                     {
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
                       *numPtr = ^(byte&) ((int) num19 - (int) ^(byte&) ((IntPtr) &bootloaderCommand3 + 6) + ((IntPtr) &bootloaderCommand3 + 65));
                       ++numPtr;
                       ++num19;
@@ -2392,28 +1399,14 @@ label_16:
                   }
                 }
                 while (num8 <= 0U);
-                // ISSUE: explicit reference operation
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(int&) @overlapped3 = 0;
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(int&) ((IntPtr) &overlapped3 + 4) = 0;
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(int&) ((IntPtr) &overlapped3 + 12) = 0;
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(int&) ((IntPtr) &overlapped3 + 8) = 0;
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(int&) ((IntPtr) &overlapped3 + 16) = (int) eventW3;
-                // ISSUE: explicit reference operation
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
+                overlapped3.Internal = 0;
+                overlapped3.InternalHigh = 0;
+                overlapped3.Offset = 0;
+                overlapped3.OffsetHigh = 0;
+                overlapped3.hEvent = eventW3;
                 ^(sbyte&) @bootloaderCommand3 = (sbyte) 0;
               }
-              while (<Module>.ReadFile(fileW2, (void*) &bootloaderCommand3, 65U, &num5, &overlapped3) != 0 || Marshal.GetLastWin32Error() == 997);
+              while (ReadFile(fileW2, &bootloaderCommand3, 65U, &num5, &overlapped3) != 0 || Marshal.GetLastWin32Error() == 997);
               goto label_53;
 label_48:
               ++region;
@@ -2424,75 +1417,55 @@ label_49:
             this.enablePrint = true;
             this.ReadThreadResults = (byte) 2;
             this.progressStatus = (byte) 100;
-            <Module>.CloseHandle(fileW1);
-            <Module>.CloseHandle(fileW2);
+            CloseHandle(fileW1);
+            CloseHandle(fileW2);
             return;
 label_50:
             this.enablePrint = true;
             this.ReadThreadResults = (byte) 2;
             this.progressStatus = (byte) 100;
-            <Module>.CloseHandle(fileW1);
-            <Module>.CloseHandle(fileW2);
+            CloseHandle(fileW1);
+            CloseHandle(fileW2);
             return;
 label_51:
             this.enablePrint = true;
             this.ReadThreadResults = (byte) 2;
             this.progressStatus = (byte) 100;
-            <Module>.CloseHandle(fileW1);
-            <Module>.CloseHandle(fileW2);
+            CloseHandle(fileW1);
+            CloseHandle(fileW2);
             return;
 label_52:
             this.enablePrint = true;
             this.ReadThreadResults = (byte) 2;
             this.progressStatus = (byte) 100;
-            <Module>.CloseHandle(fileW1);
-            <Module>.CloseHandle(fileW2);
+            CloseHandle(fileW1);
+            CloseHandle(fileW2);
             return;
 label_53:
             this.enablePrint = true;
             this.ReadThreadResults = (byte) 2;
             this.progressStatus = (byte) 100;
-            <Module>.CloseHandle(fileW1);
-            <Module>.CloseHandle(fileW2);
+            CloseHandle(fileW1);
+            CloseHandle(fileW2);
             return;
           }
 label_54:
           this.enablePrint = true;
           this.ReadThreadResults = (byte) 1;
           this.progressStatus = (byte) 100;
-          <Module>.CloseHandle(fileW1);
-          <Module>.CloseHandle(fileW2);
+          CloseHandle(fileW1);
+          CloseHandle(fileW2);
         }
       }
     }
 
     private unsafe void VerifyThreadStart()
     {
-      _BOOTLOADER_COMMAND bootloaderCommand1;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) @bootloaderCommand1 = (sbyte) 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: initblk instruction
-      __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand1 + 1), 0, 65);
-      _BOOTLOADER_COMMAND bootloaderCommand2;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) @bootloaderCommand2 = (sbyte) 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: initblk instruction
-      __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand2 + 1), 0, 65);
-      _BOOTLOADER_COMMAND bootloaderCommand3;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(sbyte&) @bootloaderCommand3 = (sbyte) 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: initblk instruction
-      __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand3 + 1), 0, 65);
-      uint num1 = <Module>.GetTickCount();
+
+      _BOOTLOADER_COMMAND bootloaderCommand1 = {0};
+      _BOOTLOADER_COMMAND bootloaderCommand2 = {0};
+      _BOOTLOADER_COMMAND bootloaderCommand3 = {0};
+      uint num1 = GetTickCount();
       int num2 = 0;
       uint num3 = 0;
       uint num4 = 0;
@@ -2500,79 +1473,49 @@ label_54:
       uint num6 = 0;
       uint num7 = 0;
       uint num8 = 0;
-      void* eventW1 = <Module>.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &<Module>.??_C@_0L@BKPAMLJP@WriteEvent?$AA@);
-      void* eventW2 = <Module>.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &<Module>.??_C@_0M@INNKCKGP@WriteEvent2?$AA@);
-      void* eventW3 = <Module>.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &<Module>.??_C@_09PIDNBOJN@ReadEvent?$AA@);
-      _OVERLAPPED overlapped1;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) @overlapped1 = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped1 + 4) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped1 + 12) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped1 + 8) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped1 + 16) = (int) eventW1;
-      _OVERLAPPED overlapped2;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) @overlapped2 = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped2 + 4) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped2 + 12) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped2 + 8) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped2 + 16) = (int) eventW2;
-      _OVERLAPPED overlapped3;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) @overlapped3 = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped3 + 4) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped3 + 12) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped3 + 8) = 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
-      ^(int&) ((IntPtr) &overlapped3 + 16) = (int) eventW3;
-      <Module>.SetEvent(eventW3);
-      <Module>.SetEvent(eventW2);
-      <Module>.SetEvent(eventW1);
-      void* fileW1 = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 1073741824U, (void*) 0);
+      void* eventW1 = CreateEventW(NULL, 1, 1, L"WriteEvent");
+      void* eventW2 = CreateEventW(NULL, 1, 1, L"WriteEvent2");
+      void* eventW3 = CreateEventW(NULL, 1, 1, L"ReadEvent");
+      _OVERLAPPED overlapped1 = {
+        .Internal = 0,
+        .InternalHigh = 0,
+        .Offset = 0,
+        .OffsetHigh = 0,
+        .hEvent = eventW1;
+      };
+      _OVERLAPPED overlapped2 = {
+        .Internal = 0,
+        .InternalHigh = 0,
+        .Offset = 0,
+        .OffsetHigh = 0,
+        .hEvent = eventW2;
+      };
+      _OVERLAPPED overlapped3 = {
+        .Internal = 0,
+        .InternalHigh = 0,
+        .Offset = 0,
+        .OffsetHigh = 0,
+        .hEvent = eventW3;
+      };
+      SetEvent(eventW3);
+      SetEvent(eventW2);
+      SetEvent(eventW1);
+      void* fileW1 = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, NULL, 3U, 1073741824U, NULL);
       if (Marshal.GetLastWin32Error() != 0)
       {
         this.enablePrint = true;
-        this.ReadThreadResults = (byte) 2;
-        this.progressStatus = (byte) 100;
+        this.ReadThreadResults = 2;
+        this.progressStatus = 100;
       }
       else
       {
-        void* fileW2 = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 1073741824U, (void*) 0);
+        void* fileW2 = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, NULL, 3U, 1073741824U, NULL);
         if (Marshal.GetLastWin32Error() != 0)
         {
           this.enablePrint = true;
-          this.ReadThreadResults = (byte) 3;
-          this.progressStatus = (byte) 100;
-          <Module>.CloseHandle(fileW1);
+          this.ReadThreadResults = 3;
+          this.progressStatus = 100;
+          CloseHandle(fileW1);
         }
         else
         {
@@ -2587,18 +1530,9 @@ label_54:
                 uint num10 = (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1);
                 _MEMORY_REGION* memoryRegions = Form1.memoryRegions;
                 byte* memoryRegion = this.getMemoryRegion(region);
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 1) = (sbyte) 7;
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
+                ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 1) = 7;
                 ^(int&) ((IntPtr) &bootloaderCommand1 + 2) = (int) num10;
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
-                ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 6) = (sbyte) this.bytesPerPacket;
-                // ISSUE: explicit reference operation
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
+                ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 6) = this.bytesPerPacket;
                 ^(sbyte&) @bootloaderCommand1 = (sbyte) 0;
                 _MEMORY_REGION* memoryRegionPtr1 = (_MEMORY_REGION*) (num9 + (IntPtr) Form1.memoryRegions + 5);
                 byte bytesPerAddress1 = this.bytesPerAddress;
@@ -2607,23 +1541,13 @@ label_54:
                 {
                   uint num12 = (uint) (num11 - *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5));
                   bytesPerAddress1 = this.bytesPerAddress;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
                   ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 6) = (sbyte) ((int) this.bytesPerPacket - ((int) num12 - *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + (int) num10) * (int) bytesPerAddress1);
                 }
-                // ISSUE: cast to a reference type
-                // ISSUE: explicit reference operation
                 if ((int) ^(byte&) ((IntPtr) &bootloaderCommand1 + 6) % (int) bytesPerAddress1 != 0)
                 {
                   byte bytesPerAddress2 = this.bytesPerAddress;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
                   do
                   {
-                    // ISSUE: cast to a reference type
-                    // ISSUE: explicit reference operation
-                    // ISSUE: cast to a reference type
-                    // ISSUE: explicit reference operation
                     ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 6) = (sbyte) ((int) ^(byte&) ((IntPtr) &bootloaderCommand1 + 6) + 1);
                   }
                   while ((int) ^(byte&) ((IntPtr) &bootloaderCommand1 + 6) % (int) bytesPerAddress2 != 0);
@@ -2631,23 +1555,12 @@ label_54:
                 _MEMORY_REGION* memoryRegionPtr2 = (_MEMORY_REGION*) (num9 + (IntPtr) Form1.memoryRegions + 5);
                 if (num10 < (uint) (*(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + *(int*) memoryRegionPtr2))
                 {
-                  // ISSUE: explicit reference operation
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
-                  ^(int&) @overlapped1 = 0;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
-                  ^(int&) ((IntPtr) &overlapped1 + 4) = 0;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
-                  ^(int&) ((IntPtr) &overlapped1 + 12) = 0;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
-                  ^(int&) ((IntPtr) &overlapped1 + 8) = 0;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
-                  ^(int&) ((IntPtr) &overlapped1 + 16) = (int) eventW1;
-                  if (<Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num3, &overlapped1) != 0)
+                  overlapped1.Internal = 0;
+                  overlapped1.InternalHigh = 0;
+                  overlapped1.Offset = 0;
+                  overlapped1.OffsetHigh = 0;
+                  overlapped1.hEvent = eventW1;
+                  if (WriteFile(fileW1, &bootloaderCommand1, 65U, &num3, &overlapped1) != 0)
                   {
                     num8 = 1U;
                     num10 = (uint) this.bytesPerPacket / (uint) this.bytesPerAddress + num10;
@@ -2661,48 +1574,31 @@ label_54:
                   }
                   else
                     goto label_51;
-                  // ISSUE: explicit reference operation
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
-                  ^(int&) @overlapped3 = 0;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
-                  ^(int&) ((IntPtr) &overlapped3 + 4) = 0;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
-                  ^(int&) ((IntPtr) &overlapped3 + 12) = 0;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
-                  ^(int&) ((IntPtr) &overlapped3 + 8) = 0;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
-                  ^(int&) ((IntPtr) &overlapped3 + 16) = (int) eventW3;
-                  <Module>.SetEvent(eventW3);
-                  // ISSUE: explicit reference operation
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
+                  overlapped3.Internal = 0;
+                  overlapped3.InternalHigh = 0;
+                  overlapped3.Offset = 0;
+                  overlapped3.OffsetHigh = 0;
+                  overlapped3.hEvent = eventW3;
+                  SetEvent(eventW3);
                   ^(sbyte&) @bootloaderCommand3 = (sbyte) 0;
-                  if (<Module>.ReadFile(fileW2, (void*) &bootloaderCommand3, 65U, &num5, &overlapped3) == 0 && Marshal.GetLastWin32Error() != 997)
+                  if (ReadFile(fileW2, &bootloaderCommand3, 65U, &num5, &overlapped3) == 0 && Marshal.GetLastWin32Error() != 997)
                     goto label_52;
                 }
                 do
                 {
                   do
                   {
-                    // ISSUE: explicit reference operation
-                    // ISSUE: cast to a reference type
-                    // ISSUE: explicit reference operation
                     do
                     {
-                      if ((int) num8 == 0)
+                      if (num8 == 0)
                       {
                         _MEMORY_REGION* memoryRegionPtr3 = (_MEMORY_REGION*) (num9 + (IntPtr) Form1.memoryRegions + 5);
                         if (num10 >= (uint) (*(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + *(int*) memoryRegionPtr3))
                           goto label_50;
                       }
                       this.progressStatus = (byte) ((uint) (((int) num10 - *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1)) * 100) / (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5));
-                      <Module>.Sleep(0U);
-                      uint tickCount = <Module>.GetTickCount();
+                      Sleep(0U);
+                      uint tickCount = GetTickCount();
                       if (tickCount - num1 > 10000U)
                       {
                         if (num2 != 1)
@@ -2713,24 +1609,12 @@ label_54:
                         else
                           goto label_53;
                       }
-                      // ISSUE: explicit reference operation
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      if (^(int&) @overlapped1 != 259 && num8 < 10U)
+                      if (overlapped1.Internal != STATUS_PENDING && num8 < 10U)
                       {
                         num2 = 0;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
                         ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 1) = (sbyte) 7;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
                         ^(int&) ((IntPtr) &bootloaderCommand1 + 2) = (int) num10;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
                         ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 6) = (sbyte) this.bytesPerPacket;
-                        // ISSUE: explicit reference operation
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
                         ^(sbyte&) @bootloaderCommand1 = (sbyte) 0;
                         _MEMORY_REGION* memoryRegionPtr3 = (_MEMORY_REGION*) (num9 + (IntPtr) Form1.memoryRegions + 5);
                         byte bytesPerAddress2 = this.bytesPerAddress;
@@ -2739,47 +1623,26 @@ label_54:
                         {
                           uint num13 = (uint) (num12 - *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5));
                           bytesPerAddress2 = this.bytesPerAddress;
-                          // ISSUE: cast to a reference type
-                          // ISSUE: explicit reference operation
                           ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 6) = (sbyte) ((int) this.bytesPerPacket - ((int) num13 - *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + (int) num10) * (int) bytesPerAddress2);
                         }
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
                         if ((int) ^(byte&) ((IntPtr) &bootloaderCommand1 + 6) % (int) bytesPerAddress2 != 0)
                         {
                           byte bytesPerAddress3 = this.bytesPerAddress;
-                          // ISSUE: cast to a reference type
-                          // ISSUE: explicit reference operation
                           do
                           {
-                            // ISSUE: cast to a reference type
-                            // ISSUE: explicit reference operation
-                            // ISSUE: cast to a reference type
-                            // ISSUE: explicit reference operation
                             ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 6) = (sbyte) ((int) ^(byte&) ((IntPtr) &bootloaderCommand1 + 6) + 1);
                           }
                           while ((int) ^(byte&) ((IntPtr) &bootloaderCommand1 + 6) % (int) bytesPerAddress3 != 0);
                         }
-                        // ISSUE: explicit reference operation
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
-                        ^(int&) @overlapped1 = 0;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
-                        ^(int&) ((IntPtr) &overlapped1 + 4) = 0;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
-                        ^(int&) ((IntPtr) &overlapped1 + 12) = 0;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
-                        ^(int&) ((IntPtr) &overlapped1 + 8) = 0;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
-                        ^(int&) ((IntPtr) &overlapped1 + 16) = (int) eventW1;
+                        overlapped1.Internal = 0;
+                        overlapped1.InternalHigh = 0;
+                        overlapped1.Offset = 0;
+                        overlapped1.OffsetHigh = 0;
+                        overlapped1.hEvent = eventW1;
                         _MEMORY_REGION* memoryRegionPtr4 = (_MEMORY_REGION*) (num9 + (IntPtr) Form1.memoryRegions + 5);
                         if (num10 < (uint) (*(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + *(int*) memoryRegionPtr4))
                         {
-                          if (<Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num3, &overlapped1) != 0)
+                          if (WriteFile(fileW1, &bootloaderCommand1, 65U, &num3, &overlapped1) != 0)
                           {
                             ++num8;
                             ++num6;
@@ -2795,25 +1658,13 @@ label_54:
                             goto label_54;
                         }
                       }
-                      // ISSUE: explicit reference operation
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
-                      if (^(int&) @overlapped2 != 259 && num8 < 10U)
+                      if (overlapped2.Internal != STATUS_PENDING && num8 < 10U)
                       {
                         num2 = 0;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
-                        ^(sbyte&) ((IntPtr) &bootloaderCommand2 + 1) = (sbyte) 7;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
-                        ^(int&) ((IntPtr) &bootloaderCommand2 + 2) = (int) num10;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
-                        ^(sbyte&) ((IntPtr) &bootloaderCommand2 + 6) = (sbyte) this.bytesPerPacket;
-                        // ISSUE: explicit reference operation
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
-                        ^(sbyte&) @bootloaderCommand2 = (sbyte) 0;
+                        ^(sbyte&) ((IntPtr) &bootloaderCommand2 + 1) = 7;
+                        ^(int&) ((IntPtr) &bootloaderCommand2 + 2) = num10;
+                        ^(sbyte&) ((IntPtr) &bootloaderCommand2 + 6) = this.bytesPerPacket;
+                        ^(sbyte&) @bootloaderCommand2 = 0;
                         _MEMORY_REGION* memoryRegionPtr3 = (_MEMORY_REGION*) (num9 + (IntPtr) Form1.memoryRegions + 5);
                         byte bytesPerAddress2 = this.bytesPerAddress;
                         int num12 = (int) this.bytesPerPacket / (int) bytesPerAddress2;
@@ -2821,47 +1672,26 @@ label_54:
                         {
                           uint num13 = (uint) (num12 - *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5));
                           bytesPerAddress2 = this.bytesPerAddress;
-                          // ISSUE: cast to a reference type
-                          // ISSUE: explicit reference operation
                           ^(sbyte&) ((IntPtr) &bootloaderCommand2 + 6) = (sbyte) ((int) this.bytesPerPacket - ((int) num13 - *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + (int) num10) * (int) bytesPerAddress2);
                         }
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
                         if ((int) ^(byte&) ((IntPtr) &bootloaderCommand1 + 6) % (int) bytesPerAddress2 != 0)
                         {
-                          // ISSUE: cast to a reference type
-                          // ISSUE: explicit reference operation
                           int num13 = (int) ^(byte&) ((IntPtr) &bootloaderCommand1 + 6) % (int) this.bytesPerAddress;
                           do
                           {
-                            // ISSUE: cast to a reference type
-                            // ISSUE: explicit reference operation
-                            // ISSUE: cast to a reference type
-                            // ISSUE: explicit reference operation
                             ^(sbyte&) ((IntPtr) &bootloaderCommand2 + 6) = (sbyte) ((int) ^(byte&) ((IntPtr) &bootloaderCommand2 + 6) + 1);
                           }
                           while (num13 != 0);
                         }
-                        // ISSUE: explicit reference operation
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
-                        ^(int&) @overlapped2 = 0;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
-                        ^(int&) ((IntPtr) &overlapped2 + 4) = 0;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
-                        ^(int&) ((IntPtr) &overlapped2 + 12) = 0;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
-                        ^(int&) ((IntPtr) &overlapped2 + 8) = 0;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
-                        ^(int&) ((IntPtr) &overlapped2 + 16) = (int) eventW2;
+                        overlapped2.Internal = 0;
+                        overlapped2.InternalHigh = 0;
+                        overlapped2.Offset = 0;
+                        overlapped2.OffsetHigh = 0;
+                        overlapped2.hEvent = eventW2;
                         _MEMORY_REGION* memoryRegionPtr4 = (_MEMORY_REGION*) (num9 + (IntPtr) Form1.memoryRegions + 5);
                         if (num10 < (uint) (*(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + *(int*) memoryRegionPtr4))
                         {
-                          if (<Module>.WriteFile(fileW1, (void*) &bootloaderCommand2, 65U, &num4, &overlapped2) != 0)
+                          if (WriteFile(fileW1, &bootloaderCommand2, 65U, &num4, &overlapped2) != 0)
                           {
                             ++num8;
                             ++num6;
@@ -2878,29 +1708,19 @@ label_54:
                         }
                       }
                     }
-                    while (^(int&) @overlapped3 == 259);
+                    while (overlapped3.Internal == STATUS_PENDING);
                     num2 = 0;
                     --num8;
                     ++num7;
                     byte bytesPerAddress4 = this.bytesPerAddress;
-                    // ISSUE: cast to a reference type
-                    // ISSUE: explicit reference operation
                     byte* numPtr = (byte*) ((^(int&) ((IntPtr) &bootloaderCommand3 + 2) - *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1)) * (int) bytesPerAddress4 + (IntPtr) memoryRegion);
                     byte num14 = 0;
-                    // ISSUE: cast to a reference type
-                    // ISSUE: explicit reference operation
                     if (0U < (uint) ^(byte&) ((IntPtr) &bootloaderCommand3 + 6))
                     {
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
                       do
                       {
                         byte num12 = *numPtr;
                         ++numPtr;
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
-                        // ISSUE: cast to a reference type
-                        // ISSUE: explicit reference operation
                         if ((int) num12 == (int) ^(byte&) ((int) num14 - (int) ^(byte&) ((IntPtr) &bootloaderCommand3 + 6) + ((IntPtr) &bootloaderCommand3 + 65)) || (int) bytesPerAddress4 == 2 && ((int) num14 + 1) % 4 == 0)
                           ++num14;
                         else
@@ -2910,28 +1730,14 @@ label_54:
                     }
                   }
                   while (num8 <= 0U);
-                  // ISSUE: explicit reference operation
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
-                  ^(int&) @overlapped3 = 0;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
-                  ^(int&) ((IntPtr) &overlapped3 + 4) = 0;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
-                  ^(int&) ((IntPtr) &overlapped3 + 12) = 0;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
-                  ^(int&) ((IntPtr) &overlapped3 + 8) = 0;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
-                  ^(int&) ((IntPtr) &overlapped3 + 16) = (int) eventW3;
-                  // ISSUE: explicit reference operation
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
+                  overlapped3.Internal = 0;
+                  overlapped3.InternalHigh = 0;
+                  overlapped3.Offset = 0;
+                  overlapped3.OffsetHigh = 0;
+                  overlapped3.hEvent = eventW3;
                   ^(sbyte&) @bootloaderCommand3 = (sbyte) 0;
                 }
-                while (<Module>.ReadFile(fileW2, (void*) &bootloaderCommand3, 65U, &num5, &overlapped3) != 0 || Marshal.GetLastWin32Error() == 997);
+                while (ReadFile(fileW2, &bootloaderCommand3, 65U, &num5, &overlapped3) != 0 || Marshal.GetLastWin32Error() == 997);
                 goto label_57;
               }
 label_50:
@@ -2941,60 +1747,60 @@ label_50:
             goto label_58;
 label_51:
             this.enablePrint = true;
-            this.ReadThreadResults = (byte) 2;
-            this.progressStatus = (byte) 100;
-            <Module>.CloseHandle(fileW1);
-            <Module>.CloseHandle(fileW2);
+            this.ReadThreadResults = 2;
+            this.progressStatus = 100;
+            CloseHandle(fileW1);
+            CloseHandle(fileW2);
             return;
 label_52:
             this.enablePrint = true;
-            this.ReadThreadResults = (byte) 2;
-            this.progressStatus = (byte) 100;
-            <Module>.CloseHandle(fileW1);
-            <Module>.CloseHandle(fileW2);
+            this.ReadThreadResults = 2;
+            this.progressStatus = 100;
+            CloseHandle(fileW1);
+            CloseHandle(fileW2);
             return;
 label_53:
             this.enablePrint = true;
-            this.ReadThreadResults = (byte) 2;
-            this.progressStatus = (byte) 100;
-            <Module>.CloseHandle(fileW1);
-            <Module>.CloseHandle(fileW2);
+            this.ReadThreadResults = 2;
+            this.progressStatus = 100;
+            CloseHandle(fileW1);
+            CloseHandle(fileW2);
             return;
 label_54:
             this.enablePrint = true;
-            this.ReadThreadResults = (byte) 2;
-            this.progressStatus = (byte) 100;
-            <Module>.CloseHandle(fileW1);
-            <Module>.CloseHandle(fileW2);
+            this.ReadThreadResults = 2;
+            this.progressStatus = 100;
+            CloseHandle(fileW1);
+            CloseHandle(fileW2);
             return;
 label_55:
             this.enablePrint = true;
-            this.ReadThreadResults = (byte) 2;
-            this.progressStatus = (byte) 100;
-            <Module>.CloseHandle(fileW1);
-            <Module>.CloseHandle(fileW2);
+            this.ReadThreadResults = 2;
+            this.progressStatus = 100;
+            CloseHandle(fileW1);
+            CloseHandle(fileW2);
             return;
 label_56:
             this.enablePrint = true;
-            this.VerifyThreadResults = (byte) 4;
-            this.progressStatus = (byte) 100;
-            <Module>.CloseHandle(fileW1);
-            <Module>.CloseHandle(fileW2);
+            this.VerifyThreadResults = 4;
+            this.progressStatus = 100;
+            CloseHandle(fileW1);
+            CloseHandle(fileW2);
             return;
 label_57:
             this.enablePrint = true;
-            this.ReadThreadResults = (byte) 2;
-            this.progressStatus = (byte) 100;
-            <Module>.CloseHandle(fileW1);
-            <Module>.CloseHandle(fileW2);
+            this.ReadThreadResults = 2;
+            this.progressStatus = 100;
+            CloseHandle(fileW1);
+            CloseHandle(fileW2);
             return;
           }
 label_58:
           this.enablePrint = true;
-          this.VerifyThreadResults = (byte) 1;
-          this.progressStatus = (byte) 100;
-          <Module>.CloseHandle(fileW1);
-          <Module>.CloseHandle(fileW2);
+          this.VerifyThreadResults = 1;
+          this.progressStatus = 100;
+          CloseHandle(fileW1);
+          CloseHandle(fileW2);
         }
       }
     }
@@ -3002,8 +1808,8 @@ label_58:
     private void btn_Verify_Click(object sender, EventArgs e)
     {
       this.DisableButtons();
-      this.bootloaderState = (byte) 3;
-      this.VerifyThreadResults = (byte) 0;
+      this.bootloaderState = 3;
+      this.VerifyThreadResults = 0;
       Thread verifyThread = this.VerifyThread;
       if (verifyThread != null && verifyThread.IsAlive)
         return;
@@ -3016,11 +1822,9 @@ label_58:
 
     private unsafe void btn_OpenHexFile_Click(object sender, EventArgs e)
     {
-      FileStream fileStream = (FileStream) null;
-      StreamReader streamReader = (StreamReader) null;
-      Stream stream = (Stream) null;
-      // ISSUE: untyped stack allocation
-      int num1 = (int) __untypedstackalloc(<Module>.___CxxQueryExceptionSize());
+      FileStream fileStream = null;
+      StreamReader streamReader = null;
+      Stream stream = null;
       uint num2 = 0;
       this.DisableButtons();
       OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -3029,106 +1833,7 @@ label_58:
       openFileDialog.RestoreDirectory = true;
       uint exceptionCode;
       uint num3;
-      try
-      {
-        if (fileStream != null)
-          fileStream.Dispose();
-      }
-      catch (Exception ex1) when (
-      {
-        // ISSUE: unable to correctly present filter
-        exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
-        {
-          SuccessfulFiltering;
-        }
-        else
-          throw;
-      }
-      )
-      {
-        uint num4 = 0;
-        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-        try
-        {
-          try
-          {
-          }
-          catch (Exception ex2) when (
-          {
-            // ISSUE: unable to correctly present filter
-            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-            if ((int) num4 != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
-          }
-          )
-          {
-          }
-          goto label_11;
-          if ((int) num3 != 0)
-            throw;
-        }
-        finally
-        {
-          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-        }
-      }
-label_11:
-      try
-      {
-        if (streamReader != null)
-        {
-          streamReader.Close();
-          streamReader.Dispose();
-        }
-      }
-      catch (Exception ex1) when (
-      {
-        // ISSUE: unable to correctly present filter
-        exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
-        {
-          SuccessfulFiltering;
-        }
-        else
-          throw;
-      }
-      )
-      {
-        uint num4 = 0;
-        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-        try
-        {
-          try
-          {
-          }
-          catch (Exception ex2) when (
-          {
-            // ISSUE: unable to correctly present filter
-            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-            if ((int) num4 != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
-          }
-          )
-          {
-          }
-          goto label_22;
-          if ((int) num3 != 0)
-            throw;
-        }
-        finally
-        {
-          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-        }
-      }
+
 label_22:
       bool flag1 = false;
       if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -3139,57 +1844,18 @@ label_22:
           try
           {
             fileStream = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read);
-            streamReader = new StreamReader((Stream) fileStream);
+            streamReader = new StreamReader(fileStream);
           }
-          catch (Exception ex1) when (
+          catch
           {
-            // ISSUE: unable to correctly present filter
-            exceptionCode = (uint) Marshal.GetExceptionCode();
-            if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+            if (fileStream != null)
             {
-              SuccessfulFiltering;
+              fileStream.Close();
+              fileStream.Dispose();
             }
-            else
-              throw;
-          }
-          )
-          {
-            uint num4 = 0;
-            <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-            try
-            {
-              try
-              {
-                if (fileStream != null)
-                {
-                  fileStream.Close();
-                  fileStream.Dispose();
-                }
-                stream.Close();
-                stream.Dispose();
-                return;
-              }
-              catch (Exception ex2) when (
-              {
-                // ISSUE: unable to correctly present filter
-                num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-                if ((int) num4 != 0)
-                {
-                  SuccessfulFiltering;
-                }
-                else
-                  throw;
-              }
-              )
-              {
-              }
-              if ((int) num4 != 0)
-                throw;
-            }
-            finally
-            {
-              <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-            }
+            stream.Close();
+            stream.Dispose();
+            return;
           }
           bool flag2 = false;
 label_36:
@@ -3302,162 +1968,23 @@ label_55:
           while ((uint) num7 < hex1);
           goto label_36;
 label_59:
-          try
+          if (fileStream != null)
           {
-            if (fileStream != null)
-            {
-              fileStream.Close();
-              fileStream.Dispose();
-            }
+            fileStream.Close();
+            fileStream.Dispose();
           }
-          catch (Exception ex1) when (
+
+          if (streamReader != null)
           {
-            // ISSUE: unable to correctly present filter
-            exceptionCode = (uint) Marshal.GetExceptionCode();
-            if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
+            streamReader.Close();
+            streamReader.Dispose();
           }
-          )
-          {
-            uint num4 = 0;
-            <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-            try
-            {
-              try
-              {
-              }
-              catch (Exception ex2) when (
-              {
-                // ISSUE: unable to correctly present filter
-                num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-                if ((int) num4 != 0)
-                {
-                  SuccessfulFiltering;
-                }
-                else
-                  throw;
-              }
-              )
-              {
-              }
-              goto label_70;
-              if ((int) num3 != 0)
-                throw;
-            }
-            finally
-            {
-              <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-            }
-          }
-label_70:
-          try
-          {
-            if (streamReader != null)
-            {
-              streamReader.Close();
-              streamReader.Dispose();
-            }
-          }
-          catch (Exception ex1) when (
-          {
-            // ISSUE: unable to correctly present filter
-            exceptionCode = (uint) Marshal.GetExceptionCode();
-            if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
-          }
-          )
-          {
-            uint num4 = 0;
-            <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-            try
-            {
-              try
-              {
-              }
-              catch (Exception ex2) when (
-              {
-                // ISSUE: unable to correctly present filter
-                num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-                if ((int) num4 != 0)
-                {
-                  SuccessfulFiltering;
-                }
-                else
-                  throw;
-              }
-              )
-              {
-              }
-              goto label_81;
-              if ((int) num3 != 0)
-                throw;
-            }
-            finally
-            {
-              <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-            }
-          }
-label_81:
-          try
-          {
-            if (stream == null)
-              return;
-            stream.Close();
-            stream.Dispose();
+
+          if (stream == null)
             return;
-          }
-          catch (Exception ex1) when (
-          {
-            // ISSUE: unable to correctly present filter
-            exceptionCode = (uint) Marshal.GetExceptionCode();
-            if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
-          }
-          )
-          {
-            uint num4 = 0;
-            <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-            try
-            {
-              try
-              {
-              }
-              catch (Exception ex2) when (
-              {
-                // ISSUE: unable to correctly present filter
-                num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-                if ((int) num4 != 0)
-                {
-                  SuccessfulFiltering;
-                }
-                else
-                  throw;
-              }
-              )
-              {
-              }
-              return;
-              if ((int) num3 == 0)
-                return;
-              throw;
-            }
-            finally
-            {
-              <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-            }
-          }
+          stream.Close();
+          stream.Dispose();
+          return;
 label_92:
           if (!flag1)
           {
@@ -3471,169 +1998,30 @@ label_92:
           this.btn_Verify_restore = true;
         }
       }
-      try
+
+      if (fileStream != null)
       {
-        if (fileStream != null)
-        {
-          fileStream.Close();
-          fileStream.Dispose();
-        }
+        fileStream.Close();
+        fileStream.Dispose();
       }
-      catch (Exception ex1) when (
+
+      if (streamReader != null)
       {
-        // ISSUE: unable to correctly present filter
-        exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
-        {
-          SuccessfulFiltering;
-        }
-        else
-          throw;
+        streamReader.Close();
+        streamReader.Dispose();
       }
-      )
-      {
-        uint num4 = 0;
-        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-        try
-        {
-          try
-          {
-          }
-          catch (Exception ex2) when (
-          {
-            // ISSUE: unable to correctly present filter
-            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-            if ((int) num4 != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
-          }
-          )
-          {
-          }
-          goto label_110;
-          if ((int) num3 != 0)
-            throw;
-        }
-        finally
-        {
-          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-        }
-      }
-label_110:
-      try
-      {
-        if (streamReader != null)
-        {
-          streamReader.Close();
-          streamReader.Dispose();
-        }
-      }
-      catch (Exception ex1) when (
-      {
-        // ISSUE: unable to correctly present filter
-        exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
-        {
-          SuccessfulFiltering;
-        }
-        else
-          throw;
-      }
-      )
-      {
-        uint num4 = 0;
-        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-        try
-        {
-          try
-          {
-          }
-          catch (Exception ex2) when (
-          {
-            // ISSUE: unable to correctly present filter
-            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-            if ((int) num4 != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
-          }
-          )
-          {
-          }
-          goto label_123;
-          if ((int) num3 != 0)
-            throw;
-        }
-        finally
-        {
-          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-        }
-      }
-label_123:
-      try
-      {
-        if (stream == null)
+
+      if (stream == null)
           return;
-        stream.Close();
-        stream.Dispose();
-      }
-      catch (Exception ex1) when (
-      {
-        // ISSUE: unable to correctly present filter
-        exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
-        {
-          SuccessfulFiltering;
-        }
-        else
-          throw;
-      }
-      )
-      {
-        uint num4 = 0;
-        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-        try
-        {
-          try
-          {
-          }
-          catch (Exception ex2) when (
-          {
-            // ISSUE: unable to correctly present filter
-            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-            if ((int) num4 != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
-          }
-          )
-          {
-          }
-          return;
-          if ((int) num3 == 0)
-            return;
-          throw;
-        }
-        finally
-        {
-          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-        }
-      }
+      stream.Close();
+      stream.Dispose();
     }
 
     private unsafe void btn_ExportHex_Click(object sender, EventArgs e)
     {
       StreamWriter streamWriter = (StreamWriter) null;
       FileStream fileStream = (FileStream) null;
-      // ISSUE: untyped stack allocation
-      int num1 = (int) __untypedstackalloc(<Module>.___CxxQueryExceptionSize());
+      int num1 = (int) __untypedstackalloc(___CxxQueryExceptionSize());
       this.DisableButtons();
       if (this.dialog_ExportHex.ShowDialog() != DialogResult.OK)
         return;
@@ -3642,46 +2030,17 @@ label_123:
       {
         streamWriter = new StreamWriter(this.dialog_ExportHex.FileName, false);
       }
-      catch (Exception ex1) when (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) &<Module>.??_R0PAD@8, 0, (void*) &numPtr) != 0)
+      catch
       {
-        uint num2 = 0;
-        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-        try
+        if (this.enablePrint)
         {
-          try
-          {
-            if (this.enablePrint)
-            {
-              this.listBox1.Items.Add((object) new string(numPtr));
-              this.listBox1.SelectedIndex = this.listBox1.Items.Count - 1;
-              this.enablePrint = false;
-            }
-            if (fileStream == null)
-              return;
-            fileStream.Dispose();
-            return;
-          }
-          catch (Exception ex2) when (
-          {
-            // ISSUE: unable to correctly present filter
-            num2 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-            if ((int) num2 != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
-          }
-          )
-          {
-          }
-          if ((int) num2 != 0)
-            throw;
+          this.listBox1.Items.Add((object) new string(numPtr));
+          this.listBox1.SelectedIndex = this.listBox1.Items.Count - 1;
+          this.enablePrint = false;
         }
-        finally
-        {
-          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num2);
-        }
+        if (fileStream != null)
+          fileStream.Dispose();
+        return;
       }
       byte region = 0;
       if (0U < (uint) this.memoryRegionsDetected)
@@ -3765,51 +2124,31 @@ label_123:
     private unsafe void ProgramThreadStart()
     {
       _BOOTLOADER_COMMAND bootloaderCommand1;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
       ^(sbyte&) @bootloaderCommand1 = (sbyte) 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: initblk instruction
       __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand1 + 1), 0, 65);
       _BOOTLOADER_COMMAND bootloaderCommand2;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
       ^(sbyte&) @bootloaderCommand2 = (sbyte) 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: initblk instruction
       __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand2 + 1), 0, 65);
       uint num1 = 0;
       uint num2 = 0;
-      void* fileW1 = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-      <Module>.HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
-      void* fileW2 = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-      <Module>.HIDBootLoader.ErrorStatusRead = (uint) Marshal.GetLastWin32Error();
+      void* fileW1 = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, NULL, 3U, 0U, NULL);
+      HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
+      void* fileW2 = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, NULL, 3U, 0U, NULL);
+      HIDBootLoader.ErrorStatusRead = (uint) Marshal.GetLastWin32Error();
       bool flag1 = false;
       bool flag2 = false;
       this.enablePrint = true;
       this.ProgramThreadResults = (byte) 5;
       this.progressStatus = (byte) 0;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
       ^(sbyte&) @bootloaderCommand1 = (sbyte) 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
       ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 1) = (sbyte) 4;
-      <Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num1, (_OVERLAPPED*) 0);
+      WriteFile(fileW1, &bootloaderCommand1, 65U, &num1, NULL);
       if (Marshal.GetLastWin32Error() == 0)
       {
-        // ISSUE: explicit reference operation
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
         ^(sbyte&) @bootloaderCommand1 = (sbyte) 0;
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
         ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 1) = (sbyte) 2;
         this.progressStatus = (byte) 50;
-        <Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num1, (_OVERLAPPED*) 0);
+        WriteFile(fileW1, &bootloaderCommand1, 65U, &num1, NULL);
         if (Marshal.GetLastWin32Error() != 0)
         {
           this.enablePrint = true;
@@ -3817,7 +2156,7 @@ label_123:
         }
         else
         {
-          <Module>.ReadFile(fileW2, (void*) &bootloaderCommand2, 65U, &num2, (_OVERLAPPED*) 0);
+          ReadFile(fileW2, &bootloaderCommand2, 65U, &num2, NULL);
           if (Marshal.GetLastWin32Error() != 0)
           {
             this.enablePrint = true;
@@ -3861,15 +2200,8 @@ label_123:
                     _MEMORY_REGION* memoryRegionPtr2;
                     do
                     {
-                      // ISSUE: explicit reference operation
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
                       ^(sbyte&) @bootloaderCommand1 = (sbyte) 0;
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
                       ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 1) = (sbyte) 5;
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
                       ^(int&) ((IntPtr) &bootloaderCommand1 + 2) = (int) num4;
                       this.progressStatus = (byte) ((uint) (((int) num4 - *(int*) (num3 + (IntPtr) Form1.memoryRegions + 1)) * 100) / (uint) *(int*) (num3 + (IntPtr) Form1.memoryRegions + 5));
                       byte num6 = 0;
@@ -3879,8 +2211,6 @@ label_123:
                         {
                           byte num7 = *memoryRegion;
                           ++memoryRegion;
-                          // ISSUE: cast to a reference type
-                          // ISSUE: explicit reference operation
                           ^(sbyte&) ((int) num6 - (int) this.bytesPerPacket + ((IntPtr) &bootloaderCommand1 + 65)) = (sbyte) num7;
                           if ((int) num7 != (int) byte.MaxValue)
                           {
@@ -3919,16 +2249,10 @@ label_26:
                         {
                           if ((uint) num8 < (uint) num6)
                           {
-                            // ISSUE: cast to a reference type
-                            // ISSUE: explicit reference operation
-                            // ISSUE: cast to a reference type
-                            // ISSUE: explicit reference operation
                             ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 64 - (int) num8) = (sbyte) ^(byte&) ((int) num6 - (int) num8 - (int) this.bytesPerPacket + ((IntPtr) &bootloaderCommand1 + 64));
                           }
                           else
                           {
-                            // ISSUE: cast to a reference type
-                            // ISSUE: explicit reference operation
                             ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 64 - (int) num8) = (sbyte) 0;
                           }
                           ++num8;
@@ -3936,31 +2260,22 @@ label_26:
                         while ((uint) num8 < 58U);
                       }
 label_31:
-                      // ISSUE: cast to a reference type
-                      // ISSUE: explicit reference operation
                       ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 6) = (sbyte) num6;
                       if (!flag3)
                       {
                         if (flag4)
                         {
                           _BOOTLOADER_COMMAND bootloaderCommand3;
-                          // ISSUE: explicit reference operation
-                          // ISSUE: cast to a reference type
-                          // ISSUE: explicit reference operation
                           ^(sbyte&) @bootloaderCommand3 = (sbyte) 0;
-                          // ISSUE: cast to a reference type
-                          // ISSUE: initblk instruction
                           __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand3 + 1), 0, 65);
-                          // ISSUE: cast to a reference type
-                          // ISSUE: explicit reference operation
                           ^(sbyte&) ((IntPtr) &bootloaderCommand3 + 1) = (sbyte) 6;
-                          <Module>.WriteFile(fileW1, (void*) &bootloaderCommand3, 65U, &num1, (_OVERLAPPED*) 0);
+                          WriteFile(fileW1, &bootloaderCommand3, 65U, &num1, NULL);
                           if (Marshal.GetLastWin32Error() == 0)
                             flag4 = false;
                           else
                             goto label_45;
                         }
-                        <Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num1, (_OVERLAPPED*) 0);
+                        WriteFile(fileW1, &bootloaderCommand1, 65U, &num1, NULL);
                         if (Marshal.GetLastWin32Error() == 0)
                           flag3 = true;
                         else
@@ -3975,14 +2290,9 @@ label_31:
                     }
                     while (num4 < (uint) (*(int*) (num3 + (IntPtr) Form1.memoryRegions + 1) + *(int*) memoryRegionPtr2));
                   }
-                  // ISSUE: explicit reference operation
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
                   ^(sbyte&) @bootloaderCommand1 = (sbyte) 0;
-                  // ISSUE: cast to a reference type
-                  // ISSUE: explicit reference operation
                   ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 1) = (sbyte) 6;
-                  <Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num1, (_OVERLAPPED*) 0);
+                  WriteFile(fileW1, &bootloaderCommand1, 65U, &num1, NULL);
                   if (Marshal.GetLastWin32Error() != 0)
                     goto label_47;
 label_40:
@@ -4033,65 +2343,62 @@ label_41:
       int wparam1 = (int) m.WParam;
       int wparam2 = (int) m.WParam;
       int wparam3 = (int) m.WParam;
-      <Module>.HIDBootLoader.Status = this.TryToFindHIDDeviceFromVIDPID() ? 1 : 0;
-      if (<Module>.HIDBootLoader.Status == 1)
+      HIDBootLoader.Status = this.TryToFindHIDDeviceFromVIDPID() ? 1 : 0;
+      if (HIDBootLoader.Status == 1)
       {
-        if (<Module>.HIDBootLoader.MyDeviceAttachedStatus != 0)
+        if (HIDBootLoader.MyDeviceAttachedStatus != 0)
           return;
-        <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-        <Module>.HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
-        <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-        <Module>.HIDBootLoader.ErrorStatusRead = (uint) Marshal.GetLastWin32Error();
-        if ((int) <Module>.HIDBootLoader.ErrorStatusRead == 0 && (int) <Module>.HIDBootLoader.ErrorStatusWrite == 0)
+        CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, NULL, 3U, 0U, NULL);
+        HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
+        CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, NULL, 3U, 0U, NULL);
+        HIDBootLoader.ErrorStatusRead = (uint) Marshal.GetLastWin32Error();
+        if ((int) HIDBootLoader.ErrorStatusRead == 0 && (int) HIDBootLoader.ErrorStatusWrite == 0)
         {
           this.DeviceAttached();
-          <Module>.HIDBootLoader.MyDeviceAttachedStatus = 1;
+          HIDBootLoader.MyDeviceAttachedStatus = 1;
         }
         else
         {
-          <Module>.HIDBootLoader.MyDeviceAttachedStatus = 0;
+          HIDBootLoader.MyDeviceAttachedStatus = 0;
           this.DeviceRemoved();
         }
       }
       else
       {
-        <Module>.HIDBootLoader.MyDeviceAttachedStatus = 0;
+        HIDBootLoader.MyDeviceAttachedStatus = 0;
         this.DeviceRemoved();
-        <Module>.CloseHandle((void*) -1);
-        <Module>.CloseHandle((void*) -1);
+        CloseHandle(-1);
+        CloseHandle(-1);
       }
     }
 
     [return: MarshalAs(UnmanagedType.U1)]
     private unsafe bool TryToFindHIDDeviceFromVIDPID()
     {
-      _SP_DEVICE_INTERFACE_DATA* DeviceInterfaceData = (_SP_DEVICE_INTERFACE_DATA*) <Module>.@new(28U);
+      _SP_DEVICE_INTERFACE_DATA* DeviceInterfaceData = (_SP_DEVICE_INTERFACE_DATA*) @new(28U);
       uint MemberIndex = 0;
       uint DeviceInterfaceDetailDataSize = 0;
       string str1 = "Vid_04d8&Pid_003c";
-      void* classDevsUm = <Module>.SetupDiGetClassDevsUM(&<Module>.HIDBootLoader.InterfaceClassGuid, (char*) 0, (HWND__*) 0, 18U);
+      void* classDevsUm = SetupDiGetClassDevsUM(&HIDBootLoader.InterfaceClassGuid, NULL, NULL, 18U);
       *(int*) DeviceInterfaceData = 28;
-      if (<Module>.SetupDiEnumDeviceInterfacesUM(classDevsUm, (_SP_DEVINFO_DATA*) 0, &<Module>.HIDBootLoader.InterfaceClassGuid, 0U, DeviceInterfaceData) != 0)
+      if (SetupDiEnumDeviceInterfacesUM(classDevsUm, NULL, &HIDBootLoader.InterfaceClassGuid, 0U, DeviceInterfaceData) != 0)
       {
         while (259 != Marshal.GetLastWin32Error())
         {
           _SP_DEVINFO_DATA spDevinfoData;
-          // ISSUE: explicit reference operation
-          // ISSUE: cast to a reference type
-          // ISSUE: explicit reference operation
           ^(int&) @spDevinfoData = 28;
-          if (<Module>.SetupDiEnumDeviceInfoUM(classDevsUm, MemberIndex, &spDevinfoData) != 0)
+          if (SetupDiEnumDeviceInfoUM(classDevsUm, MemberIndex, &spDevinfoData) != 0)
           {
             uint num;
             uint PropertyBufferSize;
-            <Module>.SetupDiGetDeviceRegistryPropertyUM(classDevsUm, &spDevinfoData, 1U, &num, (byte*) 0, 0U, &PropertyBufferSize);
-            byte* PropertyBuffer = (byte*) <Module>.malloc(PropertyBufferSize);
+            SetupDiGetDeviceRegistryPropertyUM(classDevsUm, &spDevinfoData, 1U, &num, NULL, 0U, &PropertyBufferSize);
+            byte* PropertyBuffer = (byte*) malloc(PropertyBufferSize);
             if ((IntPtr) PropertyBuffer != IntPtr.Zero)
             {
-              if (<Module>.SetupDiGetDeviceRegistryPropertyUM(classDevsUm, &spDevinfoData, 1U, &num, PropertyBuffer, PropertyBufferSize, (uint*) 0) != 0)
+              if (SetupDiGetDeviceRegistryPropertyUM(classDevsUm, &spDevinfoData, 1U, &num, PropertyBuffer, PropertyBufferSize, NULL) != 0)
               {
                 string str2 = new string((char*) PropertyBuffer);
-                <Module>.free((void*) PropertyBuffer);
+                free(PropertyBuffer);
                 string lowerInvariant = str2.ToLowerInvariant();
                 str1 = str1.ToLowerInvariant();
                 if (!lowerInvariant.Contains(str1))
@@ -4100,59 +2407,59 @@ label_41:
                   if ((int) MemberIndex != 10000000)
                   {
                     *(int*) DeviceInterfaceData = 28;
-                    if (<Module>.SetupDiEnumDeviceInterfacesUM(classDevsUm, (_SP_DEVINFO_DATA*) 0, &<Module>.HIDBootLoader.InterfaceClassGuid, MemberIndex, DeviceInterfaceData) == 0)
+                    if (SetupDiEnumDeviceInterfacesUM(classDevsUm, NULL, &HIDBootLoader.InterfaceClassGuid, MemberIndex, DeviceInterfaceData) == 0)
                       goto label_18;
                   }
                   else
                   {
-                    <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+                    SetupDiDestroyDeviceInfoListUM(classDevsUm);
                     return false;
                   }
                 }
                 else
                 {
-                  *(int*) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt = 6;
-                  <Module>.SetupDiGetDeviceInterfaceDetailUM(classDevsUm, DeviceInterfaceData, (_SP_DEVICE_INTERFACE_DETAIL_DATA_W*) 0, 0U, &DeviceInterfaceDetailDataSize, (_SP_DEVINFO_DATA*) 0);
-                  <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt = (_SP_DEVICE_INTERFACE_DETAIL_DATA_W*) <Module>.malloc(DeviceInterfaceDetailDataSize);
-                  if ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt == IntPtr.Zero)
+                  *(int*) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt = 6;
+                  SetupDiGetDeviceInterfaceDetailUM(classDevsUm, DeviceInterfaceData, NULL, 0U, &DeviceInterfaceDetailDataSize, NULL);
+                  HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt = (_SP_DEVICE_INTERFACE_DETAIL_DATA_W*) malloc(DeviceInterfaceDetailDataSize);
+                  if ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt == IntPtr.Zero)
                   {
-                    <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+                    SetupDiDestroyDeviceInfoListUM(classDevsUm);
                     return false;
                   }
-                  *(int*) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt = 6;
-                  if (<Module>.SetupDiGetDeviceInterfaceDetailUM(classDevsUm, DeviceInterfaceData, <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt, DeviceInterfaceDetailDataSize, (uint*) 0, (_SP_DEVINFO_DATA*) 0) == 0)
+                  *(int*) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt = 6;
+                  if (SetupDiGetDeviceInterfaceDetailUM(classDevsUm, DeviceInterfaceData, HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt, DeviceInterfaceDetailDataSize, NULL, NULL) == 0)
                   {
-                    <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+                    SetupDiDestroyDeviceInfoListUM(classDevsUm);
                     return false;
                   }
-                  <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+                  SetupDiDestroyDeviceInfoListUM(classDevsUm);
                   return true;
                 }
               }
               else
               {
-                <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+                SetupDiDestroyDeviceInfoListUM(classDevsUm);
                 return false;
               }
             }
             else
             {
-              <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+              SetupDiDestroyDeviceInfoListUM(classDevsUm);
               return false;
             }
           }
           else
           {
-            <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+            SetupDiDestroyDeviceInfoListUM(classDevsUm);
             return false;
           }
         }
-        <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+        SetupDiDestroyDeviceInfoListUM(classDevsUm);
         return false;
       }
 label_18:
       Marshal.GetLastWin32Error();
-      <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+      SetupDiDestroyDeviceInfoListUM(classDevsUm);
       return false;
     }
 
@@ -4198,8 +2505,8 @@ label_18:
         this.pData = memoryRegion;
         if ((IntPtr) memoryRegion != IntPtr.Zero)
         {
-          <Module>.free((void*) memoryRegion);
-          this.setMemoryRegion(region, (byte*) 0);
+          free(memoryRegion);
+          this.setMemoryRegion(region, NULL);
         }
         ++region;
       }
@@ -4227,33 +2534,23 @@ label_18:
     private unsafe void ResetThreadStart()
     {
       _BOOTLOADER_COMMAND bootloaderCommand;
-      // ISSUE: explicit reference operation
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
       ^(sbyte&) @bootloaderCommand = (sbyte) 0;
-      // ISSUE: cast to a reference type
-      // ISSUE: initblk instruction
       __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand + 1), 0, 65);
       uint num = 0;
       this.progressStatus = (byte) 0;
-      void* fileW = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-      <Module>.HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
-      if ((int) <Module>.HIDBootLoader.ErrorStatusWrite != 0)
+      void* fileW = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, NULL, 3U, 0U, NULL);
+      HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
+      if ((int) HIDBootLoader.ErrorStatusWrite != 0)
       {
         this.ResetThreadResults = (byte) 2;
         this.progressStatus = (byte) 100;
       }
       else
       {
-        // ISSUE: explicit reference operation
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
         ^(sbyte&) @bootloaderCommand = (sbyte) 0;
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
         ^(sbyte&) ((IntPtr) &bootloaderCommand + 1) = (sbyte) 8;
         this.progressStatus = (byte) 10;
-        <Module>.WriteFile(fileW, (void*) &bootloaderCommand, 65U, &num, (_OVERLAPPED*) 0);
+        WriteFile(fileW, &bootloaderCommand, 65U, &num, NULL);
         this.ResetThreadResults = Marshal.GetLastWin32Error() != 0 ? (byte) 2 : (byte) 1;
         this.progressStatus = (byte) 100;
       }
@@ -4298,8 +2595,8 @@ label_18:
                 this.pData = memoryRegion;
                 if ((IntPtr) memoryRegion != IntPtr.Zero)
                 {
-                  <Module>.free((void*) memoryRegion);
-                  this.setMemoryRegion(region1, (byte*) 0);
+                  free(memoryRegion);
+                  this.setMemoryRegion(region1, NULL);
                 }
                 ++region1;
               }
@@ -4310,7 +2607,7 @@ label_18:
                 do
                 {
                   _MEMORY_REGION* memoryRegions = Form1.memoryRegions;
-                  void* voidPtr = <Module>.malloc((uint) (*(int*) ((int) region2 * 9 + (IntPtr) Form1.memoryRegions + 5) + 1) * (uint) this.bytesPerAddress);
+                  void* voidPtr = malloc((uint) (*(int*) ((int) region2 * 9 + (IntPtr) Form1.memoryRegions + 5) + 1) * (uint) this.bytesPerAddress);
                   this.pData = (byte*) voidPtr;
                   this.setMemoryRegion(region2, (byte*) voidPtr);
                   if ((IntPtr) this.pData != IntPtr.Zero)
@@ -4328,8 +2625,8 @@ label_62:
                   this.pData = memoryRegion;
                   if ((IntPtr) memoryRegion != IntPtr.Zero)
                   {
-                    <Module>.free((void*) memoryRegion);
-                    this.setMemoryRegion(region3, (byte*) 0);
+                    free(memoryRegion);
+                    this.setMemoryRegion(region3, NULL);
                   }
                   ++region3;
                 }
@@ -4402,7 +2699,7 @@ label_67:
               this.VerifyThreadResults = byte.MaxValue;
               this.progressStatus = (byte) 100;
               this.progressBar_Status.Value = 100;
-              <Module>.HIDBootLoader.MyDeviceAttachedStatus = 0;
+              HIDBootLoader.MyDeviceAttachedStatus = 0;
               this.gbol_SuccessProgram = true;
               this.DeviceRemoved();
               break;
@@ -4639,8 +2936,6 @@ label_67:
       $ArrayType$$$BY08_W arrayTypeBy08W;
       do
       {
-        // ISSUE: cast to a reference type
-        // ISSUE: explicit reference operation
         ^(short&) ((int) num1 * 2 + (IntPtr) &arrayTypeBy08W) = (short) 48;
         ++num1;
       }
@@ -4654,14 +2949,10 @@ label_67:
           byte num3 = (byte) ((int) (byte) input & 15);
           if ((uint) num3 <= 9U)
           {
-            // ISSUE: cast to a reference type
-            // ISSUE: explicit reference operation
             ^(short&) ((IntPtr) &arrayTypeBy08W + 14 - ((int) num2 << 1)) = (short) ((int) num3 + 48);
           }
           else
           {
-            // ISSUE: cast to a reference type
-            // ISSUE: explicit reference operation
             ^(short&) ((IntPtr) &arrayTypeBy08W + 14 - ((int) num2 << 1)) = (short) ((int) num3 + 55);
           }
           input >>= 4;
@@ -4669,8 +2960,6 @@ label_67:
         }
         while ((int) num2 < length);
       }
-      // ISSUE: cast to a reference type
-      // ISSUE: explicit reference operation
       ^(short&) ((IntPtr) &arrayTypeBy08W + 18) = (short) 0;
       return new string((char*) &arrayTypeBy08W).Substring(4 - (int) bytes << 1, length);
     }
@@ -4766,7 +3055,7 @@ label_67:
         case 5:
           return this.pData5;
         default:
-          return (byte*) 0;
+          return NULL;
       }
     }
 
@@ -4829,184 +3118,44 @@ label_67:
       openFileDialog.RestoreDirectory = true;
       if (openFileDialog.ShowDialog() != DialogResult.OK)
         return;
-      this.Load_mHexFile((sbyte*) (void*) Marshal.StringToHGlobalAnsi(openFileDialog.FileName));
-      if (<Module>.HIDBootLoader.g_first_time == 1)
+      this.Load_mHexFile((sbyte*) Marshal.StringToHGlobalAnsi(openFileDialog.FileName));
+      if (HIDBootLoader.g_first_time == 1)
         this.LoadTmpHexToMem();
       else
-        <Module>.remove((sbyte*) &<Module>.??_C@_0BA@BJPDJJDH@c?3?2Temp?2tmp?4tmp?$AA@);
-      <Module>.HIDBootLoader.g_first_time = 1;
+        remove((sbyte*) &??_C@_0BA@BJPDJJDH@c?3?2Temp?2tmp?4tmp?$AA@);
+      HIDBootLoader.g_first_time = 1;
     }
 
     private unsafe void LoadTmpHexToMem()
     {
-      FileStream fileStream = (FileStream) null;
-      StreamReader streamReader = (StreamReader) null;
-      Stream stream = (Stream) null;
-      // ISSUE: untyped stack allocation
-      int num1 = (int) __untypedstackalloc(<Module>.___CxxQueryExceptionSize());
+      FileStream fileStream = null;
+      StreamReader streamReader = null;
+      Stream stream = null;
+      int num1 = (int) __untypedstackalloc(___CxxQueryExceptionSize());
       string path = "c:\\Temp\\tmp.tmp";
       uint num2 = 0;
       this.DisableButtons();
       uint exceptionCode;
       uint num3;
-      try
-      {
-        if (fileStream != null)
-          fileStream.Dispose();
-      }
-      catch (Exception ex1) when (
-      {
-        // ISSUE: unable to correctly present filter
-        exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
-        {
-          SuccessfulFiltering;
-        }
-        else
-          throw;
-      }
-      )
-      {
-        uint num4 = 0;
-        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-        try
-        {
-          try
-          {
-          }
-          catch (Exception ex2) when (
-          {
-            // ISSUE: unable to correctly present filter
-            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-            if ((int) num4 != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
-          }
-          )
-          {
-          }
-          goto label_11;
-          if ((int) num3 != 0)
-            throw;
-        }
-        finally
-        {
-          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-        }
-      }
-label_11:
-      try
-      {
-        if (streamReader != null)
-        {
-          streamReader.Close();
-          streamReader.Dispose();
-        }
-      }
-      catch (Exception ex1) when (
-      {
-        // ISSUE: unable to correctly present filter
-        exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
-        {
-          SuccessfulFiltering;
-        }
-        else
-          throw;
-      }
-      )
-      {
-        uint num4 = 0;
-        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-        try
-        {
-          try
-          {
-          }
-          catch (Exception ex2) when (
-          {
-            // ISSUE: unable to correctly present filter
-            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-            if ((int) num4 != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
-          }
-          )
-          {
-          }
-          goto label_22;
-          if ((int) num3 != 0)
-            throw;
-        }
-        finally
-        {
-          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-        }
-      }
-label_22:
+
       bool flag1 = false;
       try
       {
         fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
-        streamReader = new StreamReader((Stream) fileStream);
+        streamReader = new StreamReader(fileStream);
       }
-      catch (Exception ex1) when (
+      catch
       {
-        // ISSUE: unable to correctly present filter
-        exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+        if (fileStream != null)
         {
-          SuccessfulFiltering;
+          fileStream.Close();
+          fileStream.Dispose();
         }
-        else
-          throw;
-      }
-      )
-      {
-        uint num4 = 0;
-        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-        try
-        {
-          try
-          {
-            if (fileStream != null)
-            {
-              fileStream.Close();
-              fileStream.Dispose();
-            }
-            if (stream == null)
-              return;
-            stream.Close();
-            stream.Dispose();
-            return;
-          }
-          catch (Exception ex2) when (
-          {
-            // ISSUE: unable to correctly present filter
-            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-            if ((int) num4 != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
-          }
-          )
-          {
-          }
-          if ((int) num4 != 0)
-            throw;
-        }
-        finally
-        {
-          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-        }
+        if (stream == null)
+          return;
+        stream.Close();
+        stream.Dispose();
+        return;
       }
       bool flag2 = false;
 label_36:
@@ -5119,162 +3268,24 @@ label_55:
       while ((uint) num7 < hex1);
       goto label_36;
 label_59:
-      try
+      if (fileStream != null)
       {
-        if (fileStream != null)
-        {
-          fileStream.Close();
-          fileStream.Dispose();
-        }
+        fileStream.Close();
+        fileStream.Dispose();
       }
-      catch (Exception ex1) when (
+
+      if (streamReader != null)
       {
-        // ISSUE: unable to correctly present filter
-        exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
-        {
-          SuccessfulFiltering;
-        }
-        else
-          throw;
+        streamReader.Close();
+        streamReader.Dispose();
       }
-      )
-      {
-        uint num4 = 0;
-        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-        try
-        {
-          try
-          {
-          }
-          catch (Exception ex2) when (
-          {
-            // ISSUE: unable to correctly present filter
-            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-            if ((int) num4 != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
-          }
-          )
-          {
-          }
-          goto label_70;
-          if ((int) num3 != 0)
-            throw;
-        }
-        finally
-        {
-          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-        }
-      }
-label_70:
-      try
-      {
-        if (streamReader != null)
-        {
-          streamReader.Close();
-          streamReader.Dispose();
-        }
-      }
-      catch (Exception ex1) when (
-      {
-        // ISSUE: unable to correctly present filter
-        exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
-        {
-          SuccessfulFiltering;
-        }
-        else
-          throw;
-      }
-      )
-      {
-        uint num4 = 0;
-        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-        try
-        {
-          try
-          {
-          }
-          catch (Exception ex2) when (
-          {
-            // ISSUE: unable to correctly present filter
-            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-            if ((int) num4 != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
-          }
-          )
-          {
-          }
-          goto label_81;
-          if ((int) num3 != 0)
-            throw;
-        }
-        finally
-        {
-          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-        }
-      }
-label_81:
-      try
-      {
-        if (stream == null)
-          return;
-        stream.Close();
-        stream.Dispose();
+
+      if (stream == null)
         return;
-      }
-      catch (Exception ex1) when (
-      {
-        // ISSUE: unable to correctly present filter
-        exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
-        {
-          SuccessfulFiltering;
-        }
-        else
-          throw;
-      }
-      )
-      {
-        uint num4 = 0;
-        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-        try
-        {
-          try
-          {
-          }
-          catch (Exception ex2) when (
-          {
-            // ISSUE: unable to correctly present filter
-            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-            if ((int) num4 != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
-          }
-          )
-          {
-          }
-          return;
-          if ((int) num3 == 0)
-            return;
-          throw;
-        }
-        finally
-        {
-          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-        }
-      }
+      stream.Close();
+      stream.Dispose();
+      return;
+
 label_92:
       if (!flag1)
       {
@@ -5286,163 +3297,26 @@ label_92:
         this.btn_EraseDevice_restore = true;
       this.btn_ExportHex_restore = true;
       this.btn_Verify_restore = true;
-      try
+
+      if (fileStream != null)
       {
-        if (fileStream != null)
-        {
-          fileStream.Close();
-          fileStream.Dispose();
-        }
+        fileStream.Close();
+        fileStream.Dispose();
       }
-      catch (Exception ex1) when (
+
+      if (streamReader != null)
       {
-        // ISSUE: unable to correctly present filter
-        exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
-        {
-          SuccessfulFiltering;
-        }
-        else
-          throw;
+        streamReader.Close();
+        streamReader.Dispose();
       }
-      )
+
+      if (stream != null)
       {
-        uint num4 = 0;
-        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-        try
-        {
-          try
-          {
-          }
-          catch (Exception ex2) when (
-          {
-            // ISSUE: unable to correctly present filter
-            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-            if ((int) num4 != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
-          }
-          )
-          {
-          }
-          goto label_108;
-          if ((int) num3 != 0)
-            throw;
-        }
-        finally
-        {
-          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-        }
-      }
-label_108:
-      try
-      {
-        if (streamReader != null)
-        {
-          streamReader.Close();
-          streamReader.Dispose();
-        }
-      }
-      catch (Exception ex1) when (
-      {
-        // ISSUE: unable to correctly present filter
-        exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
-        {
-          SuccessfulFiltering;
-        }
-        else
-          throw;
-      }
-      )
-      {
-        uint num4 = 0;
-        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-        try
-        {
-          try
-          {
-          }
-          catch (Exception ex2) when (
-          {
-            // ISSUE: unable to correctly present filter
-            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-            if ((int) num4 != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
-          }
-          )
-          {
-          }
-          goto label_120;
-          if ((int) num3 != 0)
-            throw;
-        }
-        finally
-        {
-          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-        }
-      }
-label_120:
-      try
-      {
-        if (stream != null)
-        {
-          stream.Close();
-          stream.Dispose();
-        }
-      }
-      catch (Exception ex1) when (
-      {
-        // ISSUE: unable to correctly present filter
-        exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
-        {
-          SuccessfulFiltering;
-        }
-        else
-          throw;
-      }
-      )
-      {
-        uint num4 = 0;
-        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
-        try
-        {
-          try
-          {
-          }
-          catch (Exception ex2) when (
-          {
-            // ISSUE: unable to correctly present filter
-            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
-            if ((int) num4 != 0)
-            {
-              SuccessfulFiltering;
-            }
-            else
-              throw;
-          }
-          )
-          {
-          }
-          goto label_132;
-          if ((int) num3 != 0)
-            throw;
-        }
-        finally
-        {
-          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
-        }
+        stream.Close();
+        stream.Dispose();
       }
 label_132:
-      <Module>.remove((sbyte*) &<Module>.??_C@_0BA@BJPDJJDH@c?3?2Temp?2tmp?4tmp?$AA@);
+      remove("C:\\Temp\\tmp.tmp");
     }
 
     private void comboBox_Firmware_SelectedIndexChanged(object sender, EventArgs e)
