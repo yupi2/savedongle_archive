@@ -4,8 +4,8 @@
 // MVID: C2ABEB73-C84E-41BA-807E-B4913B3F1A22
 // Assembly location: C:\Temp\SaveDongle Firmware Uploader.exe
 
-using \u003CCppImplementationDetails\u003E;
-using \u003CCrtImplementationDetails\u003E;
+using <CppImplementationDetails>;
+using <CrtImplementationDetails>;
 using HIDBootLoader;
 using System;
 using System.Diagnostics;
@@ -19,512 +19,512 @@ using System.Threading;
 using System.Windows.Forms;
 using vc_attributes;
 
-internal class \u003CModule\u003E
+internal class <Module>
 {
   [FixedAddressValueType]
-  internal static int \u003FUninitialized\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2HA;
-  internal static __FnPtr<void ()> \u003FA0xfd8b67b9\u002E\u003FUninitialized\u0024initializer\u0024\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2P6MXXZA;
-  internal static \u0024ArrayType\u0024\u0024\u0024BY00Q6MPBXXZ \u003FA0xfd8b67b9\u002E__xi_vt_a;
+  internal static int ?Uninitialized@CurrentDomain@<CrtImplementationDetails>@@$$Q2HA;
+  internal static __FnPtr<void ()> ?A0xfd8b67b9.?Uninitialized$initializer$@CurrentDomain@<CrtImplementationDetails>@@$$Q2P6MXXZA;
+  internal static $ArrayType$$$BY00Q6MPBXXZ ?A0xfd8b67b9.__xi_vt_a;
   [FixedAddressValueType]
-  internal static double \u003FA0xfd8b67b9\u002E_HUGE;
+  internal static double ?A0xfd8b67b9._HUGE;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0xfd8b67b9\u002ESA_Write;
-  internal static __FnPtr<void ()> \u003FA0xfd8b67b9\u002E_HUGE\u0024initializer\u0024;
+  internal static AccessType ?A0xfd8b67b9.SA_Write;
+  internal static __FnPtr<void ()> ?A0xfd8b67b9._HUGE$initializer$;
   [FixedAddressValueType]
-  internal static Progress.State \u003FInitializedPerAppDomain\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2W4State\u0040Progress\u00402\u0040A;
-  internal static __FnPtr<void ()> \u003FA0xfd8b67b9\u002E\u003FInitializedPerAppDomain\u0024initializer\u0024\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2P6MXXZA;
+  internal static Progress.State ?InitializedPerAppDomain@CurrentDomain@<CrtImplementationDetails>@@$$Q2W4State@Progress@2@A;
+  internal static __FnPtr<void ()> ?A0xfd8b67b9.?InitializedPerAppDomain$initializer$@CurrentDomain@<CrtImplementationDetails>@@$$Q2P6MXXZA;
   [FixedAddressValueType]
-  internal static double \u003FA0xfd8b67b9\u002EHUGE;
+  internal static double ?A0xfd8b67b9.HUGE;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0xfd8b67b9\u002ESA_NoAccess;
-  internal static __FnPtr<void ()> \u003FA0xfd8b67b9\u002ESA_NoAccess\u0024initializer\u0024;
+  internal static AccessType ?A0xfd8b67b9.SA_NoAccess;
+  internal static __FnPtr<void ()> ?A0xfd8b67b9.SA_NoAccess$initializer$;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0xfd8b67b9\u002ESA_ReadWrite;
-  internal static __FnPtr<void ()> \u003FA0xfd8b67b9\u002ESA_ReadWrite\u0024initializer\u0024;
+  internal static AccessType ?A0xfd8b67b9.SA_ReadWrite;
+  internal static __FnPtr<void ()> ?A0xfd8b67b9.SA_ReadWrite$initializer$;
   [FixedAddressValueType]
-  internal static bool \u003FIsDefaultDomain\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2_NA;
-  internal static __FnPtr<void ()> \u003FA0xfd8b67b9\u002E\u003FIsDefaultDomain\u0024initializer\u0024\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2P6MXXZA;
+  internal static bool ?IsDefaultDomain@CurrentDomain@<CrtImplementationDetails>@@$$Q2_NA;
+  internal static __FnPtr<void ()> ?A0xfd8b67b9.?IsDefaultDomain$initializer$@CurrentDomain@<CrtImplementationDetails>@@$$Q2P6MXXZA;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0xfd8b67b9\u002ESA_Yes;
-  internal static __FnPtr<void ()> \u003FA0xfd8b67b9\u002EHUGE\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0xfd8b67b9\u002ESA_Write\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0xfd8b67b9\u002ESA_Yes\u0024initializer\u0024;
+  internal static YesNoMaybe ?A0xfd8b67b9.SA_Yes;
+  internal static __FnPtr<void ()> ?A0xfd8b67b9.HUGE$initializer$;
+  internal static __FnPtr<void ()> ?A0xfd8b67b9.SA_Write$initializer$;
+  internal static __FnPtr<void ()> ?A0xfd8b67b9.SA_Yes$initializer$;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0xfd8b67b9\u002ESA_Maybe;
-  internal static \u0024ArrayType\u0024\u0024\u0024BY00Q6MPBXXZ \u003FA0xfd8b67b9\u002E__xc_ma_a;
+  internal static YesNoMaybe ?A0xfd8b67b9.SA_Maybe;
+  internal static $ArrayType$$$BY00Q6MPBXXZ ?A0xfd8b67b9.__xc_ma_a;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0xfd8b67b9\u002ESA_Read;
+  internal static AccessType ?A0xfd8b67b9.SA_Read;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0xfd8b67b9\u002ESA_No;
+  internal static YesNoMaybe ?A0xfd8b67b9.SA_No;
   [FixedAddressValueType]
-  internal static Progress.State \u003FInitializedNative\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2W4State\u0040Progress\u00402\u0040A;
-  internal static __FnPtr<void ()> \u003FA0xfd8b67b9\u002E\u003FInitializedNative\u0024initializer\u0024\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2P6MXXZA;
+  internal static Progress.State ?InitializedNative@CurrentDomain@<CrtImplementationDetails>@@$$Q2W4State@Progress@2@A;
+  internal static __FnPtr<void ()> ?A0xfd8b67b9.?InitializedNative$initializer$@CurrentDomain@<CrtImplementationDetails>@@$$Q2P6MXXZA;
   [FixedAddressValueType]
-  internal static int \u003FInitialized\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2HA;
-  internal static __FnPtr<void ()> \u003FA0xfd8b67b9\u002E\u003FInitialized\u0024initializer\u0024\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2P6MXXZA;
-  internal static \u0024ArrayType\u0024\u0024\u0024BY00Q6MPBXXZ \u003FA0xfd8b67b9\u002E__xc_ma_z;
+  internal static int ?Initialized@CurrentDomain@<CrtImplementationDetails>@@$$Q2HA;
+  internal static __FnPtr<void ()> ?A0xfd8b67b9.?Initialized$initializer$@CurrentDomain@<CrtImplementationDetails>@@$$Q2P6MXXZA;
+  internal static $ArrayType$$$BY00Q6MPBXXZ ?A0xfd8b67b9.__xc_ma_z;
   [FixedAddressValueType]
-  internal static Progress.State \u003FInitializedVtables\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2W4State\u0040Progress\u00402\u0040A;
-  internal static __FnPtr<void ()> \u003FA0xfd8b67b9\u002E\u003FInitializedVtables\u0024initializer\u0024\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2P6MXXZA;
-  internal static __FnPtr<void ()> \u003FA0xfd8b67b9\u002ESA_Read\u0024initializer\u0024;
-  internal static \u0024ArrayType\u0024\u0024\u0024BY00Q6MPBXXZ \u003FA0xfd8b67b9\u002E__xi_vt_z;
+  internal static Progress.State ?InitializedVtables@CurrentDomain@<CrtImplementationDetails>@@$$Q2W4State@Progress@2@A;
+  internal static __FnPtr<void ()> ?A0xfd8b67b9.?InitializedVtables$initializer$@CurrentDomain@<CrtImplementationDetails>@@$$Q2P6MXXZA;
+  internal static __FnPtr<void ()> ?A0xfd8b67b9.SA_Read$initializer$;
+  internal static $ArrayType$$$BY00Q6MPBXXZ ?A0xfd8b67b9.__xi_vt_z;
   [FixedAddressValueType]
-  internal static Progress.State \u003FInitializedPerProcess\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2W4State\u0040Progress\u00402\u0040A;
-  internal static __FnPtr<void ()> \u003FA0xfd8b67b9\u002E\u003FInitializedPerProcess\u0024initializer\u0024\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2P6MXXZA;
-  internal static __FnPtr<void ()> \u003FA0xfd8b67b9\u002ESA_Maybe\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0xfd8b67b9\u002ESA_No\u0024initializer\u0024;
+  internal static Progress.State ?InitializedPerProcess@CurrentDomain@<CrtImplementationDetails>@@$$Q2W4State@Progress@2@A;
+  internal static __FnPtr<void ()> ?A0xfd8b67b9.?InitializedPerProcess$initializer$@CurrentDomain@<CrtImplementationDetails>@@$$Q2P6MXXZA;
+  internal static __FnPtr<void ()> ?A0xfd8b67b9.SA_Maybe$initializer$;
+  internal static __FnPtr<void ()> ?A0xfd8b67b9.SA_No$initializer$;
   [FixedAddressValueType]
   internal static uint __exit_list_size_app_domain;
   [FixedAddressValueType]
   internal static unsafe __FnPtr<void ()>* __onexitbegin_app_domain;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0xc9f6eb9e\u002ESA_Write;
+  internal static AccessType ?A0xc9f6eb9e.SA_Write;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0xc9f6eb9e\u002ESA_NoAccess;
-  internal static __FnPtr<void ()> \u003FA0xc9f6eb9e\u002ESA_NoAccess\u0024initializer\u0024;
+  internal static AccessType ?A0xc9f6eb9e.SA_NoAccess;
+  internal static __FnPtr<void ()> ?A0xc9f6eb9e.SA_NoAccess$initializer$;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0xc9f6eb9e\u002ESA_ReadWrite;
-  internal static __FnPtr<void ()> \u003FA0xc9f6eb9e\u002ESA_ReadWrite\u0024initializer\u0024;
+  internal static AccessType ?A0xc9f6eb9e.SA_ReadWrite;
+  internal static __FnPtr<void ()> ?A0xc9f6eb9e.SA_ReadWrite$initializer$;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0xc9f6eb9e\u002ESA_Yes;
-  internal static __FnPtr<void ()> \u003FA0xc9f6eb9e\u002ESA_Write\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0xc9f6eb9e\u002ESA_Yes\u0024initializer\u0024;
+  internal static YesNoMaybe ?A0xc9f6eb9e.SA_Yes;
+  internal static __FnPtr<void ()> ?A0xc9f6eb9e.SA_Write$initializer$;
+  internal static __FnPtr<void ()> ?A0xc9f6eb9e.SA_Yes$initializer$;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0xc9f6eb9e\u002ESA_Maybe;
+  internal static YesNoMaybe ?A0xc9f6eb9e.SA_Maybe;
   [FixedAddressValueType]
   internal static unsafe __FnPtr<void ()>* __onexitend_app_domain;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0xc9f6eb9e\u002ESA_Read;
+  internal static AccessType ?A0xc9f6eb9e.SA_Read;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0xc9f6eb9e\u002ESA_No;
-  internal static __FnPtr<void ()> \u003FA0xc9f6eb9e\u002ESA_Read\u0024initializer\u0024;
+  internal static YesNoMaybe ?A0xc9f6eb9e.SA_No;
+  internal static __FnPtr<void ()> ?A0xc9f6eb9e.SA_Read$initializer$;
   [FixedAddressValueType]
-  internal static unsafe void* \u003F_lock\u0040AtExitLock\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q0PAXA;
+  internal static unsafe void* ?_lock@AtExitLock@<CrtImplementationDetails>@@$$Q0PAXA;
   [FixedAddressValueType]
-  internal static int \u003F_ref_count\u0040AtExitLock\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q0HA;
-  internal static __FnPtr<void ()> \u003FA0xc9f6eb9e\u002ESA_Maybe\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0xc9f6eb9e\u002ESA_No\u0024initializer\u0024;
+  internal static int ?_ref_count@AtExitLock@<CrtImplementationDetails>@@$$Q0HA;
+  internal static __FnPtr<void ()> ?A0xc9f6eb9e.SA_Maybe$initializer$;
+  internal static __FnPtr<void ()> ?A0xc9f6eb9e.SA_No$initializer$;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0x8bd98b91\u002ESA_Write;
+  internal static AccessType ?A0x8bd98b91.SA_Write;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0x8bd98b91\u002ESA_NoAccess;
-  internal static __FnPtr<void ()> \u003FA0x8bd98b91\u002ESA_NoAccess\u0024initializer\u0024;
+  internal static AccessType ?A0x8bd98b91.SA_NoAccess;
+  internal static __FnPtr<void ()> ?A0x8bd98b91.SA_NoAccess$initializer$;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0x8bd98b91\u002ESA_ReadWrite;
-  internal static __FnPtr<void ()> \u003FA0x8bd98b91\u002ESA_ReadWrite\u0024initializer\u0024;
+  internal static AccessType ?A0x8bd98b91.SA_ReadWrite;
+  internal static __FnPtr<void ()> ?A0x8bd98b91.SA_ReadWrite$initializer$;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0x8bd98b91\u002ESA_Yes;
-  internal static __FnPtr<void ()> \u003FA0x8bd98b91\u002ESA_Write\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0x8bd98b91\u002ESA_Yes\u0024initializer\u0024;
+  internal static YesNoMaybe ?A0x8bd98b91.SA_Yes;
+  internal static __FnPtr<void ()> ?A0x8bd98b91.SA_Write$initializer$;
+  internal static __FnPtr<void ()> ?A0x8bd98b91.SA_Yes$initializer$;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0x8bd98b91\u002ESA_Maybe;
+  internal static YesNoMaybe ?A0x8bd98b91.SA_Maybe;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0x8bd98b91\u002ESA_Read;
+  internal static AccessType ?A0x8bd98b91.SA_Read;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0x8bd98b91\u002ESA_No;
-  internal static __FnPtr<void ()> \u003FA0x8bd98b91\u002ESA_Read\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0x8bd98b91\u002ESA_Maybe\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0x8bd98b91\u002ESA_No\u0024initializer\u0024;
-  internal static \u003F\u003F_C\u0040_0BA\u0040NOJDBDJO\u0040\u003F4\u003F\u0024DPAVtype_info\u003F\u0024EA\u003F\u0024EA\u003F\u0024AA\u0040\u0024\u0024BY0A\u0040\u0024\u0024CBD \u003F\u003F_C\u0040_0BA\u0040NOJDBDJO\u0040\u003F4\u003F\u0024DPAVtype_info\u003F\u0024EA\u003F\u0024EA\u003F\u0024AA\u0040;
+  internal static YesNoMaybe ?A0x8bd98b91.SA_No;
+  internal static __FnPtr<void ()> ?A0x8bd98b91.SA_Read$initializer$;
+  internal static __FnPtr<void ()> ?A0x8bd98b91.SA_Maybe$initializer$;
+  internal static __FnPtr<void ()> ?A0x8bd98b91.SA_No$initializer$;
+  internal static ??_C@_0BA@NOJDBDJO@?4?$DPAVtype_info?$EA?$EA?$AA@$$BY0A@$$CBD ??_C@_0BA@NOJDBDJO@?4?$DPAVtype_info?$EA?$EA?$AA@;
   [FixedAddressValueType]
-  internal static \u0024_s__RTTIBaseClassArray\u0024_extraBytes_4 \u003F\u003F_R2type_info\u0040\u00408;
-  internal static __FnPtr<void ()> \u003FA0xbdc48617\u002E\u003F\u003F_R2type_info\u0040\u00408\u0024initializer\u0024;
+  internal static $_s__RTTIBaseClassArray$_extraBytes_4 ??_R2type_info@@8;
+  internal static __FnPtr<void ()> ?A0xbdc48617.??_R2type_info@@8$initializer$;
   [FixedAddressValueType]
-  internal static _s__RTTICompleteObjectLocator \u003F\u003F_R4type_info\u0040\u00406B\u0040;
-  internal static __FnPtr<void ()> \u003FA0xbdc48617\u002E\u003F\u003F_R4type_info\u0040\u00406B\u0040\u0024initializer\u0024;
+  internal static _s__RTTICompleteObjectLocator ??_R4type_info@@6B@;
+  internal static __FnPtr<void ()> ?A0xbdc48617.??_R4type_info@@6B@$initializer$;
   [FixedAddressValueType]
-  internal static \u0024ArrayType\u0024\u0024\u0024BY01Q6MXXZ \u003F\u003F_7type_info\u0040\u00406B\u0040;
+  internal static $ArrayType$$$BY01Q6MXXZ ??_7type_info@@6B@;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0xbdc48617\u002ESA_Write;
+  internal static AccessType ?A0xbdc48617.SA_Write;
   [FixedAddressValueType]
-  internal static _s__RTTIClassHierarchyDescriptor \u003F\u003F_R3type_info\u0040\u00408;
+  internal static _s__RTTIClassHierarchyDescriptor ??_R3type_info@@8;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0xbdc48617\u002ESA_NoAccess;
-  internal static __FnPtr<void ()> \u003FA0xbdc48617\u002ESA_NoAccess\u0024initializer\u0024;
+  internal static AccessType ?A0xbdc48617.SA_NoAccess;
+  internal static __FnPtr<void ()> ?A0xbdc48617.SA_NoAccess$initializer$;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0xbdc48617\u002ESA_ReadWrite;
-  internal static __FnPtr<void ()> \u003FA0xbdc48617\u002ESA_ReadWrite\u0024initializer\u0024;
+  internal static AccessType ?A0xbdc48617.SA_ReadWrite;
+  internal static __FnPtr<void ()> ?A0xbdc48617.SA_ReadWrite$initializer$;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0xbdc48617\u002ESA_Yes;
-  internal static __FnPtr<void ()> \u003FA0xbdc48617\u002ESA_Write\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0xbdc48617\u002ESA_Yes\u0024initializer\u0024;
+  internal static YesNoMaybe ?A0xbdc48617.SA_Yes;
+  internal static __FnPtr<void ()> ?A0xbdc48617.SA_Write$initializer$;
+  internal static __FnPtr<void ()> ?A0xbdc48617.SA_Yes$initializer$;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0xbdc48617\u002ESA_Maybe;
-  internal static __FnPtr<void ()> \u003FA0xbdc48617\u002E\u003F\u003F_R3type_info\u0040\u00408\u0024initializer\u0024;
+  internal static YesNoMaybe ?A0xbdc48617.SA_Maybe;
+  internal static __FnPtr<void ()> ?A0xbdc48617.??_R3type_info@@8$initializer$;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0xbdc48617\u002ESA_Read;
+  internal static AccessType ?A0xbdc48617.SA_Read;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0xbdc48617\u002ESA_No;
-  internal static __FnPtr<void ()> \u003FA0xbdc48617\u002ESA_Read\u0024initializer\u0024;
+  internal static YesNoMaybe ?A0xbdc48617.SA_No;
+  internal static __FnPtr<void ()> ?A0xbdc48617.SA_Read$initializer$;
   [FixedAddressValueType]
-  internal static \u0024_TypeDescriptor\u0024_extraBytes_16 \u003F\u003F_R0\u003FAVtype_info\u0040\u0040\u00408;
-  internal static __FnPtr<void ()> \u003FA0xbdc48617\u002E\u003F\u003F_R0\u003FAVtype_info\u0040\u0040\u00408\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0xbdc48617\u002ESA_Maybe\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0xbdc48617\u002E\u003F\u003F_7type_info\u0040\u00406B\u0040\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0xbdc48617\u002ESA_No\u0024initializer\u0024;
+  internal static $_TypeDescriptor$_extraBytes_16 ??_R0?AVtype_info@@@8;
+  internal static __FnPtr<void ()> ?A0xbdc48617.??_R0?AVtype_info@@@8$initializer$;
+  internal static __FnPtr<void ()> ?A0xbdc48617.SA_Maybe$initializer$;
+  internal static __FnPtr<void ()> ?A0xbdc48617.??_7type_info@@6B@$initializer$;
+  internal static __FnPtr<void ()> ?A0xbdc48617.SA_No$initializer$;
   [FixedAddressValueType]
-  internal static _s__RTTIBaseClassDescriptor2 \u003F\u003F_R1A\u0040\u003F0A\u0040EA\u0040type_info\u0040\u00408;
+  internal static _s__RTTIBaseClassDescriptor2 ??_R1A@?0A@EA@type_info@@8;
   [FixedAddressValueType]
   internal static __type_info_node __type_info_root_node;
-  internal static __FnPtr<void ()> \u003FA0xbdc48617\u002E\u003F\u003F_R1A\u0040\u003F0A\u0040EA\u0040type_info\u0040\u00408\u0024initializer\u0024;
+  internal static __FnPtr<void ()> ?A0xbdc48617.??_R1A@?0A@EA@type_info@@8$initializer$;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0xb174b438\u002ESA_Write;
+  internal static AccessType ?A0xb174b438.SA_Write;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0xb174b438\u002ESA_NoAccess;
-  internal static __FnPtr<void ()> \u003FA0xb174b438\u002ESA_NoAccess\u0024initializer\u0024;
+  internal static AccessType ?A0xb174b438.SA_NoAccess;
+  internal static __FnPtr<void ()> ?A0xb174b438.SA_NoAccess$initializer$;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0xb174b438\u002ESA_ReadWrite;
-  internal static __FnPtr<void ()> \u003FA0xb174b438\u002ESA_ReadWrite\u0024initializer\u0024;
+  internal static AccessType ?A0xb174b438.SA_ReadWrite;
+  internal static __FnPtr<void ()> ?A0xb174b438.SA_ReadWrite$initializer$;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0xb174b438\u002ESA_Yes;
-  internal static __FnPtr<void ()> \u003FA0xb174b438\u002ESA_Write\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0xb174b438\u002ESA_Yes\u0024initializer\u0024;
+  internal static YesNoMaybe ?A0xb174b438.SA_Yes;
+  internal static __FnPtr<void ()> ?A0xb174b438.SA_Write$initializer$;
+  internal static __FnPtr<void ()> ?A0xb174b438.SA_Yes$initializer$;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0xb174b438\u002ESA_Maybe;
+  internal static YesNoMaybe ?A0xb174b438.SA_Maybe;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0xb174b438\u002ESA_Read;
+  internal static AccessType ?A0xb174b438.SA_Read;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0xb174b438\u002ESA_No;
-  internal static __FnPtr<void ()> \u003FA0xb174b438\u002ESA_Read\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0xb174b438\u002ESA_Maybe\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0xb174b438\u002ESA_No\u0024initializer\u0024;
+  internal static YesNoMaybe ?A0xb174b438.SA_No;
+  internal static __FnPtr<void ()> ?A0xb174b438.SA_Read$initializer$;
+  internal static __FnPtr<void ()> ?A0xb174b438.SA_Maybe$initializer$;
+  internal static __FnPtr<void ()> ?A0xb174b438.SA_No$initializer$;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0x9536fa44\u002ESA_Write;
+  internal static AccessType ?A0x9536fa44.SA_Write;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0x9536fa44\u002ESA_NoAccess;
-  internal static __FnPtr<void ()> \u003FA0x9536fa44\u002ESA_NoAccess\u0024initializer\u0024;
+  internal static AccessType ?A0x9536fa44.SA_NoAccess;
+  internal static __FnPtr<void ()> ?A0x9536fa44.SA_NoAccess$initializer$;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0x9536fa44\u002ESA_ReadWrite;
-  internal static __FnPtr<void ()> \u003FA0x9536fa44\u002ESA_ReadWrite\u0024initializer\u0024;
+  internal static AccessType ?A0x9536fa44.SA_ReadWrite;
+  internal static __FnPtr<void ()> ?A0x9536fa44.SA_ReadWrite$initializer$;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0x9536fa44\u002ESA_Yes;
-  internal static __FnPtr<void ()> \u003FA0x9536fa44\u002ESA_Write\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0x9536fa44\u002ESA_Yes\u0024initializer\u0024;
+  internal static YesNoMaybe ?A0x9536fa44.SA_Yes;
+  internal static __FnPtr<void ()> ?A0x9536fa44.SA_Write$initializer$;
+  internal static __FnPtr<void ()> ?A0x9536fa44.SA_Yes$initializer$;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0x9536fa44\u002ESA_Maybe;
+  internal static YesNoMaybe ?A0x9536fa44.SA_Maybe;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0x9536fa44\u002ESA_Read;
+  internal static AccessType ?A0x9536fa44.SA_Read;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0x9536fa44\u002ESA_No;
-  internal static __FnPtr<void ()> \u003FA0x9536fa44\u002ESA_Read\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0x9536fa44\u002ESA_Maybe\u0024initializer\u0024;
-  internal static __FnPtr<void ()> \u003FA0x9536fa44\u002ESA_No\u0024initializer\u0024;
-  internal static \u003F\u003F_C\u0040_07BNLNPKOB\u0040c\u003F3\u003F2Temp\u003F\u0024AA\u0040\u0024\u0024BY0A\u0040\u0024\u0024CBD \u003F\u003F_C\u0040_07BNLNPKOB\u0040c\u003F3\u003F2Temp\u003F\u0024AA\u0040;
-  internal static \u003F\u003F_C\u0040_02GMLFBBN\u0040wb\u003F\u0024AA\u0040\u0024\u0024BY0A\u0040\u0024\u0024CBD \u003F\u003F_C\u0040_02GMLFBBN\u0040wb\u003F\u0024AA\u0040;
-  internal static \u003F\u003F_C\u0040_0BA\u0040BJPDJJDH\u0040c\u003F3\u003F2Temp\u003F2tmp\u003F4tmp\u003F\u0024AA\u0040\u0024\u0024BY0A\u0040\u0024\u0024CBD \u003F\u003F_C\u0040_0BA\u0040BJPDJJDH\u0040c\u003F3\u003F2Temp\u003F2tmp\u003F4tmp\u003F\u0024AA\u0040;
-  internal static \u003F\u003F_C\u0040_02JDPG\u0040rb\u003F\u0024AA\u0040\u0024\u0024BY0A\u0040\u0024\u0024CBD \u003F\u003F_C\u0040_02JDPG\u0040rb\u003F\u0024AA\u0040;
-  internal static \u003F\u003F_C\u0040_0L\u0040BKPAMLJP\u0040WriteEvent\u003F\u0024AA\u0040\u0024\u0024BY0A\u0040\u0024\u0024CBD \u003F\u003F_C\u0040_0L\u0040BKPAMLJP\u0040WriteEvent\u003F\u0024AA\u0040;
-  internal static \u003F\u003F_C\u0040_0M\u0040INNKCKGP\u0040WriteEvent2\u003F\u0024AA\u0040\u0024\u0024BY0A\u0040\u0024\u0024CBD \u003F\u003F_C\u0040_0M\u0040INNKCKGP\u0040WriteEvent2\u003F\u0024AA\u0040;
-  internal static \u003F\u003F_C\u0040_09PIDNBOJN\u0040ReadEvent\u003F\u0024AA\u0040\u0024\u0024BY0A\u0040\u0024\u0024CBD \u003F\u003F_C\u0040_09PIDNBOJN\u0040ReadEvent\u003F\u0024AA\u0040;
-  internal static \u003F\u003F_C\u0040_04GJGMPLND\u0040\u003F4PAD\u003F\u0024AA\u0040\u0024\u0024BY0A\u0040\u0024\u0024CBD \u003F\u003F_C\u0040_04GJGMPLND\u0040\u003F4PAD\u003F\u0024AA\u0040;
+  internal static YesNoMaybe ?A0x9536fa44.SA_No;
+  internal static __FnPtr<void ()> ?A0x9536fa44.SA_Read$initializer$;
+  internal static __FnPtr<void ()> ?A0x9536fa44.SA_Maybe$initializer$;
+  internal static __FnPtr<void ()> ?A0x9536fa44.SA_No$initializer$;
+  internal static ??_C@_07BNLNPKOB@c?3?2Temp?$AA@$$BY0A@$$CBD ??_C@_07BNLNPKOB@c?3?2Temp?$AA@;
+  internal static ??_C@_02GMLFBBN@wb?$AA@$$BY0A@$$CBD ??_C@_02GMLFBBN@wb?$AA@;
+  internal static ??_C@_0BA@BJPDJJDH@c?3?2Temp?2tmp?4tmp?$AA@$$BY0A@$$CBD ??_C@_0BA@BJPDJJDH@c?3?2Temp?2tmp?4tmp?$AA@;
+  internal static ??_C@_02JDPG@rb?$AA@$$BY0A@$$CBD ??_C@_02JDPG@rb?$AA@;
+  internal static ??_C@_0L@BKPAMLJP@WriteEvent?$AA@$$BY0A@$$CBD ??_C@_0L@BKPAMLJP@WriteEvent?$AA@;
+  internal static ??_C@_0M@INNKCKGP@WriteEvent2?$AA@$$BY0A@$$CBD ??_C@_0M@INNKCKGP@WriteEvent2?$AA@;
+  internal static ??_C@_09PIDNBOJN@ReadEvent?$AA@$$BY0A@$$CBD ??_C@_09PIDNBOJN@ReadEvent?$AA@;
+  internal static ??_C@_04GJGMPLND@?4PAD?$AA@$$BY0A@$$CBD ??_C@_04GJGMPLND@?4PAD?$AA@;
   [FixedAddressValueType]
-  internal static \u0024_TypeDescriptor\u0024_extraBytes_5 \u003F\u003F_R0PAD\u00408;
-  internal static __FnPtr<void ()> \u003FA0x000256ae\u002E\u003F\u003F_R0PAD\u00408\u0024initializer\u0024;
+  internal static $_TypeDescriptor$_extraBytes_5 ??_R0PAD@8;
+  internal static __FnPtr<void ()> ?A0x000256ae.??_R0PAD@8$initializer$;
   [FixedAddressValueType]
-  internal static g_pszSourcePath\u0024\u0024BY0A\u0040D HIDBootLoader\u002Eg_pszSourcePath;
+  internal static g_pszSourcePath$$BY0A@D HIDBootLoader.g_pszSourcePath;
   [FixedAddressValueType]
-  internal static g_index\u0024\u0024BY0A\u0040H HIDBootLoader\u002Eg_index;
+  internal static g_index$$BY0A@H HIDBootLoader.g_index;
   [FixedAddressValueType]
-  internal static hexinfo\u0024\u0024BY0A\u0040UHEX_INFO\u0040HIDBootLoader\u0040\u0040 HIDBootLoader\u002Ehexinfo;
+  internal static hexinfo$$BY0A@UHEX_INFO@HIDBootLoader@@ HIDBootLoader.hexinfo;
   [FixedAddressValueType]
-  internal static hex_description\u0024\u0024BY1A\u0040CAA\u0040D HIDBootLoader\u002Ehex_description;
+  internal static hex_description$$BY1A@CAA@D HIDBootLoader.hex_description;
   [FixedAddressValueType]
-  internal static int HIDBootLoader\u002Eg_id;
-  internal static __FnPtr<void ()> HIDBootLoader\u002E\u003FA0x000256ae\u002Eg_id\u0024initializer\u0024;
+  internal static int HIDBootLoader.g_id;
+  internal static __FnPtr<void ()> HIDBootLoader.?A0x000256ae.g_id$initializer$;
   [FixedAddressValueType]
-  internal static int HIDBootLoader\u002Eg_first_time;
-  internal static __FnPtr<void ()> HIDBootLoader\u002E\u003FA0x000256ae\u002Eg_first_time\u0024initializer\u0024;
+  internal static int HIDBootLoader.g_first_time;
+  internal static __FnPtr<void ()> HIDBootLoader.?A0x000256ae.g_first_time$initializer$;
   [FixedAddressValueType]
-  internal static int HIDBootLoader\u002Eg_number_of_version;
-  internal static __FnPtr<void ()> HIDBootLoader\u002E\u003FA0x000256ae\u002Eg_number_of_version\u0024initializer\u0024;
+  internal static int HIDBootLoader.g_number_of_version;
+  internal static __FnPtr<void ()> HIDBootLoader.?A0x000256ae.g_number_of_version$initializer$;
   [FixedAddressValueType]
-  internal static int HIDBootLoader\u002EStatus;
-  internal static __FnPtr<void ()> HIDBootLoader\u002E\u003FA0x000256ae\u002EStatus\u0024initializer\u0024;
+  internal static int HIDBootLoader.Status;
+  internal static __FnPtr<void ()> HIDBootLoader.?A0x000256ae.Status$initializer$;
   [FixedAddressValueType]
-  internal static uint HIDBootLoader\u002EErrorStatusRead;
-  internal static __FnPtr<void ()> HIDBootLoader\u002E\u003FA0x000256ae\u002EErrorStatusRead\u0024initializer\u0024;
+  internal static uint HIDBootLoader.ErrorStatusRead;
+  internal static __FnPtr<void ()> HIDBootLoader.?A0x000256ae.ErrorStatusRead$initializer$;
   [FixedAddressValueType]
-  internal static uint HIDBootLoader\u002EErrorStatusWrite;
-  internal static __FnPtr<void ()> HIDBootLoader\u002E\u003FA0x000256ae\u002EErrorStatusWrite\u0024initializer\u0024;
+  internal static uint HIDBootLoader.ErrorStatusWrite;
+  internal static __FnPtr<void ()> HIDBootLoader.?A0x000256ae.ErrorStatusWrite$initializer$;
   [FixedAddressValueType]
-  internal static int HIDBootLoader\u002EMyDeviceAttachedStatus;
-  internal static __FnPtr<void ()> HIDBootLoader\u002E\u003FA0x000256ae\u002EMyDeviceAttachedStatus\u0024initializer\u0024;
+  internal static int HIDBootLoader.MyDeviceAttachedStatus;
+  internal static __FnPtr<void ()> HIDBootLoader.?A0x000256ae.MyDeviceAttachedStatus$initializer$;
   [FixedAddressValueType]
-  internal static unsafe _SP_DEVICE_INTERFACE_DETAIL_DATA_W* HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt;
-  internal static __FnPtr<void ()> HIDBootLoader\u002E\u003FA0x000256ae\u002EMyStructureWithDetailedInterfaceDataInIt\u0024initializer\u0024;
+  internal static unsafe _SP_DEVICE_INTERFACE_DETAIL_DATA_W* HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt;
+  internal static __FnPtr<void ()> HIDBootLoader.?A0x000256ae.MyStructureWithDetailedInterfaceDataInIt$initializer$;
   [FixedAddressValueType]
-  internal static _GUID HIDBootLoader\u002EInterfaceClassGuid;
-  internal static __FnPtr<void ()> HIDBootLoader\u002E\u003FA0x000256ae\u002EInterfaceClassGuid\u0024initializer\u0024;
+  internal static _GUID HIDBootLoader.InterfaceClassGuid;
+  internal static __FnPtr<void ()> HIDBootLoader.?A0x000256ae.InterfaceClassGuid$initializer$;
   [FixedAddressValueType]
-  internal static encryptedFF\u0024\u0024BY0A\u0040E encryptedFF;
+  internal static encryptedFF$$BY0A@E encryptedFF;
   [FixedAddressValueType]
   internal static byte encryptionBlockSize;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0x000256ae\u002ESA_ReadWrite;
-  internal static __FnPtr<void ()> \u003FA0x000256ae\u002ESA_ReadWrite\u0024initializer\u0024;
+  internal static AccessType ?A0x000256ae.SA_ReadWrite;
+  internal static __FnPtr<void ()> ?A0x000256ae.SA_ReadWrite$initializer$;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0x000256ae\u002ESA_Write;
-  internal static __FnPtr<void ()> \u003FA0x000256ae\u002ESA_Write\u0024initializer\u0024;
+  internal static AccessType ?A0x000256ae.SA_Write;
+  internal static __FnPtr<void ()> ?A0x000256ae.SA_Write$initializer$;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0x000256ae\u002ESA_Read;
-  internal static __FnPtr<void ()> \u003FA0x000256ae\u002ESA_Read\u0024initializer\u0024;
+  internal static AccessType ?A0x000256ae.SA_Read;
+  internal static __FnPtr<void ()> ?A0x000256ae.SA_Read$initializer$;
   [FixedAddressValueType]
-  internal static AccessType \u003FA0x000256ae\u002ESA_NoAccess;
-  internal static __FnPtr<void ()> \u003FA0x000256ae\u002ESA_NoAccess\u0024initializer\u0024;
+  internal static AccessType ?A0x000256ae.SA_NoAccess;
+  internal static __FnPtr<void ()> ?A0x000256ae.SA_NoAccess$initializer$;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0x000256ae\u002ESA_Maybe;
-  internal static __FnPtr<void ()> \u003FA0x000256ae\u002ESA_Maybe\u0024initializer\u0024;
+  internal static YesNoMaybe ?A0x000256ae.SA_Maybe;
+  internal static __FnPtr<void ()> ?A0x000256ae.SA_Maybe$initializer$;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0x000256ae\u002ESA_No;
-  internal static __FnPtr<void ()> \u003FA0x000256ae\u002ESA_No\u0024initializer\u0024;
+  internal static YesNoMaybe ?A0x000256ae.SA_No;
+  internal static __FnPtr<void ()> ?A0x000256ae.SA_No$initializer$;
   [FixedAddressValueType]
-  internal static YesNoMaybe \u003FA0x000256ae\u002ESA_Yes;
-  internal static __FnPtr<void ()> \u003FA0x000256ae\u002ESA_Yes\u0024initializer\u0024;
+  internal static YesNoMaybe ?A0x000256ae.SA_Yes;
+  internal static __FnPtr<void ()> ?A0x000256ae.SA_Yes$initializer$;
   [FixedAddressValueType]
-  internal static int __\u0040\u0040_PchSym_\u004000\u0040UDwhUkDsfyUnrxilxsrkOyllgolzwviOfhyOsrwOeCOGySgsvLhlugdzivLuliLfhysrwxBILygoTUnrxilxsrkOyllgolzwviOfhyOsrwOeCOGyUivovzhvUhgwzucOlyq\u0040;
+  internal static int __@@_PchSym_@00@UDwhUkDsfyUnrxilxsrkOyllgolzwviOfhyOsrwOeCOGySgsvLhlugdzivLuliLfhysrwxBILygoTUnrxilxsrkOyllgolzwviOfhyOsrwOeCOGyUivovzhvUhgwzucOlyq@;
 
   [SecurityCritical]
   [DebuggerStepThrough]
-  static unsafe \u003CModule\u003E()
+  static unsafe <Module>()
   {
     LanguageSupport languageSupport;
-    \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002E\u007Bctor\u007D(&languageSupport);
+    <Module>.<CrtImplementationDetails>.LanguageSupport.{ctor}(&languageSupport);
     // ISSUE: fault handler
     try
     {
-      \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002EInitialize(&languageSupport);
+      <Module>.<CrtImplementationDetails>.LanguageSupport.Initialize(&languageSupport);
     }
     __fault
     {
       // ISSUE: method pointer
       // ISSUE: cast to a function pointer type
-      \u003CModule\u003E.___CxxCallUnwindDtor((__FnPtr<void (void*)>) __methodptr(\u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002E\u007Bdtor\u007D), (void*) &languageSupport);
+      <Module>.___CxxCallUnwindDtor((__FnPtr<void (void*)>) __methodptr(<CrtImplementationDetails>.LanguageSupport.{dtor}), (void*) &languageSupport);
     }
-    \u003CModule\u003E.gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E\u002E\u007Bdtor\u007D((gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E*) &languageSupport);
+    <Module>.gcroot<System::String ^>.{dtor}((gcroot<System::String ^>*) &languageSupport);
   }
 
-  internal static void \u003FA0xfd8b67b9\u002E\u003F\u003F__E\u003FA0xfd8b67b9\u0040SA_Yes\u0040\u0040YMXXZ()
+  internal static void ?A0xfd8b67b9.??__E?A0xfd8b67b9@SA_Yes@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xfd8b67b9\u002ESA_Yes = (YesNoMaybe) 268370176;
+    <Module>.?A0xfd8b67b9.SA_Yes = (YesNoMaybe) 268370176;
   }
 
-  internal static void \u003FA0xfd8b67b9\u002E\u003F\u003F__E\u003FA0xfd8b67b9\u0040SA_No\u0040\u0040YMXXZ()
+  internal static void ?A0xfd8b67b9.??__E?A0xfd8b67b9@SA_No@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xfd8b67b9\u002ESA_No = (YesNoMaybe) 268369921;
+    <Module>.?A0xfd8b67b9.SA_No = (YesNoMaybe) 268369921;
   }
 
-  internal static void \u003FA0xfd8b67b9\u002E\u003F\u003F__E\u003FA0xfd8b67b9\u0040SA_Maybe\u0040\u0040YMXXZ()
+  internal static void ?A0xfd8b67b9.??__E?A0xfd8b67b9@SA_Maybe@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xfd8b67b9\u002ESA_Maybe = (YesNoMaybe) 268369936;
+    <Module>.?A0xfd8b67b9.SA_Maybe = (YesNoMaybe) 268369936;
   }
 
-  internal static void \u003FA0xfd8b67b9\u002E\u003F\u003F__E\u003FA0xfd8b67b9\u0040SA_NoAccess\u0040\u0040YMXXZ()
+  internal static void ?A0xfd8b67b9.??__E?A0xfd8b67b9@SA_NoAccess@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xfd8b67b9\u002ESA_NoAccess = (AccessType) 0;
+    <Module>.?A0xfd8b67b9.SA_NoAccess = (AccessType) 0;
   }
 
-  internal static void \u003FA0xfd8b67b9\u002E\u003F\u003F__E\u003FA0xfd8b67b9\u0040SA_Read\u0040\u0040YMXXZ()
+  internal static void ?A0xfd8b67b9.??__E?A0xfd8b67b9@SA_Read@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xfd8b67b9\u002ESA_Read = (AccessType) 1;
+    <Module>.?A0xfd8b67b9.SA_Read = (AccessType) 1;
   }
 
-  internal static void \u003FA0xfd8b67b9\u002E\u003F\u003F__E\u003FA0xfd8b67b9\u0040SA_Write\u0040\u0040YMXXZ()
+  internal static void ?A0xfd8b67b9.??__E?A0xfd8b67b9@SA_Write@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xfd8b67b9\u002ESA_Write = (AccessType) 2;
+    <Module>.?A0xfd8b67b9.SA_Write = (AccessType) 2;
   }
 
-  internal static void \u003FA0xfd8b67b9\u002E\u003F\u003F__E\u003FA0xfd8b67b9\u0040SA_ReadWrite\u0040\u0040YMXXZ()
+  internal static void ?A0xfd8b67b9.??__E?A0xfd8b67b9@SA_ReadWrite@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xfd8b67b9\u002ESA_ReadWrite = (AccessType) 3;
+    <Module>.?A0xfd8b67b9.SA_ReadWrite = (AccessType) 3;
   }
 
-  internal static void \u003FA0xfd8b67b9\u002E\u003F\u003F__E\u003FA0xfd8b67b9\u0040_HUGE\u0040\u0040YMXXZ()
+  internal static void ?A0xfd8b67b9.??__E?A0xfd8b67b9@_HUGE@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xfd8b67b9\u002E_HUGE = double.PositiveInfinity;
+    <Module>.?A0xfd8b67b9._HUGE = double.PositiveInfinity;
   }
 
-  internal static void \u003FA0xfd8b67b9\u002E\u003F\u003F__E\u003FA0xfd8b67b9\u0040HUGE\u0040\u0040YMXXZ()
+  internal static void ?A0xfd8b67b9.??__E?A0xfd8b67b9@HUGE@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xfd8b67b9\u002EHUGE = \u003CModule\u003E.\u003FA0xfd8b67b9\u002E_HUGE;
+    <Module>.?A0xfd8b67b9.HUGE = <Module>.?A0xfd8b67b9._HUGE;
   }
 
   [SecurityCritical]
   internal static int _atexit_m(__FnPtr<void ()> _Function)
   {
-    return \u003CModule\u003E._atexit_m_appdomain(_Function);
+    return <Module>._atexit_m_appdomain(_Function);
   }
 
   [SecurityCritical]
   internal static int atexit(__FnPtr<void ()> _Function)
   {
-    return \u003CModule\u003E._atexit_m_appdomain(_Function);
+    return <Module>._atexit_m_appdomain(_Function);
   }
 
-  internal static void \u003CCrtImplementationDetails\u003E\u002EThrowNestedModuleLoadException(Exception innerException, Exception nestedException)
+  internal static void <CrtImplementationDetails>.ThrowNestedModuleLoadException(Exception innerException, Exception nestedException)
   {
     throw new ModuleLoadExceptionHandlerException("A nested exception occurred after the primary exception that caused the C++ module to fail to load.\n", innerException, nestedException);
   }
 
-  internal static void \u003CCrtImplementationDetails\u003E\u002EThrowModuleLoadException(string errorMessage, Exception innerException)
+  internal static void <CrtImplementationDetails>.ThrowModuleLoadException(string errorMessage, Exception innerException)
   {
     throw new ModuleLoadException(errorMessage, innerException);
   }
 
-  internal static void \u003CCrtImplementationDetails\u003E\u002ERegisterModuleUninitializer(EventHandler handler)
+  internal static void <CrtImplementationDetails>.RegisterModuleUninitializer(EventHandler handler)
   {
     ModuleUninitializer._ModuleUninitializer.AddHandler(handler);
   }
 
-  internal static void \u003FA0xfd8b67b9\u002E\u003F\u003F__E\u003FInitialized\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2HA\u0040\u0040YMXXZ()
+  internal static void ?A0xfd8b67b9.??__E?Initialized@CurrentDomain@<CrtImplementationDetails>@@$$Q2HA@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FInitialized\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2HA = 0;
+    <Module>.?Initialized@CurrentDomain@<CrtImplementationDetails>@@$$Q2HA = 0;
   }
 
-  internal static void \u003FA0xfd8b67b9\u002E\u003F\u003F__E\u003FUninitialized\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2HA\u0040\u0040YMXXZ()
+  internal static void ?A0xfd8b67b9.??__E?Uninitialized@CurrentDomain@<CrtImplementationDetails>@@$$Q2HA@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FUninitialized\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2HA = 0;
+    <Module>.?Uninitialized@CurrentDomain@<CrtImplementationDetails>@@$$Q2HA = 0;
   }
 
-  internal static void \u003FA0xfd8b67b9\u002E\u003F\u003F__E\u003FIsDefaultDomain\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2_NA\u0040\u0040YMXXZ()
+  internal static void ?A0xfd8b67b9.??__E?IsDefaultDomain@CurrentDomain@<CrtImplementationDetails>@@$$Q2_NA@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FIsDefaultDomain\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2_NA = false;
+    <Module>.?IsDefaultDomain@CurrentDomain@<CrtImplementationDetails>@@$$Q2_NA = false;
   }
 
-  internal static void \u003FA0xfd8b67b9\u002E\u003F\u003F__E\u003FInitializedVtables\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2W4State\u0040Progress\u00402\u0040A\u0040\u0040YMXXZ()
+  internal static void ?A0xfd8b67b9.??__E?InitializedVtables@CurrentDomain@<CrtImplementationDetails>@@$$Q2W4State@Progress@2@A@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FInitializedVtables\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2W4State\u0040Progress\u00402\u0040A = (Progress.State) 0;
+    <Module>.?InitializedVtables@CurrentDomain@<CrtImplementationDetails>@@$$Q2W4State@Progress@2@A = (Progress.State) 0;
   }
 
-  internal static void \u003FA0xfd8b67b9\u002E\u003F\u003F__E\u003FInitializedNative\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2W4State\u0040Progress\u00402\u0040A\u0040\u0040YMXXZ()
+  internal static void ?A0xfd8b67b9.??__E?InitializedNative@CurrentDomain@<CrtImplementationDetails>@@$$Q2W4State@Progress@2@A@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FInitializedNative\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2W4State\u0040Progress\u00402\u0040A = (Progress.State) 0;
+    <Module>.?InitializedNative@CurrentDomain@<CrtImplementationDetails>@@$$Q2W4State@Progress@2@A = (Progress.State) 0;
   }
 
-  internal static void \u003FA0xfd8b67b9\u002E\u003F\u003F__E\u003FInitializedPerProcess\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2W4State\u0040Progress\u00402\u0040A\u0040\u0040YMXXZ()
+  internal static void ?A0xfd8b67b9.??__E?InitializedPerProcess@CurrentDomain@<CrtImplementationDetails>@@$$Q2W4State@Progress@2@A@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FInitializedPerProcess\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2W4State\u0040Progress\u00402\u0040A = (Progress.State) 0;
+    <Module>.?InitializedPerProcess@CurrentDomain@<CrtImplementationDetails>@@$$Q2W4State@Progress@2@A = (Progress.State) 0;
   }
 
-  internal static void \u003FA0xfd8b67b9\u002E\u003F\u003F__E\u003FInitializedPerAppDomain\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2W4State\u0040Progress\u00402\u0040A\u0040\u0040YMXXZ()
+  internal static void ?A0xfd8b67b9.??__E?InitializedPerAppDomain@CurrentDomain@<CrtImplementationDetails>@@$$Q2W4State@Progress@2@A@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FInitializedPerAppDomain\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2W4State\u0040Progress\u00402\u0040A = (Progress.State) 0;
-  }
-
-  [SecurityCritical]
-  [DebuggerStepThrough]
-  internal static unsafe void \u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002EInitializeVtables([In] LanguageSupport* obj0)
-  {
-    \u003CModule\u003E.gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E\u002E\u003D((gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E*) obj0, "The C++ module failed to load during vtable initialization.\n");
-    \u003CModule\u003E.\u003FInitializedVtables\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2W4State\u0040Progress\u00402\u0040A = (Progress.State) 1;
-    \u003CModule\u003E._initterm_m((__FnPtr<void* ()>*) &\u003CModule\u003E.\u003FA0xfd8b67b9\u002E__xi_vt_a, (__FnPtr<void* ()>*) &\u003CModule\u003E.\u003FA0xfd8b67b9\u002E__xi_vt_z);
-    \u003CModule\u003E.\u003FInitializedVtables\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2W4State\u0040Progress\u00402\u0040A = (Progress.State) 2;
-  }
-
-  [DebuggerStepThrough]
-  [SecurityCritical]
-  internal static unsafe void \u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002EInitializePerAppDomain([In] LanguageSupport* obj0)
-  {
-    \u003CModule\u003E.gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E\u002E\u003D((gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E*) obj0, "The C++ module failed to load during appdomain initialization.\n");
-    \u003CModule\u003E.\u003FInitializedPerAppDomain\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2W4State\u0040Progress\u00402\u0040A = (Progress.State) 1;
-    \u003CModule\u003E._initatexit_app_domain();
-    \u003CModule\u003E._initterm_m((__FnPtr<void* ()>*) &\u003CModule\u003E.\u003FA0xfd8b67b9\u002E__xc_ma_a, (__FnPtr<void* ()>*) &\u003CModule\u003E.\u003FA0xfd8b67b9\u002E__xc_ma_z);
-    \u003CModule\u003E.\u003FInitializedPerAppDomain\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2W4State\u0040Progress\u00402\u0040A = (Progress.State) 2;
+    <Module>.?InitializedPerAppDomain@CurrentDomain@<CrtImplementationDetails>@@$$Q2W4State@Progress@2@A = (Progress.State) 0;
   }
 
   [SecurityCritical]
   [DebuggerStepThrough]
-  internal static unsafe void \u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002EInitializeUninitializer([In] LanguageSupport* obj0)
+  internal static unsafe void <CrtImplementationDetails>.LanguageSupport.InitializeVtables([In] LanguageSupport* obj0)
   {
-    \u003CModule\u003E.gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E\u002E\u003D((gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E*) obj0, "The C++ module failed to load during registration for the unload events.\n");
-    EventHandler handler = new EventHandler(\u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002EDomainUnload);
+    <Module>.gcroot<System::String ^>.=((gcroot<System::String ^>*) obj0, "The C++ module failed to load during vtable initialization.\n");
+    <Module>.?InitializedVtables@CurrentDomain@<CrtImplementationDetails>@@$$Q2W4State@Progress@2@A = (Progress.State) 1;
+    <Module>._initterm_m((__FnPtr<void* ()>*) &<Module>.?A0xfd8b67b9.__xi_vt_a, (__FnPtr<void* ()>*) &<Module>.?A0xfd8b67b9.__xi_vt_z);
+    <Module>.?InitializedVtables@CurrentDomain@<CrtImplementationDetails>@@$$Q2W4State@Progress@2@A = (Progress.State) 2;
+  }
+
+  [DebuggerStepThrough]
+  [SecurityCritical]
+  internal static unsafe void <CrtImplementationDetails>.LanguageSupport.InitializePerAppDomain([In] LanguageSupport* obj0)
+  {
+    <Module>.gcroot<System::String ^>.=((gcroot<System::String ^>*) obj0, "The C++ module failed to load during appdomain initialization.\n");
+    <Module>.?InitializedPerAppDomain@CurrentDomain@<CrtImplementationDetails>@@$$Q2W4State@Progress@2@A = (Progress.State) 1;
+    <Module>._initatexit_app_domain();
+    <Module>._initterm_m((__FnPtr<void* ()>*) &<Module>.?A0xfd8b67b9.__xc_ma_a, (__FnPtr<void* ()>*) &<Module>.?A0xfd8b67b9.__xc_ma_z);
+    <Module>.?InitializedPerAppDomain@CurrentDomain@<CrtImplementationDetails>@@$$Q2W4State@Progress@2@A = (Progress.State) 2;
+  }
+
+  [SecurityCritical]
+  [DebuggerStepThrough]
+  internal static unsafe void <CrtImplementationDetails>.LanguageSupport.InitializeUninitializer([In] LanguageSupport* obj0)
+  {
+    <Module>.gcroot<System::String ^>.=((gcroot<System::String ^>*) obj0, "The C++ module failed to load during registration for the unload events.\n");
+    EventHandler handler = new EventHandler(<Module>.<CrtImplementationDetails>.LanguageSupport.DomainUnload);
     ModuleUninitializer._ModuleUninitializer.AddHandler(handler);
   }
 
   [SecurityCritical]
   [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
   [DebuggerStepThrough]
-  internal static unsafe void \u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002E_Initialize([In] LanguageSupport* obj0)
+  internal static unsafe void <CrtImplementationDetails>.LanguageSupport._Initialize([In] LanguageSupport* obj0)
   {
-    \u003CModule\u003E.\u003FIsDefaultDomain\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2_NA = AppDomain.CurrentDomain.IsDefaultAppDomain();
-    \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002EInitializeVtables(obj0);
-    \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002EInitializePerAppDomain(obj0);
-    \u003CModule\u003E.\u003FInitialized\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2HA = 1;
-    \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002EInitializeUninitializer(obj0);
+    <Module>.?IsDefaultDomain@CurrentDomain@<CrtImplementationDetails>@@$$Q2_NA = AppDomain.CurrentDomain.IsDefaultAppDomain();
+    <Module>.<CrtImplementationDetails>.LanguageSupport.InitializeVtables(obj0);
+    <Module>.<CrtImplementationDetails>.LanguageSupport.InitializePerAppDomain(obj0);
+    <Module>.?Initialized@CurrentDomain@<CrtImplementationDetails>@@$$Q2HA = 1;
+    <Module>.<CrtImplementationDetails>.LanguageSupport.InitializeUninitializer(obj0);
   }
 
   [SecurityCritical]
-  internal static void \u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002EUninitializeAppDomain()
+  internal static void <CrtImplementationDetails>.LanguageSupport.UninitializeAppDomain()
   {
-    \u003CModule\u003E._app_exit_callback();
+    <Module>._app_exit_callback();
   }
 
   [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
   [SecurityCritical]
   [PrePrepareMethod]
-  internal static void \u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002EDomainUnload(object source, EventArgs arguments)
+  internal static void <CrtImplementationDetails>.LanguageSupport.DomainUnload(object source, EventArgs arguments)
   {
-    if (\u003CModule\u003E.\u003FInitialized\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2HA == 0 || Interlocked.Exchange(ref \u003CModule\u003E.\u003FUninitialized\u0040CurrentDomain\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q2HA, 1) != 0)
+    if (<Module>.?Initialized@CurrentDomain@<CrtImplementationDetails>@@$$Q2HA == 0 || Interlocked.Exchange(ref <Module>.?Uninitialized@CurrentDomain@<CrtImplementationDetails>@@$$Q2HA, 1) != 0)
       return;
-    \u003CModule\u003E._app_exit_callback();
+    <Module>._app_exit_callback();
   }
 
   [DebuggerStepThrough]
   [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
   [SecurityCritical]
-  internal static unsafe void \u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002ECleanup([In] LanguageSupport* obj0, Exception innerException)
+  internal static unsafe void <CrtImplementationDetails>.LanguageSupport.Cleanup([In] LanguageSupport* obj0, Exception innerException)
   {
     try
     {
-      \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002EUninitializeAppDomain();
+      <Module>.<CrtImplementationDetails>.LanguageSupport.UninitializeAppDomain();
     }
     catch (Exception ex)
     {
-      \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EThrowNestedModuleLoadException(innerException, ex);
+      <Module>.<CrtImplementationDetails>.ThrowNestedModuleLoadException(innerException, ex);
     }
     catch
     {
-      \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EThrowNestedModuleLoadException(innerException, (Exception) null);
+      <Module>.<CrtImplementationDetails>.ThrowNestedModuleLoadException(innerException, (Exception) null);
     }
   }
 
   [SecurityCritical]
-  internal static unsafe LanguageSupport* \u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002E\u007Bctor\u007D([In] LanguageSupport* obj0)
+  internal static unsafe LanguageSupport* <CrtImplementationDetails>.LanguageSupport.{ctor}([In] LanguageSupport* obj0)
   {
-    \u003CModule\u003E.gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E\u002E\u007Bctor\u007D((gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E*) obj0);
+    <Module>.gcroot<System::String ^>.{ctor}((gcroot<System::String ^>*) obj0);
     return obj0;
   }
 
   [SecurityCritical]
-  internal static unsafe void \u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002E\u007Bdtor\u007D([In] LanguageSupport* obj0)
+  internal static unsafe void <CrtImplementationDetails>.LanguageSupport.{dtor}([In] LanguageSupport* obj0)
   {
-    \u003CModule\u003E.gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E\u002E\u007Bdtor\u007D((gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E*) obj0);
+    <Module>.gcroot<System::String ^>.{dtor}((gcroot<System::String ^>*) obj0);
   }
 
   [SecurityCritical]
   [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
   [DebuggerStepThrough]
-  internal static unsafe void \u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002EInitialize([In] LanguageSupport* obj0)
+  internal static unsafe void <CrtImplementationDetails>.LanguageSupport.Initialize([In] LanguageSupport* obj0)
   {
     try
     {
-      \u003CModule\u003E.gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E\u002E\u003D((gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E*) obj0, "The C++ module failed to load.\n");
-      \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002E_Initialize(obj0);
+      <Module>.gcroot<System::String ^>.=((gcroot<System::String ^>*) obj0, "The C++ module failed to load.\n");
+      <Module>.<CrtImplementationDetails>.LanguageSupport._Initialize(obj0);
     }
     catch (Exception ex)
     {
-      \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002ECleanup(obj0, ex);
-      throw new ModuleLoadException(\u003CModule\u003E.gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E\u002E\u002EP\u0024AAVString\u0040System\u0040\u0040((gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E*) obj0), ex);
+      <Module>.<CrtImplementationDetails>.LanguageSupport.Cleanup(obj0, ex);
+      throw new ModuleLoadException(<Module>.gcroot<System::String ^>..P$AAVString@System@@((gcroot<System::String ^>*) obj0), ex);
     }
     catch
     {
-      \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002ELanguageSupport\u002ECleanup(obj0, (Exception) null);
-      throw new ModuleLoadException(\u003CModule\u003E.gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E\u002E\u002EP\u0024AAVString\u0040System\u0040\u0040((gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E*) obj0), (Exception) null);
+      <Module>.<CrtImplementationDetails>.LanguageSupport.Cleanup(obj0, (Exception) null);
+      throw new ModuleLoadException(<Module>.gcroot<System::String ^>..P$AAVString@System@@((gcroot<System::String ^>*) obj0), (Exception) null);
     }
   }
 
   [DebuggerStepThrough]
   [SecuritySafeCritical]
-  internal static unsafe gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E* gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E\u002E\u007Bctor\u007D([In] gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E* obj0)
+  internal static unsafe gcroot<System::String ^>* gcroot<System::String ^>.{ctor}([In] gcroot<System::String ^>* obj0)
   {
     IntPtr num = (IntPtr) GCHandle.Alloc((object) null);
     *(int*) obj0 = (int) num.ToPointer();
@@ -533,7 +533,7 @@ internal class \u003CModule\u003E
 
   [DebuggerStepThrough]
   [SecurityCritical]
-  internal static unsafe void gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E\u002E\u007Bdtor\u007D([In] gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E* obj0)
+  internal static unsafe void gcroot<System::String ^>.{dtor}([In] gcroot<System::String ^>* obj0)
   {
     (GCHandle) new IntPtr((void*) *(int*) obj0).Free();
     *(int*) obj0 = 0;
@@ -541,86 +541,86 @@ internal class \u003CModule\u003E
 
   [DebuggerStepThrough]
   [SecurityCritical]
-  internal static unsafe gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E* gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E\u002E\u003D([In] gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E* obj0, string t)
+  internal static unsafe gcroot<System::String ^>* gcroot<System::String ^>.=([In] gcroot<System::String ^>* obj0, string t)
   {
     (GCHandle) new IntPtr((void*) *(int*) obj0).Target = (object) t;
     return obj0;
   }
 
   [SecuritySafeCritical]
-  internal static unsafe string gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E\u002E\u002EP\u0024AAVString\u0040System\u0040\u0040([In] gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E* obj0)
+  internal static unsafe string gcroot<System::String ^>..P$AAVString@System@@([In] gcroot<System::String ^>* obj0)
   {
     return (string) (GCHandle) new IntPtr((void*) *(int*) obj0).Target;
   }
 
-  internal static void \u003FA0xc9f6eb9e\u002E\u003F\u003F__E\u003FA0xc9f6eb9e\u0040SA_Yes\u0040\u0040YMXXZ()
+  internal static void ?A0xc9f6eb9e.??__E?A0xc9f6eb9e@SA_Yes@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xc9f6eb9e\u002ESA_Yes = (YesNoMaybe) 268370176;
+    <Module>.?A0xc9f6eb9e.SA_Yes = (YesNoMaybe) 268370176;
   }
 
-  internal static void \u003FA0xc9f6eb9e\u002E\u003F\u003F__E\u003FA0xc9f6eb9e\u0040SA_No\u0040\u0040YMXXZ()
+  internal static void ?A0xc9f6eb9e.??__E?A0xc9f6eb9e@SA_No@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xc9f6eb9e\u002ESA_No = (YesNoMaybe) 268369921;
+    <Module>.?A0xc9f6eb9e.SA_No = (YesNoMaybe) 268369921;
   }
 
-  internal static void \u003FA0xc9f6eb9e\u002E\u003F\u003F__E\u003FA0xc9f6eb9e\u0040SA_Maybe\u0040\u0040YMXXZ()
+  internal static void ?A0xc9f6eb9e.??__E?A0xc9f6eb9e@SA_Maybe@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xc9f6eb9e\u002ESA_Maybe = (YesNoMaybe) 268369936;
+    <Module>.?A0xc9f6eb9e.SA_Maybe = (YesNoMaybe) 268369936;
   }
 
-  internal static void \u003FA0xc9f6eb9e\u002E\u003F\u003F__E\u003FA0xc9f6eb9e\u0040SA_NoAccess\u0040\u0040YMXXZ()
+  internal static void ?A0xc9f6eb9e.??__E?A0xc9f6eb9e@SA_NoAccess@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xc9f6eb9e\u002ESA_NoAccess = (AccessType) 0;
+    <Module>.?A0xc9f6eb9e.SA_NoAccess = (AccessType) 0;
   }
 
-  internal static void \u003FA0xc9f6eb9e\u002E\u003F\u003F__E\u003FA0xc9f6eb9e\u0040SA_Read\u0040\u0040YMXXZ()
+  internal static void ?A0xc9f6eb9e.??__E?A0xc9f6eb9e@SA_Read@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xc9f6eb9e\u002ESA_Read = (AccessType) 1;
+    <Module>.?A0xc9f6eb9e.SA_Read = (AccessType) 1;
   }
 
-  internal static void \u003FA0xc9f6eb9e\u002E\u003F\u003F__E\u003FA0xc9f6eb9e\u0040SA_Write\u0040\u0040YMXXZ()
+  internal static void ?A0xc9f6eb9e.??__E?A0xc9f6eb9e@SA_Write@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xc9f6eb9e\u002ESA_Write = (AccessType) 2;
+    <Module>.?A0xc9f6eb9e.SA_Write = (AccessType) 2;
   }
 
-  internal static void \u003FA0xc9f6eb9e\u002E\u003F\u003F__E\u003FA0xc9f6eb9e\u0040SA_ReadWrite\u0040\u0040YMXXZ()
+  internal static void ?A0xc9f6eb9e.??__E?A0xc9f6eb9e@SA_ReadWrite@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xc9f6eb9e\u002ESA_ReadWrite = (AccessType) 3;
+    <Module>.?A0xc9f6eb9e.SA_ReadWrite = (AccessType) 3;
   }
 
   [SecurityCritical]
   [DebuggerStepThrough]
-  internal static unsafe ValueType \u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002E_handle()
+  internal static unsafe ValueType <CrtImplementationDetails>.AtExitLock._handle()
   {
-    if ((IntPtr) \u003CModule\u003E.\u003F_lock\u0040AtExitLock\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q0PAXA != IntPtr.Zero)
-      return (ValueType) GCHandle.FromIntPtr(new IntPtr(\u003CModule\u003E.\u003F_lock\u0040AtExitLock\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q0PAXA));
+    if ((IntPtr) <Module>.?_lock@AtExitLock@<CrtImplementationDetails>@@$$Q0PAXA != IntPtr.Zero)
+      return (ValueType) GCHandle.FromIntPtr(new IntPtr(<Module>.?_lock@AtExitLock@<CrtImplementationDetails>@@$$Q0PAXA));
     return (ValueType) null;
   }
 
   [DebuggerStepThrough]
   [SecurityCritical]
-  internal static unsafe void \u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002E_lock_Construct(object value)
+  internal static unsafe void <CrtImplementationDetails>.AtExitLock._lock_Construct(object value)
   {
-    \u003CModule\u003E.\u003F_lock\u0040AtExitLock\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q0PAXA = (void*) 0;
-    \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002E_lock_Set(value);
+    <Module>.?_lock@AtExitLock@<CrtImplementationDetails>@@$$Q0PAXA = (void*) 0;
+    <Module>.<CrtImplementationDetails>.AtExitLock._lock_Set(value);
   }
 
   [DebuggerStepThrough]
   [SecurityCritical]
-  internal static unsafe void \u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002E_lock_Set(object value)
+  internal static unsafe void <CrtImplementationDetails>.AtExitLock._lock_Set(object value)
   {
-    ValueType valueType = \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002E_handle();
+    ValueType valueType = <Module>.<CrtImplementationDetails>.AtExitLock._handle();
     if (valueType == null)
-      \u003CModule\u003E.\u003F_lock\u0040AtExitLock\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q0PAXA = GCHandle.ToIntPtr(GCHandle.Alloc(value)).ToPointer();
+      <Module>.?_lock@AtExitLock@<CrtImplementationDetails>@@$$Q0PAXA = GCHandle.ToIntPtr(GCHandle.Alloc(value)).ToPointer();
     else
       ((GCHandle) valueType).Target = value;
   }
 
   [DebuggerStepThrough]
   [SecurityCritical]
-  internal static object \u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002E_lock_Get()
+  internal static object <CrtImplementationDetails>.AtExitLock._lock_Get()
   {
-    ValueType valueType = \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002E_handle();
+    ValueType valueType = <Module>.<CrtImplementationDetails>.AtExitLock._handle();
     if (valueType != null)
       return ((GCHandle) valueType).Target;
     return (object) null;
@@ -628,69 +628,69 @@ internal class \u003CModule\u003E
 
   [DebuggerStepThrough]
   [SecurityCritical]
-  internal static unsafe void \u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002E_lock_Destruct()
+  internal static unsafe void <CrtImplementationDetails>.AtExitLock._lock_Destruct()
   {
-    ValueType valueType = \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002E_handle();
+    ValueType valueType = <Module>.<CrtImplementationDetails>.AtExitLock._handle();
     if (valueType == null)
       return;
     ((GCHandle) valueType).Free();
-    \u003CModule\u003E.\u003F_lock\u0040AtExitLock\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q0PAXA = (void*) 0;
+    <Module>.?_lock@AtExitLock@<CrtImplementationDetails>@@$$Q0PAXA = (void*) 0;
   }
 
   [DebuggerStepThrough]
   [SecuritySafeCritical]
   [return: MarshalAs(UnmanagedType.U1)]
-  internal static bool \u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002EIsInitialized()
+  internal static bool <CrtImplementationDetails>.AtExitLock.IsInitialized()
   {
-    return \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002E_lock_Get() != null;
+    return <Module>.<CrtImplementationDetails>.AtExitLock._lock_Get() != null;
   }
 
   [DebuggerStepThrough]
   [SecurityCritical]
-  internal static unsafe void \u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002EAddRef()
+  internal static unsafe void <CrtImplementationDetails>.AtExitLock.AddRef()
   {
-    if (!\u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002EIsInitialized())
+    if (!<Module>.<CrtImplementationDetails>.AtExitLock.IsInitialized())
     {
-      \u003CModule\u003E.\u003F_lock\u0040AtExitLock\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q0PAXA = (void*) 0;
-      \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002E_lock_Set(new object());
-      \u003CModule\u003E.\u003F_ref_count\u0040AtExitLock\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q0HA = 0;
+      <Module>.?_lock@AtExitLock@<CrtImplementationDetails>@@$$Q0PAXA = (void*) 0;
+      <Module>.<CrtImplementationDetails>.AtExitLock._lock_Set(new object());
+      <Module>.?_ref_count@AtExitLock@<CrtImplementationDetails>@@$$Q0HA = 0;
     }
-    ++\u003CModule\u003E.\u003F_ref_count\u0040AtExitLock\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q0HA;
+    ++<Module>.?_ref_count@AtExitLock@<CrtImplementationDetails>@@$$Q0HA;
   }
 
   [SecurityCritical]
   [DebuggerStepThrough]
-  internal static void \u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002ERemoveRef()
+  internal static void <CrtImplementationDetails>.AtExitLock.RemoveRef()
   {
-    --\u003CModule\u003E.\u003F_ref_count\u0040AtExitLock\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q0HA;
-    if (\u003CModule\u003E.\u003F_ref_count\u0040AtExitLock\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q0HA != 0)
+    --<Module>.?_ref_count@AtExitLock@<CrtImplementationDetails>@@$$Q0HA;
+    if (<Module>.?_ref_count@AtExitLock@<CrtImplementationDetails>@@$$Q0HA != 0)
       return;
-    \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002E_lock_Destruct();
+    <Module>.<CrtImplementationDetails>.AtExitLock._lock_Destruct();
   }
 
   [DebuggerStepThrough]
   [SecurityCritical]
-  internal static void \u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002EEnter()
+  internal static void <CrtImplementationDetails>.AtExitLock.Enter()
   {
-    Monitor.Enter(\u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002E_lock_Get());
+    Monitor.Enter(<Module>.<CrtImplementationDetails>.AtExitLock._lock_Get());
   }
 
   [SecurityCritical]
   [DebuggerStepThrough]
-  internal static void \u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002EExit()
+  internal static void <CrtImplementationDetails>.AtExitLock.Exit()
   {
-    Monitor.Exit(\u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002E_lock_Get());
+    Monitor.Exit(<Module>.<CrtImplementationDetails>.AtExitLock._lock_Get());
   }
 
   [DebuggerStepThrough]
   [SecurityCritical]
   [return: MarshalAs(UnmanagedType.U1)]
-  internal static bool \u003FA0xc9f6eb9e\u002E__global_lock()
+  internal static bool ?A0xc9f6eb9e.__global_lock()
   {
     bool flag = false;
-    if (\u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002EIsInitialized())
+    if (<Module>.<CrtImplementationDetails>.AtExitLock.IsInitialized())
     {
-      Monitor.Enter(\u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002E_lock_Get());
+      Monitor.Enter(<Module>.<CrtImplementationDetails>.AtExitLock._lock_Get());
       flag = true;
     }
     return flag;
@@ -699,12 +699,12 @@ internal class \u003CModule\u003E
   [DebuggerStepThrough]
   [SecurityCritical]
   [return: MarshalAs(UnmanagedType.U1)]
-  internal static bool \u003FA0xc9f6eb9e\u002E__global_unlock()
+  internal static bool ?A0xc9f6eb9e.__global_unlock()
   {
     bool flag = false;
-    if (\u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002EIsInitialized())
+    if (<Module>.<CrtImplementationDetails>.AtExitLock.IsInitialized())
     {
-      Monitor.Exit(\u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002E_lock_Get());
+      Monitor.Exit(<Module>.<CrtImplementationDetails>.AtExitLock._lock_Get());
       flag = true;
     }
     return flag;
@@ -713,20 +713,20 @@ internal class \u003CModule\u003E
   [DebuggerStepThrough]
   [SecurityCritical]
   [return: MarshalAs(UnmanagedType.U1)]
-  internal static bool \u003FA0xc9f6eb9e\u002E__alloc_global_lock()
+  internal static bool ?A0xc9f6eb9e.__alloc_global_lock()
   {
-    \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002EAddRef();
-    return \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002EIsInitialized();
+    <Module>.<CrtImplementationDetails>.AtExitLock.AddRef();
+    return <Module>.<CrtImplementationDetails>.AtExitLock.IsInitialized();
   }
 
   [DebuggerStepThrough]
   [SecurityCritical]
-  internal static void \u003FA0xc9f6eb9e\u002E__dealloc_global_lock()
+  internal static void ?A0xc9f6eb9e.__dealloc_global_lock()
   {
-    --\u003CModule\u003E.\u003F_ref_count\u0040AtExitLock\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q0HA;
-    if (\u003CModule\u003E.\u003F_ref_count\u0040AtExitLock\u0040\u003CCrtImplementationDetails\u003E\u0040\u0040\u0024\u0024Q0HA != 0)
+    --<Module>.?_ref_count@AtExitLock@<CrtImplementationDetails>@@$$Q0HA;
+    if (<Module>.?_ref_count@AtExitLock@<CrtImplementationDetails>@@$$Q0HA != 0)
       return;
-    \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EAtExitLock\u002E_lock_Destruct();
+    <Module>.<CrtImplementationDetails>.AtExitLock._lock_Destruct();
   }
 
   [SecurityCritical]
@@ -737,12 +737,12 @@ internal class \u003CModule\u003E
     if (func == null)
       return -1;
     int num1;
-    if (\u003CModule\u003E.\u003FA0xc9f6eb9e\u002E__global_lock())
+    if (<Module>.?A0xc9f6eb9e.__global_lock())
     {
       try
       {
-        __FnPtr<void ()>* local2 = (__FnPtr<void ()>*) \u003CModule\u003E.DecodePointer((void*) *(int*) __ponexitbegin_e);
-        __FnPtr<void ()>* local3 = (__FnPtr<void ()>*) \u003CModule\u003E.DecodePointer((void*) *(int*) __ponexitend_e);
+        __FnPtr<void ()>* local2 = (__FnPtr<void ()>*) <Module>.DecodePointer((void*) *(int*) __ponexitbegin_e);
+        __FnPtr<void ()>* local3 = (__FnPtr<void ()>*) <Module>.DecodePointer((void*) *(int*) __ponexitend_e);
         int num2 = (int) ((IntPtr) local3 - (IntPtr) local2);
         if (*__pexit_list_size - 1U < (uint) num2 >> 2)
         {
@@ -772,15 +772,15 @@ internal class \u003CModule\u003E
         *(int*) local3 = (int) func;
         __FnPtr<void ()>* local4 = (__FnPtr<void ()>*) ((IntPtr) local3 + 4);
         local1 = func;
-        *(int*) __ponexitbegin_e = (int) \u003CModule\u003E.EncodePointer((void*) local2);
-        *(int*) __ponexitend_e = (int) \u003CModule\u003E.EncodePointer((void*) local4);
+        *(int*) __ponexitbegin_e = (int) <Module>.EncodePointer((void*) local2);
+        *(int*) __ponexitend_e = (int) <Module>.EncodePointer((void*) local4);
       }
       catch (OutOfMemoryException ex)
       {
       }
       finally
       {
-        \u003CModule\u003E.\u003FA0xc9f6eb9e\u002E__global_unlock();
+        <Module>.?A0xc9f6eb9e.__global_unlock();
       }
       if (local1 != null)
       {
@@ -797,14 +797,14 @@ label_12:
   [DebuggerStepThrough]
   internal static unsafe int _initatexit_app_domain()
   {
-    if (\u003CModule\u003E.\u003FA0xc9f6eb9e\u002E__alloc_global_lock())
+    if (<Module>.?A0xc9f6eb9e.__alloc_global_lock())
     {
-      \u003CModule\u003E.__onexitbegin_app_domain = (__FnPtr<void ()>*) \u003CModule\u003E.EncodePointer(Marshal.AllocHGlobal(128).ToPointer());
-      \u003CModule\u003E.__onexitend_app_domain = \u003CModule\u003E.__onexitbegin_app_domain;
-      \u003CModule\u003E.__exit_list_size_app_domain = 32U;
+      <Module>.__onexitbegin_app_domain = (__FnPtr<void ()>*) <Module>.EncodePointer(Marshal.AllocHGlobal(128).ToPointer());
+      <Module>.__onexitend_app_domain = <Module>.__onexitbegin_app_domain;
+      <Module>.__exit_list_size_app_domain = 32U;
       // ISSUE: method pointer
       // ISSUE: cast to a function pointer type
-      \u003CModule\u003E._atexit_m_appdomain((__FnPtr<void ()>) __methodptr(__clean_type_info_names));
+      <Module>._atexit_m_appdomain((__FnPtr<void ()>) __methodptr(__clean_type_info_names));
     }
     return 1;
   }
@@ -813,10 +813,10 @@ label_12:
   [SecurityCritical]
   internal static unsafe void _app_exit_callback()
   {
-    if ((int) \u003CModule\u003E.__exit_list_size_app_domain == 0)
+    if ((int) <Module>.__exit_list_size_app_domain == 0)
       return;
-    __FnPtr<void ()>* local1 = (__FnPtr<void ()>*) \u003CModule\u003E.DecodePointer((void*) \u003CModule\u003E.__onexitbegin_app_domain);
-    __FnPtr<void ()>* local2 = (__FnPtr<void ()>*) \u003CModule\u003E.DecodePointer((void*) \u003CModule\u003E.__onexitend_app_domain);
+    __FnPtr<void ()>* local1 = (__FnPtr<void ()>*) <Module>.DecodePointer((void*) <Module>.__onexitbegin_app_domain);
+    __FnPtr<void ()>* local2 = (__FnPtr<void ()>*) <Module>.DecodePointer((void*) <Module>.__onexitend_app_domain);
     try
     {
       if ((IntPtr) local1 == new IntPtr(-1) || (IntPtr) local1 == IntPtr.Zero || (IntPtr) local2 == IntPtr.Zero)
@@ -833,16 +833,16 @@ label_12:
           {
             local2 -= 4;
           }
-          while (local2 >= local1 && (IntPtr) *(int*) local2 == (IntPtr) \u003CModule\u003E._encoded_null());
+          while (local2 >= local1 && (IntPtr) *(int*) local2 == (IntPtr) <Module>._encoded_null());
           if (local2 >= local1)
           {
             // ISSUE: cast to a function pointer type
-            __FnPtr<void ()> local7 = (__FnPtr<void ()>) (IntPtr) \u003CModule\u003E.DecodePointer((void*) *(int*) local2);
-            *(int*) local2 = (int) \u003CModule\u003E._encoded_null();
+            __FnPtr<void ()> local7 = (__FnPtr<void ()>) (IntPtr) <Module>.DecodePointer((void*) *(int*) local2);
+            *(int*) local2 = (int) <Module>._encoded_null();
             // ISSUE: function pointer call
             __calli(local7)();
-            local5 = (__FnPtr<void ()>*) \u003CModule\u003E.DecodePointer((void*) \u003CModule\u003E.__onexitbegin_app_domain);
-            local6 = (__FnPtr<void ()>*) \u003CModule\u003E.DecodePointer((void*) \u003CModule\u003E.__onexitend_app_domain);
+            local5 = (__FnPtr<void ()>*) <Module>.DecodePointer((void*) <Module>.__onexitbegin_app_domain);
+            local6 = (__FnPtr<void ()>*) <Module>.DecodePointer((void*) <Module>.__onexitend_app_domain);
           }
           else
             goto label_12;
@@ -858,7 +858,7 @@ label_12:;
     finally
     {
       Marshal.FreeHGlobal(new IntPtr((void*) local1));
-      \u003CModule\u003E.\u003FA0xc9f6eb9e\u002E__dealloc_global_lock();
+      <Module>.?A0xc9f6eb9e.__dealloc_global_lock();
     }
   }
 
@@ -866,7 +866,7 @@ label_12:;
   internal static __FnPtr<int ()> _onexit_m_appdomain(__FnPtr<int ()> _Function)
   {
     // ISSUE: cast to a function pointer type
-    if (\u003CModule\u003E._atexit_m_appdomain((__FnPtr<void ()>) _Function) != -1)
+    if (<Module>._atexit_m_appdomain((__FnPtr<void ()>) _Function) != -1)
       return _Function;
     // ISSUE: cast to a function pointer type
     return (__FnPtr<int ()>) 0;
@@ -877,7 +877,7 @@ label_12:;
   internal static unsafe int _atexit_m_appdomain(__FnPtr<void ()> func)
   {
     // ISSUE: cast to a function pointer type
-    return \u003CModule\u003E._atexit_helper((__FnPtr<void ()>) (IntPtr) \u003CModule\u003E.EncodePointer((void*) func), &\u003CModule\u003E.__exit_list_size_app_domain, &\u003CModule\u003E.__onexitend_app_domain, &\u003CModule\u003E.__onexitbegin_app_domain);
+    return <Module>._atexit_helper((__FnPtr<void ()>) (IntPtr) <Module>.EncodePointer((void*) func), &<Module>.__exit_list_size_app_domain, &<Module>.__onexitend_app_domain, &<Module>.__onexitbegin_app_domain);
   }
 
   [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
@@ -898,46 +898,46 @@ label_12:;
   [DllImport("KERNEL32.dll")]
   public static extern unsafe void* EncodePointer(void* Ptr);
 
-  internal static void \u003FA0x8bd98b91\u002E\u003F\u003F__E\u003FA0x8bd98b91\u0040SA_Yes\u0040\u0040YMXXZ()
+  internal static void ?A0x8bd98b91.??__E?A0x8bd98b91@SA_Yes@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x8bd98b91\u002ESA_Yes = (YesNoMaybe) 268370176;
+    <Module>.?A0x8bd98b91.SA_Yes = (YesNoMaybe) 268370176;
   }
 
-  internal static void \u003FA0x8bd98b91\u002E\u003F\u003F__E\u003FA0x8bd98b91\u0040SA_No\u0040\u0040YMXXZ()
+  internal static void ?A0x8bd98b91.??__E?A0x8bd98b91@SA_No@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x8bd98b91\u002ESA_No = (YesNoMaybe) 268369921;
+    <Module>.?A0x8bd98b91.SA_No = (YesNoMaybe) 268369921;
   }
 
-  internal static void \u003FA0x8bd98b91\u002E\u003F\u003F__E\u003FA0x8bd98b91\u0040SA_Maybe\u0040\u0040YMXXZ()
+  internal static void ?A0x8bd98b91.??__E?A0x8bd98b91@SA_Maybe@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x8bd98b91\u002ESA_Maybe = (YesNoMaybe) 268369936;
+    <Module>.?A0x8bd98b91.SA_Maybe = (YesNoMaybe) 268369936;
   }
 
-  internal static void \u003FA0x8bd98b91\u002E\u003F\u003F__E\u003FA0x8bd98b91\u0040SA_NoAccess\u0040\u0040YMXXZ()
+  internal static void ?A0x8bd98b91.??__E?A0x8bd98b91@SA_NoAccess@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x8bd98b91\u002ESA_NoAccess = (AccessType) 0;
+    <Module>.?A0x8bd98b91.SA_NoAccess = (AccessType) 0;
   }
 
-  internal static void \u003FA0x8bd98b91\u002E\u003F\u003F__E\u003FA0x8bd98b91\u0040SA_Read\u0040\u0040YMXXZ()
+  internal static void ?A0x8bd98b91.??__E?A0x8bd98b91@SA_Read@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x8bd98b91\u002ESA_Read = (AccessType) 1;
+    <Module>.?A0x8bd98b91.SA_Read = (AccessType) 1;
   }
 
-  internal static void \u003FA0x8bd98b91\u002E\u003F\u003F__E\u003FA0x8bd98b91\u0040SA_Write\u0040\u0040YMXXZ()
+  internal static void ?A0x8bd98b91.??__E?A0x8bd98b91@SA_Write@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x8bd98b91\u002ESA_Write = (AccessType) 2;
+    <Module>.?A0x8bd98b91.SA_Write = (AccessType) 2;
   }
 
-  internal static void \u003FA0x8bd98b91\u002E\u003F\u003F__E\u003FA0x8bd98b91\u0040SA_ReadWrite\u0040\u0040YMXXZ()
+  internal static void ?A0x8bd98b91.??__E?A0x8bd98b91@SA_ReadWrite@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x8bd98b91\u002ESA_ReadWrite = (AccessType) 3;
+    <Module>.?A0x8bd98b91.SA_ReadWrite = (AccessType) 3;
   }
 
   [SecurityCritical]
   [HandleProcessCorruptedStateExceptions]
   [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
   [SecurityPermission(SecurityAction.Assert, UnmanagedCode = true)]
-  internal static void \u003FA0x8bd98b91\u002E__DestructExceptionObject_m(EHExceptionRecord* pExcept, byte fThrowNotAllowed)
+  internal static void ?A0x8bd98b91.__DestructExceptionObject_m(EHExceptionRecord* pExcept, byte fThrowNotAllowed)
   {
     // ISSUE: unable to decompile the method.
   }
@@ -956,9 +956,9 @@ label_12:;
       {
         case 3762507597:
         case 3762504530:
-          if ((int) num1 == -529697949 && *(int*) ((IntPtr) pExcept + 16) == 3 && (*(int*) ((IntPtr) pExcept + 20) == 26820608 || *(int*) ((IntPtr) pExcept + 28) == 0) && (*(int*) ((IntPtr) pExcept + 28) == 0 && *(int*) ((IntPtr) \u003CModule\u003E._getptd() + 136) == 0))
+          if ((int) num1 == -529697949 && *(int*) ((IntPtr) pExcept + 16) == 3 && (*(int*) ((IntPtr) pExcept + 20) == 26820608 || *(int*) ((IntPtr) pExcept + 28) == 0) && (*(int*) ((IntPtr) pExcept + 28) == 0 && *(int*) ((IntPtr) <Module>._getptd() + 136) == 0))
             return 0;
-          IntPtr num2 = (IntPtr) \u003CModule\u003E._getptd() + 144;
+          IntPtr num2 = (IntPtr) <Module>._getptd() + 144;
           int num3 = *(int*) num2 + 1;
           *(int*) num2 = num3;
           return 1;
@@ -973,9 +973,9 @@ label_12:;
     {
       if (*(int*) ((IntPtr) pExcept + 28) == 0)
       {
-        if (*(int*) ((IntPtr) \u003CModule\u003E._getptd() + 136) == 0)
+        if (*(int*) ((IntPtr) <Module>._getptd() + 136) == 0)
           return 0;
-        pExcept = (EHExceptionRecord*) *(int*) ((IntPtr) \u003CModule\u003E._getptd() + 136);
+        pExcept = (EHExceptionRecord*) *(int*) ((IntPtr) <Module>._getptd() + 136);
       }
       _s_HandlerType sHandlerType;
       // ISSUE: cast to a reference type
@@ -994,7 +994,7 @@ label_12:;
         do
         {
           sCatchableTypePtr2 = (_s_CatchableType*) *(int*) sCatchableTypePtr1;
-          if (\u003CModule\u003E.\u003FA0x8bd98b91\u002ETypeMatch\u003Cstruct\u0020_s_HandlerType\u002Cstruct\u0020_s_CatchableType\u0020const\u0020\u002Cstruct\u0020_s_ThrowInfo\u0020const\u0020\u003E(&sHandlerType, sCatchableTypePtr2, (_s_ThrowInfo*) *(int*) ((IntPtr) pExcept + 28)) == 0)
+          if (<Module>.?A0x8bd98b91.TypeMatch<struct _s_HandlerType,struct _s_CatchableType const ,struct _s_ThrowInfo const >(&sHandlerType, sCatchableTypePtr2, (_s_ThrowInfo*) *(int*) ((IntPtr) pExcept + 28)) == 0)
           {
             --num2;
             sCatchableTypePtr1 += 4;
@@ -1005,11 +1005,11 @@ label_12:;
         while (num2 > 0);
         goto label_16;
 label_13:
-        IntPtr num3 = (IntPtr) \u003CModule\u003E._getptd() + 144;
+        IntPtr num3 = (IntPtr) <Module>._getptd() + 144;
         int num4 = *(int*) num3 + 1;
         *(int*) num3 = num4;
         if ((IntPtr) pBuildObj != IntPtr.Zero)
-          \u003CModule\u003E.\u003FA0x8bd98b91\u002EBuildCatchObject\u003Cstruct\u0020_s_HandlerType\u002Cstruct\u0020_s_CatchableType\u0020const\u0020\u003E(pExcept, pBuildObj, &sHandlerType, sCatchableTypePtr2);
+          <Module>.?A0x8bd98b91.BuildCatchObject<struct _s_HandlerType,struct _s_CatchableType const >(pExcept, pBuildObj, &sHandlerType, sCatchableTypePtr2);
         return 1;
       }
     }
@@ -1029,22 +1029,22 @@ label_16:
       {
         EHExceptionRecord* ehExceptionRecordPtr = (EHExceptionRecord*) num;
         if (*(int*) ehExceptionRecordPtr == -529697949 && *(int*) ((IntPtr) ehExceptionRecordPtr + 16) == 3 && (*(int*) ((IntPtr) ehExceptionRecordPtr + 20) == 26820608 || *(int*) ((IntPtr) ehExceptionRecordPtr + 28) == 0) && *(int*) ((IntPtr) ehExceptionRecordPtr + 28) == 0)
-          ehExceptionRecordPtr = (EHExceptionRecord*) *(int*) ((IntPtr) \u003CModule\u003E._getptd() + 136);
-        \u003CModule\u003E._CreateFrameInfo((FrameInfo*) pStorage, (void*) *(int*) ((IntPtr) ehExceptionRecordPtr + 24));
-        *(int*) ((IntPtr) pStorage + 8) = *(int*) ((IntPtr) \u003CModule\u003E._getptd() + 136);
-        *(int*) ((IntPtr) pStorage + 8 + 4) = *(int*) ((IntPtr) \u003CModule\u003E._getptd() + 140);
-        *(int*) ((IntPtr) \u003CModule\u003E._getptd() + 136) = (int) ehExceptionRecordPtr;
+          ehExceptionRecordPtr = (EHExceptionRecord*) *(int*) ((IntPtr) <Module>._getptd() + 136);
+        <Module>._CreateFrameInfo((FrameInfo*) pStorage, (void*) *(int*) ((IntPtr) ehExceptionRecordPtr + 24));
+        *(int*) ((IntPtr) pStorage + 8) = *(int*) ((IntPtr) <Module>._getptd() + 136);
+        *(int*) ((IntPtr) pStorage + 8 + 4) = *(int*) ((IntPtr) <Module>._getptd() + 140);
+        *(int*) ((IntPtr) <Module>._getptd() + 136) = (int) ehExceptionRecordPtr;
         goto label_6;
       }
     }
     *(int*) ((IntPtr) pStorage + 8) = -1;
     *(int*) ((IntPtr) pStorage + 8 + 4) = -1;
 label_6:
-    IntPtr num1 = (IntPtr) \u003CModule\u003E._getptd() + 144;
+    IntPtr num1 = (IntPtr) <Module>._getptd() + 144;
     int num2 = *(int*) num1 - 1;
     *(int*) num1 = num2;
-    if (*(int*) ((IntPtr) \u003CModule\u003E._getptd() + 144) < 0)
-      *(int*) ((IntPtr) \u003CModule\u003E._getptd() + 144) = 0;
+    if (*(int*) ((IntPtr) <Module>._getptd() + 144) < 0)
+      *(int*) ((IntPtr) <Module>._getptd() + 144) = 0;
     return 1;
   }
 
@@ -1057,7 +1057,7 @@ label_6:
     EHExceptionRecord* ehExceptionRecordPtr = (EHExceptionRecord*) *(int*) ppExcept;
     if (*(int*) ehExceptionRecordPtr != -529697949 || *(int*) ((IntPtr) ehExceptionRecordPtr + 16) != 3 || *(int*) ((IntPtr) ehExceptionRecordPtr + 20) != 26820608 && *(int*) ((IntPtr) ehExceptionRecordPtr + 28) != 0 || *(int*) ((IntPtr) ehExceptionRecordPtr + 28) != 0)
       return 0;
-    IntPtr num1 = (IntPtr) \u003CModule\u003E._getptd() + 144;
+    IntPtr num1 = (IntPtr) <Module>._getptd() + 144;
     int num2 = *(int*) num1 + 1;
     *(int*) num1 = num2;
     return 1;
@@ -1072,17 +1072,17 @@ label_6:
     _CONTEXT** contextPtr = (_CONTEXT**) ((IntPtr) ehExceptionRecordPtr + 4);
     if (*(int*) ehExceptionRecordPtr == -1)
       return;
-    \u003CModule\u003E._FindAndUnlinkFrame((FrameInfo*) pStorage);
-    if (rethrow == 0 && *(int*) *(int*) ((IntPtr) \u003CModule\u003E._getptd() + 136) == -529697949 && *(int*) (*(int*) ((IntPtr) \u003CModule\u003E._getptd() + 136) + 16) == 3 && ((*(int*) (*(int*) ((IntPtr) \u003CModule\u003E._getptd() + 136) + 20) == 26820608 || *(int*) (*(int*) ((IntPtr) \u003CModule\u003E._getptd() + 136) + 28) == 0) && \u003CModule\u003E._IsExceptionObjectToBeDestroyed((void*) *(int*) (*(int*) ((IntPtr) \u003CModule\u003E._getptd() + 136) + 24)) != 0))
-      \u003CModule\u003E.\u003FA0x8bd98b91\u002E__DestructExceptionObject_m((EHExceptionRecord*) *(int*) ((IntPtr) \u003CModule\u003E._getptd() + 136), (byte) 1);
-    if (*(int*) *(int*) ((IntPtr) \u003CModule\u003E._getptd() + 136) == -529697949 && *(int*) (*(int*) ((IntPtr) \u003CModule\u003E._getptd() + 136) + 16) == 3 && (*(int*) (*(int*) ((IntPtr) \u003CModule\u003E._getptd() + 136) + 20) == 26820608 || *(int*) (*(int*) ((IntPtr) \u003CModule\u003E._getptd() + 136) + 28) == 0) && rethrow != 0)
+    <Module>._FindAndUnlinkFrame((FrameInfo*) pStorage);
+    if (rethrow == 0 && *(int*) *(int*) ((IntPtr) <Module>._getptd() + 136) == -529697949 && *(int*) (*(int*) ((IntPtr) <Module>._getptd() + 136) + 16) == 3 && ((*(int*) (*(int*) ((IntPtr) <Module>._getptd() + 136) + 20) == 26820608 || *(int*) (*(int*) ((IntPtr) <Module>._getptd() + 136) + 28) == 0) && <Module>._IsExceptionObjectToBeDestroyed((void*) *(int*) (*(int*) ((IntPtr) <Module>._getptd() + 136) + 24)) != 0))
+      <Module>.?A0x8bd98b91.__DestructExceptionObject_m((EHExceptionRecord*) *(int*) ((IntPtr) <Module>._getptd() + 136), (byte) 1);
+    if (*(int*) *(int*) ((IntPtr) <Module>._getptd() + 136) == -529697949 && *(int*) (*(int*) ((IntPtr) <Module>._getptd() + 136) + 16) == 3 && (*(int*) (*(int*) ((IntPtr) <Module>._getptd() + 136) + 20) == 26820608 || *(int*) (*(int*) ((IntPtr) <Module>._getptd() + 136) + 28) == 0) && rethrow != 0)
     {
-      IntPtr num1 = (IntPtr) \u003CModule\u003E._getptd() + 144;
+      IntPtr num1 = (IntPtr) <Module>._getptd() + 144;
       int num2 = *(int*) num1 - 1;
       *(int*) num1 = num2;
     }
-    *(int*) ((IntPtr) \u003CModule\u003E._getptd() + 136) = *(int*) ehExceptionRecordPtr;
-    *(int*) ((IntPtr) \u003CModule\u003E._getptd() + 140) = *(int*) contextPtr;
+    *(int*) ((IntPtr) <Module>._getptd() + 136) = *(int*) ehExceptionRecordPtr;
+    *(int*) ((IntPtr) <Module>._getptd() + 140) = *(int*) contextPtr;
   }
 
   [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
@@ -1103,7 +1103,7 @@ label_6:
       // ISSUE: function pointer call
       __calli(pDtor)(voidPtr);
     }
-    catch (Exception ex) when (\u003CModule\u003E.__FrameUnwindFilter((_EXCEPTION_POINTERS*) Marshal.GetExceptionPointers()) != 0)
+    catch (Exception ex) when (<Module>.__FrameUnwindFilter((_EXCEPTION_POINTERS*) Marshal.GetExceptionPointers()) != 0)
     {
     }
   }
@@ -1120,7 +1120,7 @@ label_6:
       // ISSUE: function pointer call
       __calli(pDtor)(voidPtr);
     }
-    catch (Exception ex) when (\u003CModule\u003E.__FrameUnwindFilter((_EXCEPTION_POINTERS*) Marshal.GetExceptionPointers()) != 0)
+    catch (Exception ex) when (<Module>.__FrameUnwindFilter((_EXCEPTION_POINTERS*) Marshal.GetExceptionPointers()) != 0)
     {
     }
   }
@@ -1141,7 +1141,7 @@ label_6:
       // ISSUE: function pointer call
       __calli(pVecDtor)((__FnPtr<void (void*)>) (IntPtr) voidPtr, num1, (uint) num2, (void*) local);
     }
-    catch (Exception ex) when (\u003CModule\u003E.__FrameUnwindFilter((_EXCEPTION_POINTERS*) Marshal.GetExceptionPointers()) != 0)
+    catch (Exception ex) when (<Module>.__FrameUnwindFilter((_EXCEPTION_POINTERS*) Marshal.GetExceptionPointers()) != 0)
     {
     }
   }
@@ -1149,7 +1149,7 @@ label_6:
   [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
   [SecuritySafeCritical]
   [SecurityPermission(SecurityAction.Assert, UnmanagedCode = true)]
-  internal static unsafe int \u003FA0x8bd98b91\u002ETypeMatch\u003Cstruct\u0020_s_HandlerType\u002Cstruct\u0020_s_CatchableType\u0020const\u0020\u002Cstruct\u0020_s_ThrowInfo\u0020const\u0020\u003E(_s_HandlerType* pCatch, _s_CatchableType* pCatchable, _s_ThrowInfo* pThrow)
+  internal static unsafe int ?A0x8bd98b91.TypeMatch<struct _s_HandlerType,struct _s_CatchableType const ,struct _s_ThrowInfo const >(_s_HandlerType* pCatch, _s_CatchableType* pCatchable, _s_ThrowInfo* pThrow)
   {
     uint num1 = (uint) *(int*) ((IntPtr) pCatch + 4);
     if ((int) num1 != 0)
@@ -1158,7 +1158,7 @@ label_6:
       if ((int) *(sbyte*) num2 != 0)
       {
         uint num3 = (uint) *(int*) ((IntPtr) pCatchable + 4);
-        if ((int) num1 != (int) num3 && \u003CModule\u003E.strcmp((sbyte*) num2, (sbyte*) ((int) num3 + 8)) != 0)
+        if ((int) num1 != (int) num3 && <Module>.strcmp((sbyte*) num2, (sbyte*) ((int) num3 + 8)) != 0)
           return 0;
         int num4;
         if ((*(int*) pCatchable & 2) == 0 || (*(int*) pCatch & 8) != 0)
@@ -1182,29 +1182,29 @@ label_8:
   [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
   [HandleProcessCorruptedStateExceptions]
   [SecurityPermission(SecurityAction.Assert, UnmanagedCode = true)]
-  internal static unsafe void \u003FA0x8bd98b91\u002EBuildCatchObject\u003Cstruct\u0020_s_HandlerType\u002Cstruct\u0020_s_CatchableType\u0020const\u0020\u003E(EHExceptionRecord* pExcept, void* pRN, _s_HandlerType* pCatch, _s_CatchableType* pConv)
+  internal static unsafe void ?A0x8bd98b91.BuildCatchObject<struct _s_HandlerType,struct _s_CatchableType const >(EHExceptionRecord* pExcept, void* pRN, _s_HandlerType* pCatch, _s_CatchableType* pConv)
   {
     if ((*(int*) pCatch & int.MinValue) == 0)
-      \u003CModule\u003E._inconsistency();
+      <Module>._inconsistency();
     try
     {
-      switch (\u003CModule\u003E.\u003FA0x8bd98b91\u002EBuildCatchObjectHelper\u003Cstruct\u0020_s_HandlerType\u002Cstruct\u0020_s_CatchableType\u0020const\u0020\u003E(pExcept, pRN, pCatch, pConv))
+      switch (<Module>.?A0x8bd98b91.BuildCatchObjectHelper<struct _s_HandlerType,struct _s_CatchableType const >(pExcept, pRN, pCatch, pConv))
       {
         case 1:
           // ISSUE: cast to a function pointer type
           // ISSUE: function pointer call
-          __calli((__FnPtr<void (void*, void*)>) *(int*) ((IntPtr) pConv + 24))(pRN, \u003CModule\u003E.__AdjustPointer((void*) *(int*) ((IntPtr) pExcept + 24), (PMD*) ((IntPtr) pConv + 8)));
+          __calli((__FnPtr<void (void*, void*)>) *(int*) ((IntPtr) pConv + 24))(pRN, <Module>.__AdjustPointer((void*) *(int*) ((IntPtr) pExcept + 24), (PMD*) ((IntPtr) pConv + 8)));
           break;
         case 2:
           // ISSUE: cast to a function pointer type
           // ISSUE: function pointer call
-          __calli((__FnPtr<void (void*, void*, int)>) *(int*) ((IntPtr) pConv + 24))((int) pRN, \u003CModule\u003E.__AdjustPointer((void*) *(int*) ((IntPtr) pExcept + 24), (PMD*) ((IntPtr) pConv + 8)), (void*) 1);
+          __calli((__FnPtr<void (void*, void*, int)>) *(int*) ((IntPtr) pConv + 24))((int) pRN, <Module>.__AdjustPointer((void*) *(int*) ((IntPtr) pExcept + 24), (PMD*) ((IntPtr) pConv + 8)), (void*) 1);
           break;
       }
     }
     catch (Exception ex) when (1 != 0)
     {
-      \u003CModule\u003E.terminate();
+      <Module>.terminate();
     }
   }
 
@@ -1212,61 +1212,61 @@ label_8:
   [HandleProcessCorruptedStateExceptions]
   [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
   [SecurityPermission(SecurityAction.Assert, UnmanagedCode = true)]
-  internal static unsafe int \u003FA0x8bd98b91\u002EBuildCatchObjectHelper\u003Cstruct\u0020_s_HandlerType\u002Cstruct\u0020_s_CatchableType\u0020const\u0020\u003E(EHExceptionRecord* pExcept, void* pRN, _s_HandlerType* pCatch, _s_CatchableType* pConv)
+  internal static unsafe int ?A0x8bd98b91.BuildCatchObjectHelper<struct _s_HandlerType,struct _s_CatchableType const >(EHExceptionRecord* pExcept, void* pRN, _s_HandlerType* pCatch, _s_CatchableType* pConv)
   {
     int num1 = 0;
     uint num2 = (uint) *(int*) ((IntPtr) pCatch + 4);
     if ((int) num2 == 0 || (int) *(sbyte*) ((int) num2 + 8) == 0 || *(int*) ((IntPtr) pCatch + 8) == 0 && (*(int*) pCatch & int.MinValue) == 0)
       return 0;
     if ((*(int*) pCatch & int.MinValue) == 0)
-      \u003CModule\u003E._inconsistency();
+      <Module>._inconsistency();
     try
     {
       if ((*(int*) pCatch & 8) != 0)
       {
-        if (\u003CModule\u003E._ValidateRead((void*) *(int*) ((IntPtr) pExcept + 24), 1U) != 0 && \u003CModule\u003E._ValidateWrite(pRN, 1U) != 0)
+        if (<Module>._ValidateRead((void*) *(int*) ((IntPtr) pExcept + 24), 1U) != 0 && <Module>._ValidateWrite(pRN, 1U) != 0)
         {
           int num3 = *(int*) ((IntPtr) pExcept + 24);
           *(int*) pRN = num3;
-          *(int*) pRN = (int) \u003CModule\u003E.__AdjustPointer((void*) num3, (PMD*) ((IntPtr) pConv + 8));
+          *(int*) pRN = (int) <Module>.__AdjustPointer((void*) num3, (PMD*) ((IntPtr) pConv + 8));
         }
         else
-          \u003CModule\u003E._inconsistency();
+          <Module>._inconsistency();
       }
       else if ((*(int*) pConv & 1) != 0)
       {
-        if (\u003CModule\u003E._ValidateRead((void*) *(int*) ((IntPtr) pExcept + 24), 1U) != 0 && \u003CModule\u003E._ValidateWrite(pRN, 1U) != 0)
+        if (<Module>._ValidateRead((void*) *(int*) ((IntPtr) pExcept + 24), 1U) != 0 && <Module>._ValidateWrite(pRN, 1U) != 0)
         {
-          \u003CModule\u003E.memmove(pRN, (void*) *(int*) ((IntPtr) pExcept + 24), (uint) *(int*) ((IntPtr) pConv + 20));
+          <Module>.memmove(pRN, (void*) *(int*) ((IntPtr) pExcept + 24), (uint) *(int*) ((IntPtr) pConv + 20));
           if (*(int*) ((IntPtr) pConv + 20) == 4)
           {
             uint num3 = (uint) *(int*) pRN;
             if ((int) num3 != 0)
-              *(int*) pRN = (int) \u003CModule\u003E.__AdjustPointer((void*) num3, (PMD*) ((IntPtr) pConv + 8));
+              *(int*) pRN = (int) <Module>.__AdjustPointer((void*) num3, (PMD*) ((IntPtr) pConv + 8));
           }
         }
         else
-          \u003CModule\u003E._inconsistency();
+          <Module>._inconsistency();
       }
       else if (*(int*) ((IntPtr) pConv + 24) == 0)
       {
-        if (\u003CModule\u003E._ValidateRead((void*) *(int*) ((IntPtr) pExcept + 24), 1U) != 0 && \u003CModule\u003E._ValidateWrite(pRN, 1U) != 0)
-          \u003CModule\u003E.memmove(pRN, \u003CModule\u003E.__AdjustPointer((void*) *(int*) ((IntPtr) pExcept + 24), (PMD*) ((IntPtr) pConv + 8)), (uint) *(int*) ((IntPtr) pConv + 20));
+        if (<Module>._ValidateRead((void*) *(int*) ((IntPtr) pExcept + 24), 1U) != 0 && <Module>._ValidateWrite(pRN, 1U) != 0)
+          <Module>.memmove(pRN, <Module>.__AdjustPointer((void*) *(int*) ((IntPtr) pExcept + 24), (PMD*) ((IntPtr) pConv + 8)), (uint) *(int*) ((IntPtr) pConv + 20));
         else
-          \u003CModule\u003E._inconsistency();
+          <Module>._inconsistency();
       }
       else
       {
         // ISSUE: cast to a function pointer type
-        if (\u003CModule\u003E._ValidateRead((void*) *(int*) ((IntPtr) pExcept + 24), 1U) != 0 && \u003CModule\u003E._ValidateWrite(pRN, 1U) != 0 && \u003CModule\u003E._ValidateExecute((__FnPtr<int ()>) *(int*) ((IntPtr) pConv + 24)) != 0)
+        if (<Module>._ValidateRead((void*) *(int*) ((IntPtr) pExcept + 24), 1U) != 0 && <Module>._ValidateWrite(pRN, 1U) != 0 && <Module>._ValidateExecute((__FnPtr<int ()>) *(int*) ((IntPtr) pConv + 24)) != 0)
           num1 = (*(int*) pConv & 4) != 0 ? 2 : 1;
         else
-          \u003CModule\u003E._inconsistency();
+          <Module>._inconsistency();
       }
     }
     catch (Exception ex) when (1 != 0)
     {
-      \u003CModule\u003E.terminate();
+      <Module>.terminate();
     }
     return num1;
   }
@@ -1276,39 +1276,39 @@ label_8:
   [DllImport("MSVCR100.dll", CallingConvention = CallingConvention.Cdecl)]
   public static extern unsafe _tiddata* _getptd();
 
-  internal static void \u003FA0xbdc48617\u002E\u003F\u003F__E\u003FA0xbdc48617\u0040SA_Yes\u0040\u0040YMXXZ()
+  internal static void ?A0xbdc48617.??__E?A0xbdc48617@SA_Yes@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xbdc48617\u002ESA_Yes = (YesNoMaybe) 268370176;
+    <Module>.?A0xbdc48617.SA_Yes = (YesNoMaybe) 268370176;
   }
 
-  internal static void \u003FA0xbdc48617\u002E\u003F\u003F__E\u003FA0xbdc48617\u0040SA_No\u0040\u0040YMXXZ()
+  internal static void ?A0xbdc48617.??__E?A0xbdc48617@SA_No@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xbdc48617\u002ESA_No = (YesNoMaybe) 268369921;
+    <Module>.?A0xbdc48617.SA_No = (YesNoMaybe) 268369921;
   }
 
-  internal static void \u003FA0xbdc48617\u002E\u003F\u003F__E\u003FA0xbdc48617\u0040SA_Maybe\u0040\u0040YMXXZ()
+  internal static void ?A0xbdc48617.??__E?A0xbdc48617@SA_Maybe@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xbdc48617\u002ESA_Maybe = (YesNoMaybe) 268369936;
+    <Module>.?A0xbdc48617.SA_Maybe = (YesNoMaybe) 268369936;
   }
 
-  internal static void \u003FA0xbdc48617\u002E\u003F\u003F__E\u003FA0xbdc48617\u0040SA_NoAccess\u0040\u0040YMXXZ()
+  internal static void ?A0xbdc48617.??__E?A0xbdc48617@SA_NoAccess@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xbdc48617\u002ESA_NoAccess = (AccessType) 0;
+    <Module>.?A0xbdc48617.SA_NoAccess = (AccessType) 0;
   }
 
-  internal static void \u003FA0xbdc48617\u002E\u003F\u003F__E\u003FA0xbdc48617\u0040SA_Read\u0040\u0040YMXXZ()
+  internal static void ?A0xbdc48617.??__E?A0xbdc48617@SA_Read@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xbdc48617\u002ESA_Read = (AccessType) 1;
+    <Module>.?A0xbdc48617.SA_Read = (AccessType) 1;
   }
 
-  internal static void \u003FA0xbdc48617\u002E\u003F\u003F__E\u003FA0xbdc48617\u0040SA_Write\u0040\u0040YMXXZ()
+  internal static void ?A0xbdc48617.??__E?A0xbdc48617@SA_Write@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xbdc48617\u002ESA_Write = (AccessType) 2;
+    <Module>.?A0xbdc48617.SA_Write = (AccessType) 2;
   }
 
-  internal static void \u003FA0xbdc48617\u002E\u003F\u003F__E\u003FA0xbdc48617\u0040SA_ReadWrite\u0040\u0040YMXXZ()
+  internal static void ?A0xbdc48617.??__E?A0xbdc48617@SA_ReadWrite@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xbdc48617\u002ESA_ReadWrite = (AccessType) 3;
+    <Module>.?A0xbdc48617.SA_ReadWrite = (AccessType) 3;
   }
 
   [SecurityCritical]
@@ -1316,66 +1316,66 @@ label_8:
   {
     if (_ExpressionError == 0)
       return;
-    \u003CModule\u003E._invoke_watson(_Expression, _Function, _File, _Line, _Reserved);
+    <Module>._invoke_watson(_Expression, _Function, _File, _Line, _Reserved);
   }
 
   [SecurityCritical]
-  internal static unsafe sbyte* type_info\u002Ename([In] type_info* obj0, __type_info_node* __ptype_info_node)
+  internal static unsafe sbyte* type_info.name([In] type_info* obj0, __type_info_node* __ptype_info_node)
   {
-    return \u003CModule\u003E.type_info\u002E_Name_base(obj0, __ptype_info_node);
+    return <Module>.type_info._Name_base(obj0, __ptype_info_node);
   }
 
   [SecurityCritical]
-  internal static unsafe void type_info\u002E\u007Bdtor\u007D([In] type_info* obj0)
+  internal static unsafe void type_info.{dtor}([In] type_info* obj0)
   {
-    *(int*) obj0 = (int) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_7type_info\u0040\u00406B\u0040 + 4);
-    \u003CModule\u003E.type_info\u002E_Type_info_dtor(obj0);
+    *(int*) obj0 = (int) ((IntPtr) &<Module>.??_7type_info@@6B@ + 4);
+    <Module>.type_info._Type_info_dtor(obj0);
   }
 
-  internal static unsafe void* type_info\u002E__vecDelDtor([In] type_info* obj0, uint _param2)
+  internal static unsafe void* type_info.__vecDelDtor([In] type_info* obj0, uint _param2)
   {
     if (((int) param1 & 2) != 0)
     {
       type_info* typeInfoPtr = (type_info*) ((IntPtr) obj0 - 4);
       // ISSUE: method pointer
       // ISSUE: cast to a function pointer type
-      \u003CModule\u003E.__ehvec_dtor((void*) obj0, 12U, *(int*) typeInfoPtr, (__FnPtr<void (void*)>) __methodptr(type_info\u002E\u007Bdtor\u007D));
+      <Module>.__ehvec_dtor((void*) obj0, 12U, *(int*) typeInfoPtr, (__FnPtr<void (void*)>) __methodptr(type_info.{dtor}));
       if (((int) param1 & 1) != 0)
-        \u003CModule\u003E.delete((void*) typeInfoPtr);
+        <Module>.delete((void*) typeInfoPtr);
       return (void*) typeInfoPtr;
     }
-    *(int*) obj0 = (int) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_7type_info\u0040\u00406B\u0040 + 4);
-    \u003CModule\u003E.type_info\u002E_Type_info_dtor(obj0);
+    *(int*) obj0 = (int) ((IntPtr) &<Module>.??_7type_info@@6B@ + 4);
+    <Module>.type_info._Type_info_dtor(obj0);
     if (((int) param1 & 1) != 0)
-      \u003CModule\u003E.delete((void*) obj0);
+      <Module>.delete((void*) obj0);
     return (void*) obj0;
   }
 
   [SecuritySafeCritical]
   [SecurityPermission(SecurityAction.Assert, UnmanagedCode = true)]
   [return: MarshalAs(UnmanagedType.U1)]
-  internal static unsafe bool type_info\u002E\u003D\u003D([In] type_info* obj0, type_info* _Rhs)
+  internal static unsafe bool type_info.==([In] type_info* obj0, type_info* _Rhs)
   {
-    return \u003CModule\u003E.strcmp((sbyte*) ((IntPtr) _Rhs + 9), (sbyte*) ((IntPtr) obj0 + 9)) == 0;
+    return <Module>.strcmp((sbyte*) ((IntPtr) _Rhs + 9), (sbyte*) ((IntPtr) obj0 + 9)) == 0;
   }
 
   [SecuritySafeCritical]
   [SecurityPermission(SecurityAction.Assert, UnmanagedCode = true)]
   [return: MarshalAs(UnmanagedType.U1)]
-  internal static unsafe bool type_info\u002E\u0021\u003D([In] type_info* obj0, type_info* _Rhs)
+  internal static unsafe bool type_info.!=([In] type_info* obj0, type_info* _Rhs)
   {
-    return \u003CModule\u003E.strcmp((sbyte*) ((IntPtr) _Rhs + 9), (sbyte*) ((IntPtr) obj0 + 9)) != 0;
+    return <Module>.strcmp((sbyte*) ((IntPtr) _Rhs + 9), (sbyte*) ((IntPtr) obj0 + 9)) != 0;
   }
 
   [SecuritySafeCritical]
   [SecurityPermission(SecurityAction.Assert, UnmanagedCode = true)]
-  internal static unsafe int type_info\u002Ebefore([In] type_info* obj0, type_info* _Rhs)
+  internal static unsafe int type_info.before([In] type_info* obj0, type_info* _Rhs)
   {
-    return \u003CModule\u003E.strcmp((sbyte*) ((IntPtr) _Rhs + 9), (sbyte*) ((IntPtr) obj0 + 9)) > 0 ? 1 : 0;
+    return <Module>.strcmp((sbyte*) ((IntPtr) _Rhs + 9), (sbyte*) ((IntPtr) obj0 + 9)) > 0 ? 1 : 0;
   }
 
   [SecuritySafeCritical]
-  internal static unsafe sbyte* type_info\u002Eraw_name([In] type_info* obj0)
+  internal static unsafe sbyte* type_info.raw_name([In] type_info* obj0)
   {
     return (sbyte*) ((IntPtr) obj0 + 8);
   }
@@ -1384,7 +1384,7 @@ label_8:
   [SecurityCritical]
   [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
   [SecurityPermission(SecurityAction.Assert, UnmanagedCode = true)]
-  internal static unsafe void type_info\u002E_Type_info_dtor(type_info* _param1)
+  internal static unsafe void type_info._Type_info_dtor(type_info* _param1)
   {
     bool flag = false;
     RuntimeHelpers.PrepareConstrainedRegions();
@@ -1397,7 +1397,7 @@ label_8:
       finally
       {
         Thread.BeginThreadAffinity();
-        \u003CModule\u003E._lock(14);
+        <Module>._lock(14);
         flag = true;
       }
       uint num = (uint) *(int*) ((IntPtr) param0 + 4);
@@ -1405,26 +1405,26 @@ label_8:
         return;
       // ISSUE: cast to a reference type
       // ISSUE: explicit reference operation
-      __type_info_node* typeInfoNodePtr1 = (__type_info_node*) ^(int&) ((IntPtr) &\u003CModule\u003E.__type_info_root_node + 4);
-      __type_info_node* typeInfoNodePtr2 = &\u003CModule\u003E.__type_info_root_node;
+      __type_info_node* typeInfoNodePtr1 = (__type_info_node*) ^(int&) ((IntPtr) &<Module>.__type_info_root_node + 4);
+      __type_info_node* typeInfoNodePtr2 = &<Module>.__type_info_root_node;
       for (; (IntPtr) typeInfoNodePtr1 != IntPtr.Zero; typeInfoNodePtr1 = typeInfoNodePtr1)
       {
         if (*(int*) typeInfoNodePtr1 == (int) num)
         {
           *(int*) ((IntPtr) typeInfoNodePtr2 + 4) = *(int*) ((IntPtr) typeInfoNodePtr1 + 4);
-          \u003CModule\u003E.free((void*) typeInfoNodePtr1);
+          <Module>.free((void*) typeInfoNodePtr1);
           break;
         }
         typeInfoNodePtr2 = typeInfoNodePtr1;
       }
-      \u003CModule\u003E.free((void*) *(int*) ((IntPtr) param0 + 4));
+      <Module>.free((void*) *(int*) ((IntPtr) param0 + 4));
       *(int*) ((IntPtr) param0 + 4) = 0;
     }
     finally
     {
       if (flag)
       {
-        \u003CModule\u003E._unlock(14);
+        <Module>._unlock(14);
         Thread.EndThreadAffinity();
       }
     }
@@ -1434,14 +1434,14 @@ label_8:
   [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
   [HandleProcessCorruptedStateExceptions]
   [SecurityPermission(SecurityAction.Assert, UnmanagedCode = true)]
-  internal static unsafe sbyte* type_info\u002E_Name_base(type_info* __unnamed000, __type_info_node* __ptype_info_node)
+  internal static unsafe sbyte* type_info._Name_base(type_info* __unnamed000, __type_info_node* __ptype_info_node)
   {
     if (*(int*) ((IntPtr) __unnamed000 + 4) == 0)
     {
-      void* voidPtr1 = \u003CModule\u003E.__unDNameHelper((sbyte*) 0, (sbyte*) ((IntPtr) __unnamed000 + 9), 0, (ushort) 0);
+      void* voidPtr1 = <Module>.__unDNameHelper((sbyte*) 0, (sbyte*) ((IntPtr) __unnamed000 + 9), 0, (ushort) 0);
       if ((IntPtr) voidPtr1 == IntPtr.Zero)
         return (sbyte*) 0;
-      uint num = \u003CModule\u003E.strlen((sbyte*) voidPtr1);
+      uint num = <Module>.strlen((sbyte*) voidPtr1);
       if (num > 0U)
       {
         do
@@ -1467,19 +1467,19 @@ label_7:
         finally
         {
           Thread.BeginThreadAffinity();
-          \u003CModule\u003E._lock(14);
+          <Module>._lock(14);
           flag = true;
         }
         if (*(int*) ((IntPtr) __unnamed000 + 4) == 0)
         {
-          __type_info_node* typeInfoNodePtr = (__type_info_node*) \u003CModule\u003E.malloc(8U);
+          __type_info_node* typeInfoNodePtr = (__type_info_node*) <Module>.malloc(8U);
           if ((IntPtr) typeInfoNodePtr != IntPtr.Zero)
           {
-            void* voidPtr2 = \u003CModule\u003E.malloc(num + 2U);
+            void* voidPtr2 = <Module>.malloc(num + 2U);
             *(int*) ((IntPtr) __unnamed000 + 4) = (int) voidPtr2;
             if ((IntPtr) voidPtr2 != IntPtr.Zero)
             {
-              if (\u003CModule\u003E.strcpy_s((sbyte*) voidPtr2, num + 2U, (sbyte*) voidPtr1) == 0)
+              if (<Module>.strcpy_s((sbyte*) voidPtr2, num + 2U, (sbyte*) voidPtr1) == 0)
               {
                 *(int*) typeInfoNodePtr = *(int*) ((IntPtr) __unnamed000 + 4);
                 *(int*) ((IntPtr) typeInfoNodePtr + 4) = *(int*) ((IntPtr) __ptype_info_node + 4);
@@ -1487,19 +1487,19 @@ label_7:
                 goto label_18;
               }
               else
-                \u003CModule\u003E._invoke_watson((char*) 0, (char*) 0, (char*) 0, 0U, 0U);
+                <Module>._invoke_watson((char*) 0, (char*) 0, (char*) 0, 0U, 0U);
             }
-            \u003CModule\u003E.free((void*) typeInfoNodePtr);
+            <Module>.free((void*) typeInfoNodePtr);
           }
         }
 label_18:
-        \u003CModule\u003E.free(voidPtr1);
+        <Module>.free(voidPtr1);
       }
       finally
       {
         if (flag)
         {
-          \u003CModule\u003E._unlock(14);
+          <Module>._unlock(14);
           Thread.EndThreadAffinity();
         }
       }
@@ -1524,7 +1524,7 @@ label_18:
       finally
       {
         Thread.BeginThreadAffinity();
-        \u003CModule\u003E._lock(14);
+        <Module>._lock(14);
         flag = true;
       }
       __type_info_node* typeInfoNodePtr1 = (__type_info_node*) *(int*) ((IntPtr) p_type_info_root_node + 4);
@@ -1532,15 +1532,15 @@ label_18:
       for (; (IntPtr) typeInfoNodePtr1 != IntPtr.Zero; typeInfoNodePtr1 = typeInfoNodePtr2)
       {
         typeInfoNodePtr2 = (__type_info_node*) *(int*) ((IntPtr) typeInfoNodePtr1 + 4);
-        \u003CModule\u003E.free((void*) *(int*) typeInfoNodePtr1);
-        \u003CModule\u003E.free((void*) typeInfoNodePtr1);
+        <Module>.free((void*) *(int*) typeInfoNodePtr1);
+        <Module>.free((void*) typeInfoNodePtr1);
       }
     }
     finally
     {
       if (flag)
       {
-        \u003CModule\u003E._unlock(14);
+        <Module>._unlock(14);
         Thread.EndThreadAffinity();
       }
     }
@@ -1549,105 +1549,105 @@ label_18:
   [SecuritySafeCritical]
   internal static unsafe void __clean_type_info_names()
   {
-    \u003CModule\u003E.__clean_type_info_names_internal(&\u003CModule\u003E.__type_info_root_node);
+    <Module>.__clean_type_info_names_internal(&<Module>.__type_info_root_node);
   }
 
-  internal static unsafe void \u003FA0xbdc48617\u002E\u003F\u003F__E\u003F\u003F_7type_info\u0040\u00406B\u0040\u0040\u0040YMXXZ()
+  internal static unsafe void ?A0xbdc48617.??__E??_7type_info@@6B@@@YMXXZ()
   {
     // ISSUE: explicit reference operation
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) @\u003CModule\u003E.\u003F\u003F_7type_info\u0040\u00406B\u0040 = (int) &\u003CModule\u003E.\u003F\u003F_R4type_info\u0040\u00406B\u0040;
+    ^(int&) @<Module>.??_7type_info@@6B@ = (int) &<Module>.??_R4type_info@@6B@;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
     // ISSUE: method pointer
-    ^(int&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_7type_info\u0040\u00406B\u0040 + 4) = (int) __methodptr(type_info\u002E__vecDelDtor);
+    ^(int&) ((IntPtr) &<Module>.??_7type_info@@6B@ + 4) = (int) __methodptr(type_info.__vecDelDtor);
   }
 
-  internal static unsafe void \u003FA0xbdc48617\u002E\u003F\u003F__E\u003F\u003F_R0\u003FAVtype_info\u0040\u0040\u00408\u0040\u0040YMXXZ()
+  internal static unsafe void ?A0xbdc48617.??__E??_R0?AVtype_info@@@8@@YMXXZ()
   {
     // ISSUE: explicit reference operation
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) @\u003CModule\u003E.\u003F\u003F_R0\u003FAVtype_info\u0040\u0040\u00408 = (int) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_7type_info\u0040\u00406B\u0040 + 4);
+    ^(int&) @<Module>.??_R0?AVtype_info@@@8 = (int) ((IntPtr) &<Module>.??_7type_info@@6B@ + 4);
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_R0\u003FAVtype_info\u0040\u0040\u00408 + 4) = 0;
+    ^(int&) ((IntPtr) &<Module>.??_R0?AVtype_info@@@8 + 4) = 0;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
     // ISSUE: cpblk instruction
-    __memcpy((\u0024_TypeDescriptor\u0024_extraBytes_16&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_R0\u003FAVtype_info\u0040\u0040\u00408 + 8), @\u003CModule\u003E.\u003F\u003F_C\u0040_0BA\u0040NOJDBDJO\u0040\u003F4\u003F\u0024DPAVtype_info\u003F\u0024EA\u003F\u0024EA\u003F\u0024AA\u0040, 16);
+    __memcpy(($_TypeDescriptor$_extraBytes_16&) ((IntPtr) &<Module>.??_R0?AVtype_info@@@8 + 8), @<Module>.??_C@_0BA@NOJDBDJO@?4?$DPAVtype_info?$EA?$EA?$AA@, 16);
   }
 
-  internal static unsafe void \u003FA0xbdc48617\u002E\u003F\u003F__E\u003F\u003F_R1A\u0040\u003F0A\u0040EA\u0040type_info\u0040\u00408\u0040\u0040YMXXZ()
+  internal static unsafe void ?A0xbdc48617.??__E??_R1A@?0A@EA@type_info@@8@@YMXXZ()
   {
     // ISSUE: explicit reference operation
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) @\u003CModule\u003E.\u003F\u003F_R1A\u0040\u003F0A\u0040EA\u0040type_info\u0040\u00408 = (int) &\u003CModule\u003E.\u003F\u003F_R0\u003FAVtype_info\u0040\u0040\u00408;
+    ^(int&) @<Module>.??_R1A@?0A@EA@type_info@@8 = (int) &<Module>.??_R0?AVtype_info@@@8;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_R1A\u0040\u003F0A\u0040EA\u0040type_info\u0040\u00408 + 4) = 0;
+    ^(int&) ((IntPtr) &<Module>.??_R1A@?0A@EA@type_info@@8 + 4) = 0;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_R1A\u0040\u003F0A\u0040EA\u0040type_info\u0040\u00408 + 8) = 0;
+    ^(int&) ((IntPtr) &<Module>.??_R1A@?0A@EA@type_info@@8 + 8) = 0;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_R1A\u0040\u003F0A\u0040EA\u0040type_info\u0040\u00408 + 12) = -1;
+    ^(int&) ((IntPtr) &<Module>.??_R1A@?0A@EA@type_info@@8 + 12) = -1;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_R1A\u0040\u003F0A\u0040EA\u0040type_info\u0040\u00408 + 16) = 0;
+    ^(int&) ((IntPtr) &<Module>.??_R1A@?0A@EA@type_info@@8 + 16) = 0;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_R1A\u0040\u003F0A\u0040EA\u0040type_info\u0040\u00408 + 20) = 64;
+    ^(int&) ((IntPtr) &<Module>.??_R1A@?0A@EA@type_info@@8 + 20) = 64;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_R1A\u0040\u003F0A\u0040EA\u0040type_info\u0040\u00408 + 24) = (int) &\u003CModule\u003E.\u003F\u003F_R3type_info\u0040\u00408;
+    ^(int&) ((IntPtr) &<Module>.??_R1A@?0A@EA@type_info@@8 + 24) = (int) &<Module>.??_R3type_info@@8;
   }
 
-  internal static unsafe void \u003FA0xbdc48617\u002E\u003F\u003F__E\u003F\u003F_R2type_info\u0040\u00408\u0040\u0040YMXXZ()
+  internal static unsafe void ?A0xbdc48617.??__E??_R2type_info@@8@@YMXXZ()
   {
     // ISSUE: explicit reference operation
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) @\u003CModule\u003E.\u003F\u003F_R2type_info\u0040\u00408 = (int) &\u003CModule\u003E.\u003F\u003F_R1A\u0040\u003F0A\u0040EA\u0040type_info\u0040\u00408;
+    ^(int&) @<Module>.??_R2type_info@@8 = (int) &<Module>.??_R1A@?0A@EA@type_info@@8;
   }
 
-  internal static unsafe void \u003FA0xbdc48617\u002E\u003F\u003F__E\u003F\u003F_R3type_info\u0040\u00408\u0040\u0040YMXXZ()
+  internal static unsafe void ?A0xbdc48617.??__E??_R3type_info@@8@@YMXXZ()
   {
     // ISSUE: explicit reference operation
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) @\u003CModule\u003E.\u003F\u003F_R3type_info\u0040\u00408 = 0;
+    ^(int&) @<Module>.??_R3type_info@@8 = 0;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_R3type_info\u0040\u00408 + 4) = 0;
+    ^(int&) ((IntPtr) &<Module>.??_R3type_info@@8 + 4) = 0;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_R3type_info\u0040\u00408 + 8) = 1;
+    ^(int&) ((IntPtr) &<Module>.??_R3type_info@@8 + 8) = 1;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_R3type_info\u0040\u00408 + 12) = (int) &\u003CModule\u003E.\u003F\u003F_R2type_info\u0040\u00408;
+    ^(int&) ((IntPtr) &<Module>.??_R3type_info@@8 + 12) = (int) &<Module>.??_R2type_info@@8;
   }
 
-  internal static unsafe void \u003FA0xbdc48617\u002E\u003F\u003F__E\u003F\u003F_R4type_info\u0040\u00406B\u0040\u0040\u0040YMXXZ()
+  internal static unsafe void ?A0xbdc48617.??__E??_R4type_info@@6B@@@YMXXZ()
   {
     // ISSUE: explicit reference operation
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) @\u003CModule\u003E.\u003F\u003F_R4type_info\u0040\u00406B\u0040 = 0;
+    ^(int&) @<Module>.??_R4type_info@@6B@ = 0;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_R4type_info\u0040\u00406B\u0040 + 4) = 0;
+    ^(int&) ((IntPtr) &<Module>.??_R4type_info@@6B@ + 4) = 0;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_R4type_info\u0040\u00406B\u0040 + 8) = 0;
+    ^(int&) ((IntPtr) &<Module>.??_R4type_info@@6B@ + 8) = 0;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_R4type_info\u0040\u00406B\u0040 + 12) = (int) &\u003CModule\u003E.\u003F\u003F_R0\u003FAVtype_info\u0040\u0040\u00408;
+    ^(int&) ((IntPtr) &<Module>.??_R4type_info@@6B@ + 12) = (int) &<Module>.??_R0?AVtype_info@@@8;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_R4type_info\u0040\u00406B\u0040 + 16) = (int) &\u003CModule\u003E.\u003F\u003F_R3type_info\u0040\u00408;
+    ^(int&) ((IntPtr) &<Module>.??_R4type_info@@6B@ + 16) = (int) &<Module>.??_R3type_info@@8;
   }
 
   [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
@@ -1662,43 +1662,43 @@ label_18:
   [DllImport("MSVCR100.dll", CallingConvention = CallingConvention.Cdecl)]
   public static extern void _lock(int _File);
 
-  internal static void \u003FA0xb174b438\u002E\u003F\u003F__E\u003FA0xb174b438\u0040SA_Yes\u0040\u0040YMXXZ()
+  internal static void ?A0xb174b438.??__E?A0xb174b438@SA_Yes@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xb174b438\u002ESA_Yes = (YesNoMaybe) 268370176;
+    <Module>.?A0xb174b438.SA_Yes = (YesNoMaybe) 268370176;
   }
 
-  internal static void \u003FA0xb174b438\u002E\u003F\u003F__E\u003FA0xb174b438\u0040SA_No\u0040\u0040YMXXZ()
+  internal static void ?A0xb174b438.??__E?A0xb174b438@SA_No@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xb174b438\u002ESA_No = (YesNoMaybe) 268369921;
+    <Module>.?A0xb174b438.SA_No = (YesNoMaybe) 268369921;
   }
 
-  internal static void \u003FA0xb174b438\u002E\u003F\u003F__E\u003FA0xb174b438\u0040SA_Maybe\u0040\u0040YMXXZ()
+  internal static void ?A0xb174b438.??__E?A0xb174b438@SA_Maybe@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xb174b438\u002ESA_Maybe = (YesNoMaybe) 268369936;
+    <Module>.?A0xb174b438.SA_Maybe = (YesNoMaybe) 268369936;
   }
 
-  internal static void \u003FA0xb174b438\u002E\u003F\u003F__E\u003FA0xb174b438\u0040SA_NoAccess\u0040\u0040YMXXZ()
+  internal static void ?A0xb174b438.??__E?A0xb174b438@SA_NoAccess@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xb174b438\u002ESA_NoAccess = (AccessType) 0;
+    <Module>.?A0xb174b438.SA_NoAccess = (AccessType) 0;
   }
 
-  internal static void \u003FA0xb174b438\u002E\u003F\u003F__E\u003FA0xb174b438\u0040SA_Read\u0040\u0040YMXXZ()
+  internal static void ?A0xb174b438.??__E?A0xb174b438@SA_Read@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xb174b438\u002ESA_Read = (AccessType) 1;
+    <Module>.?A0xb174b438.SA_Read = (AccessType) 1;
   }
 
-  internal static void \u003FA0xb174b438\u002E\u003F\u003F__E\u003FA0xb174b438\u0040SA_Write\u0040\u0040YMXXZ()
+  internal static void ?A0xb174b438.??__E?A0xb174b438@SA_Write@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xb174b438\u002ESA_Write = (AccessType) 2;
+    <Module>.?A0xb174b438.SA_Write = (AccessType) 2;
   }
 
-  internal static void \u003FA0xb174b438\u002E\u003F\u003F__E\u003FA0xb174b438\u0040SA_ReadWrite\u0040\u0040YMXXZ()
+  internal static void ?A0xb174b438.??__E?A0xb174b438@SA_ReadWrite@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0xb174b438\u002ESA_ReadWrite = (AccessType) 3;
+    <Module>.?A0xb174b438.SA_ReadWrite = (AccessType) 3;
   }
 
   [DebuggerStepThrough]
-  internal static ModuleHandle \u003CCrtImplementationDetails\u003E\u002EThisModule\u002EHandle()
+  internal static ModuleHandle <CrtImplementationDetails>.ThisModule.Handle()
   {
     return typeof (ThisModule).Module.ModuleHandle;
   }
@@ -1717,7 +1717,7 @@ label_18:
       {
         // ISSUE: cast to a function pointer type
         // ISSUE: function pointer call
-        void* voidPtr = __calli(\u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EThisModule\u002EResolveMethod\u003Cvoid\u0020const\u0020\u002A\u0020__clrcall\u0028void\u0029\u003E((__FnPtr<void* ()>) (int) num))();
+        void* voidPtr = __calli(<Module>.<CrtImplementationDetails>.ThisModule.ResolveMethod<void const * __clrcall(void)>((__FnPtr<void* ()>) (int) num))();
       }
       pfbegin += 4;
     }
@@ -1726,45 +1726,45 @@ label_18:
 
   [SecurityCritical]
   [DebuggerStepThrough]
-  internal static unsafe __FnPtr<void* ()> \u003CCrtImplementationDetails\u003E\u002EThisModule\u002EResolveMethod\u003Cvoid\u0020const\u0020\u002A\u0020__clrcall\u0028void\u0029\u003E(__FnPtr<void* ()> methodToken)
+  internal static unsafe __FnPtr<void* ()> <CrtImplementationDetails>.ThisModule.ResolveMethod<void const * __clrcall(void)>(__FnPtr<void* ()> methodToken)
   {
     // ISSUE: cast to a function pointer type
-    return (__FnPtr<void* ()>) (IntPtr) \u003CModule\u003E.\u003CCrtImplementationDetails\u003E\u002EThisModule\u002EHandle().ResolveMethodHandle((int) methodToken).GetFunctionPointer().ToPointer();
+    return (__FnPtr<void* ()>) (IntPtr) <Module>.<CrtImplementationDetails>.ThisModule.Handle().ResolveMethodHandle((int) methodToken).GetFunctionPointer().ToPointer();
   }
 
-  internal static void \u003FA0x9536fa44\u002E\u003F\u003F__E\u003FA0x9536fa44\u0040SA_Yes\u0040\u0040YMXXZ()
+  internal static void ?A0x9536fa44.??__E?A0x9536fa44@SA_Yes@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x9536fa44\u002ESA_Yes = (YesNoMaybe) 268370176;
+    <Module>.?A0x9536fa44.SA_Yes = (YesNoMaybe) 268370176;
   }
 
-  internal static void \u003FA0x9536fa44\u002E\u003F\u003F__E\u003FA0x9536fa44\u0040SA_No\u0040\u0040YMXXZ()
+  internal static void ?A0x9536fa44.??__E?A0x9536fa44@SA_No@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x9536fa44\u002ESA_No = (YesNoMaybe) 268369921;
+    <Module>.?A0x9536fa44.SA_No = (YesNoMaybe) 268369921;
   }
 
-  internal static void \u003FA0x9536fa44\u002E\u003F\u003F__E\u003FA0x9536fa44\u0040SA_Maybe\u0040\u0040YMXXZ()
+  internal static void ?A0x9536fa44.??__E?A0x9536fa44@SA_Maybe@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x9536fa44\u002ESA_Maybe = (YesNoMaybe) 268369936;
+    <Module>.?A0x9536fa44.SA_Maybe = (YesNoMaybe) 268369936;
   }
 
-  internal static void \u003FA0x9536fa44\u002E\u003F\u003F__E\u003FA0x9536fa44\u0040SA_NoAccess\u0040\u0040YMXXZ()
+  internal static void ?A0x9536fa44.??__E?A0x9536fa44@SA_NoAccess@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x9536fa44\u002ESA_NoAccess = (AccessType) 0;
+    <Module>.?A0x9536fa44.SA_NoAccess = (AccessType) 0;
   }
 
-  internal static void \u003FA0x9536fa44\u002E\u003F\u003F__E\u003FA0x9536fa44\u0040SA_Read\u0040\u0040YMXXZ()
+  internal static void ?A0x9536fa44.??__E?A0x9536fa44@SA_Read@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x9536fa44\u002ESA_Read = (AccessType) 1;
+    <Module>.?A0x9536fa44.SA_Read = (AccessType) 1;
   }
 
-  internal static void \u003FA0x9536fa44\u002E\u003F\u003F__E\u003FA0x9536fa44\u0040SA_Write\u0040\u0040YMXXZ()
+  internal static void ?A0x9536fa44.??__E?A0x9536fa44@SA_Write@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x9536fa44\u002ESA_Write = (AccessType) 2;
+    <Module>.?A0x9536fa44.SA_Write = (AccessType) 2;
   }
 
-  internal static void \u003FA0x9536fa44\u002E\u003F\u003F__E\u003FA0x9536fa44\u0040SA_ReadWrite\u0040\u0040YMXXZ()
+  internal static void ?A0x9536fa44.??__E?A0x9536fa44@SA_ReadWrite@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x9536fa44\u002ESA_ReadWrite = (AccessType) 3;
+    <Module>.?A0x9536fa44.SA_ReadWrite = (AccessType) 3;
   }
 
   [HandleProcessCorruptedStateExceptions]
@@ -1794,18 +1794,18 @@ label_18:
     finally
     {
       if (num == 0)
-        \u003CModule\u003E.__ArrayUnwind(ptr, size, count, pDtor);
+        <Module>.__ArrayUnwind(ptr, size, count, pDtor);
     }
   }
 
   [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
   [SecurityCritical]
   [SecurityPermission(SecurityAction.Assert, UnmanagedCode = true)]
-  internal static unsafe int \u003FA0x9536fa44\u002EArrayUnwindFilter(_EXCEPTION_POINTERS* pExPtrs)
+  internal static unsafe int ?A0x9536fa44.ArrayUnwindFilter(_EXCEPTION_POINTERS* pExPtrs)
   {
     if (*(int*) *(int*) pExPtrs != -529697949)
       return 0;
-    \u003CModule\u003E.terminate();
+    <Module>.terminate();
     return 0;
   }
 
@@ -1830,125 +1830,125 @@ label_18:
           break;
       }
     }
-    catch (Exception ex) when (\u003CModule\u003E.\u003FA0x9536fa44\u002EArrayUnwindFilter((_EXCEPTION_POINTERS*) Marshal.GetExceptionPointers()) != 0)
+    catch (Exception ex) when (<Module>.?A0x9536fa44.ArrayUnwindFilter((_EXCEPTION_POINTERS*) Marshal.GetExceptionPointers()) != 0)
     {
     }
   }
 
-  internal static void \u003FA0x000256ae\u002E\u003F\u003F__E\u003FA0x000256ae\u0040SA_Yes\u0040\u0040YMXXZ()
+  internal static void ?A0x000256ae.??__E?A0x000256ae@SA_Yes@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x000256ae\u002ESA_Yes = (YesNoMaybe) 268370176;
+    <Module>.?A0x000256ae.SA_Yes = (YesNoMaybe) 268370176;
   }
 
-  internal static void \u003FA0x000256ae\u002E\u003F\u003F__E\u003FA0x000256ae\u0040SA_No\u0040\u0040YMXXZ()
+  internal static void ?A0x000256ae.??__E?A0x000256ae@SA_No@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x000256ae\u002ESA_No = (YesNoMaybe) 268369921;
+    <Module>.?A0x000256ae.SA_No = (YesNoMaybe) 268369921;
   }
 
-  internal static void \u003FA0x000256ae\u002E\u003F\u003F__E\u003FA0x000256ae\u0040SA_Maybe\u0040\u0040YMXXZ()
+  internal static void ?A0x000256ae.??__E?A0x000256ae@SA_Maybe@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x000256ae\u002ESA_Maybe = (YesNoMaybe) 268369936;
+    <Module>.?A0x000256ae.SA_Maybe = (YesNoMaybe) 268369936;
   }
 
-  internal static void \u003FA0x000256ae\u002E\u003F\u003F__E\u003FA0x000256ae\u0040SA_NoAccess\u0040\u0040YMXXZ()
+  internal static void ?A0x000256ae.??__E?A0x000256ae@SA_NoAccess@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x000256ae\u002ESA_NoAccess = (AccessType) 0;
+    <Module>.?A0x000256ae.SA_NoAccess = (AccessType) 0;
   }
 
-  internal static void \u003FA0x000256ae\u002E\u003F\u003F__E\u003FA0x000256ae\u0040SA_Read\u0040\u0040YMXXZ()
+  internal static void ?A0x000256ae.??__E?A0x000256ae@SA_Read@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x000256ae\u002ESA_Read = (AccessType) 1;
+    <Module>.?A0x000256ae.SA_Read = (AccessType) 1;
   }
 
-  internal static void \u003FA0x000256ae\u002E\u003F\u003F__E\u003FA0x000256ae\u0040SA_Write\u0040\u0040YMXXZ()
+  internal static void ?A0x000256ae.??__E?A0x000256ae@SA_Write@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x000256ae\u002ESA_Write = (AccessType) 2;
+    <Module>.?A0x000256ae.SA_Write = (AccessType) 2;
   }
 
-  internal static void \u003FA0x000256ae\u002E\u003F\u003F__E\u003FA0x000256ae\u0040SA_ReadWrite\u0040\u0040YMXXZ()
+  internal static void ?A0x000256ae.??__E?A0x000256ae@SA_ReadWrite@@YMXXZ()
   {
-    \u003CModule\u003E.\u003FA0x000256ae\u002ESA_ReadWrite = (AccessType) 3;
+    <Module>.?A0x000256ae.SA_ReadWrite = (AccessType) 3;
   }
 
-  internal static unsafe void \u003FA0x000256ae\u002E\u003F\u003F__EInterfaceClassGuid\u0040HIDBootLoader\u0040\u0040YMXXZ()
+  internal static unsafe void ?A0x000256ae.??__EInterfaceClassGuid@HIDBootLoader@@YMXXZ()
   {
     // ISSUE: explicit reference operation
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) @\u003CModule\u003E.HIDBootLoader\u002EInterfaceClassGuid = 1293833650;
+    ^(int&) @<Module>.HIDBootLoader.InterfaceClassGuid = 1293833650;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(short&) ((IntPtr) &\u003CModule\u003E.HIDBootLoader\u002EInterfaceClassGuid + 4) = (short) -3729;
+    ^(short&) ((IntPtr) &<Module>.HIDBootLoader.InterfaceClassGuid + 4) = (short) -3729;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(short&) ((IntPtr) &\u003CModule\u003E.HIDBootLoader\u002EInterfaceClassGuid + 6) = (short) 4559;
+    ^(short&) ((IntPtr) &<Module>.HIDBootLoader.InterfaceClassGuid + 6) = (short) 4559;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(sbyte&) ((IntPtr) &\u003CModule\u003E.HIDBootLoader\u002EInterfaceClassGuid + 8) = (sbyte) -120;
+    ^(sbyte&) ((IntPtr) &<Module>.HIDBootLoader.InterfaceClassGuid + 8) = (sbyte) -120;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(sbyte&) ((IntPtr) &\u003CModule\u003E.HIDBootLoader\u002EInterfaceClassGuid + 9) = (sbyte) -53;
+    ^(sbyte&) ((IntPtr) &<Module>.HIDBootLoader.InterfaceClassGuid + 9) = (sbyte) -53;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(sbyte&) ((IntPtr) &\u003CModule\u003E.HIDBootLoader\u002EInterfaceClassGuid + 10) = (sbyte) 0;
+    ^(sbyte&) ((IntPtr) &<Module>.HIDBootLoader.InterfaceClassGuid + 10) = (sbyte) 0;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(sbyte&) ((IntPtr) &\u003CModule\u003E.HIDBootLoader\u002EInterfaceClassGuid + 11) = (sbyte) 17;
+    ^(sbyte&) ((IntPtr) &<Module>.HIDBootLoader.InterfaceClassGuid + 11) = (sbyte) 17;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(sbyte&) ((IntPtr) &\u003CModule\u003E.HIDBootLoader\u002EInterfaceClassGuid + 12) = (sbyte) 17;
+    ^(sbyte&) ((IntPtr) &<Module>.HIDBootLoader.InterfaceClassGuid + 12) = (sbyte) 17;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(sbyte&) ((IntPtr) &\u003CModule\u003E.HIDBootLoader\u002EInterfaceClassGuid + 13) = (sbyte) 0;
+    ^(sbyte&) ((IntPtr) &<Module>.HIDBootLoader.InterfaceClassGuid + 13) = (sbyte) 0;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(sbyte&) ((IntPtr) &\u003CModule\u003E.HIDBootLoader\u002EInterfaceClassGuid + 14) = (sbyte) 0;
+    ^(sbyte&) ((IntPtr) &<Module>.HIDBootLoader.InterfaceClassGuid + 14) = (sbyte) 0;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(sbyte&) ((IntPtr) &\u003CModule\u003E.HIDBootLoader\u002EInterfaceClassGuid + 15) = (sbyte) 48;
+    ^(sbyte&) ((IntPtr) &<Module>.HIDBootLoader.InterfaceClassGuid + 15) = (sbyte) 48;
   }
 
-  internal static unsafe void \u003FA0x000256ae\u002E\u003F\u003F__EMyStructureWithDetailedInterfaceDataInIt\u0040HIDBootLoader\u0040\u0040YMXXZ()
+  internal static unsafe void ?A0x000256ae.??__EMyStructureWithDetailedInterfaceDataInIt@HIDBootLoader@@YMXXZ()
   {
-    \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt = (_SP_DEVICE_INTERFACE_DETAIL_DATA_W*) \u003CModule\u003E.@new(6U);
+    <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt = (_SP_DEVICE_INTERFACE_DETAIL_DATA_W*) <Module>.@new(6U);
   }
 
-  internal static void \u003FA0x000256ae\u002E\u003F\u003F__EMyDeviceAttachedStatus\u0040HIDBootLoader\u0040\u0040YMXXZ()
+  internal static void ?A0x000256ae.??__EMyDeviceAttachedStatus@HIDBootLoader@@YMXXZ()
   {
-    \u003CModule\u003E.HIDBootLoader\u002EMyDeviceAttachedStatus = 0;
+    <Module>.HIDBootLoader.MyDeviceAttachedStatus = 0;
   }
 
-  internal static void \u003FA0x000256ae\u002E\u003F\u003F__EErrorStatusWrite\u0040HIDBootLoader\u0040\u0040YMXXZ()
+  internal static void ?A0x000256ae.??__EErrorStatusWrite@HIDBootLoader@@YMXXZ()
   {
-    \u003CModule\u003E.HIDBootLoader\u002EErrorStatusWrite = 0U;
+    <Module>.HIDBootLoader.ErrorStatusWrite = 0U;
   }
 
-  internal static void \u003FA0x000256ae\u002E\u003F\u003F__EErrorStatusRead\u0040HIDBootLoader\u0040\u0040YMXXZ()
+  internal static void ?A0x000256ae.??__EErrorStatusRead@HIDBootLoader@@YMXXZ()
   {
-    \u003CModule\u003E.HIDBootLoader\u002EErrorStatusRead = 0U;
+    <Module>.HIDBootLoader.ErrorStatusRead = 0U;
   }
 
-  internal static void \u003FA0x000256ae\u002E\u003F\u003F__EStatus\u0040HIDBootLoader\u0040\u0040YMXXZ()
+  internal static void ?A0x000256ae.??__EStatus@HIDBootLoader@@YMXXZ()
   {
-    \u003CModule\u003E.HIDBootLoader\u002EStatus = 0;
+    <Module>.HIDBootLoader.Status = 0;
   }
 
-  internal static void \u003FA0x000256ae\u002E\u003F\u003F__Eg_number_of_version\u0040HIDBootLoader\u0040\u0040YMXXZ()
+  internal static void ?A0x000256ae.??__Eg_number_of_version@HIDBootLoader@@YMXXZ()
   {
-    \u003CModule\u003E.HIDBootLoader\u002Eg_number_of_version = 0;
+    <Module>.HIDBootLoader.g_number_of_version = 0;
   }
 
-  internal static void \u003FA0x000256ae\u002E\u003F\u003F__Eg_first_time\u0040HIDBootLoader\u0040\u0040YMXXZ()
+  internal static void ?A0x000256ae.??__Eg_first_time@HIDBootLoader@@YMXXZ()
   {
-    \u003CModule\u003E.HIDBootLoader\u002Eg_first_time = 0;
+    <Module>.HIDBootLoader.g_first_time = 0;
   }
 
-  internal static void \u003FA0x000256ae\u002E\u003F\u003F__Eg_id\u0040HIDBootLoader\u0040\u0040YMXXZ()
+  internal static void ?A0x000256ae.??__Eg_id@HIDBootLoader@@YMXXZ()
   {
-    \u003CModule\u003E.HIDBootLoader\u002Eg_id = 0;
+    <Module>.HIDBootLoader.g_id = 0;
   }
 
-  internal static unsafe void \u003FA0x000256ae\u002E\u003F\u003F__E\u003F\u003F_R0PAD\u00408\u0040\u0040YMXXZ()
+  internal static unsafe void ?A0x000256ae.??__E??_R0PAD@8@@YMXXZ()
   {
     // ISSUE: explicit reference operation
     // ISSUE: cast to a reference type
@@ -1956,14 +1956,14 @@ label_18:
     // ISSUE: explicit reference operation
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) @\u003CModule\u003E.\u003F\u003F_R0PAD\u00408 = ^(int&) @\u003CModule\u003E.\u003F\u003F_7type_info\u0040\u00406B\u0040 + 4;
+    ^(int&) @<Module>.??_R0PAD@8 = ^(int&) @<Module>.??_7type_info@@6B@ + 4;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
-    ^(int&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_R0PAD\u00408 + 4) = 0;
+    ^(int&) ((IntPtr) &<Module>.??_R0PAD@8 + 4) = 0;
     // ISSUE: cast to a reference type
     // ISSUE: explicit reference operation
     // ISSUE: cpblk instruction
-    __memcpy((\u0024_TypeDescriptor\u0024_extraBytes_5&) ((IntPtr) &\u003CModule\u003E.\u003F\u003F_R0PAD\u00408 + 8), @\u003CModule\u003E.\u003F\u003F_C\u0040_04GJGMPLND\u0040\u003F4PAD\u003F\u0024AA\u0040, 5);
+    __memcpy(($_TypeDescriptor$_extraBytes_5&) ((IntPtr) &<Module>.??_R0PAD@8 + 8), @<Module>.??_C@_04GJGMPLND@?4PAD?$AA@, 5);
   }
 
   [STAThread]

@@ -19,25 +19,25 @@ internal struct tagVARIANT
   [UnsafeValueType]
   [MiscellaneousBits(66)]
   [StructLayout(LayoutKind.Explicit, Size = 16)]
-  internal struct \u0024UnnamedClass\u00240xfd8b67b9\u0024170\u0024
+  internal struct $UnnamedClass$0xfd8b67b9$170$
   {
     [NativeCppClass]
     [MiscellaneousBits(65)]
     [DebugInfoInPDB]
     [StructLayout(LayoutKind.Sequential, Size = 16)]
-    internal struct \u0024UnnamedClass\u00240xfd8b67b9\u0024171\u0024
+    internal struct $UnnamedClass$0xfd8b67b9$171$
     {
       [MiscellaneousBits(66)]
       [DebugInfoInPDB]
       [NativeCppClass]
       [StructLayout(LayoutKind.Explicit, Size = 8)]
-      internal struct \u0024UnnamedClass\u00240xfd8b67b9\u0024172\u0024
+      internal struct $UnnamedClass$0xfd8b67b9$172$
       {
         [DebugInfoInPDB]
         [NativeCppClass]
         [MiscellaneousBits(65)]
         [StructLayout(LayoutKind.Sequential, Size = 8)]
-        internal struct \u0024UnnamedClass\u00240xfd8b67b9\u0024173\u0024
+        internal struct $UnnamedClass$0xfd8b67b9$173$
         {
         }
       }
@@ -49,25 +49,25 @@ internal struct tagVARIANT
   [NativeCppClass]
   [MiscellaneousBits(66)]
   [StructLayout(LayoutKind.Explicit, Size = 16)]
-  internal struct \u0024UnnamedClass\u00240x000256ae\u0024360\u0024
+  internal struct $UnnamedClass$0x000256ae$360$
   {
     [MiscellaneousBits(65)]
     [DebugInfoInPDB]
     [NativeCppClass]
     [StructLayout(LayoutKind.Sequential, Size = 16)]
-    internal struct \u0024UnnamedClass\u00240x000256ae\u0024361\u0024
+    internal struct $UnnamedClass$0x000256ae$361$
     {
       [NativeCppClass]
       [MiscellaneousBits(66)]
       [DebugInfoInPDB]
       [StructLayout(LayoutKind.Explicit, Size = 8)]
-      internal struct \u0024UnnamedClass\u00240x000256ae\u0024362\u0024
+      internal struct $UnnamedClass$0x000256ae$362$
       {
         [MiscellaneousBits(65)]
         [NativeCppClass]
         [DebugInfoInPDB]
         [StructLayout(LayoutKind.Sequential, Size = 8)]
-        internal struct \u0024UnnamedClass\u00240x000256ae\u0024363\u0024
+        internal struct $UnnamedClass$0x000256ae$363$
         {
         }
       }

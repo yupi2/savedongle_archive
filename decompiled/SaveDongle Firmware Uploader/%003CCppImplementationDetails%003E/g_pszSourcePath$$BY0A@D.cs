@@ -8,14 +8,14 @@ using Microsoft.VisualC;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace \u003CCppImplementationDetails\u003E
+namespace <CppImplementationDetails>
 {
   [NativeCppClass]
   [DebugInfoInPDB]
   [MiscellaneousBits(65)]
   [UnsafeValueType]
   [StructLayout(LayoutKind.Sequential, Size = 512)]
-  internal struct g_pszSourcePath\u0024\u0024BY0A\u0040D
+  internal struct g_pszSourcePath$$BY0A@D
   {
   }
 }

@@ -12,6 +12,6 @@ using System.Runtime.InteropServices;
 [DebugInfoInPDB]
 [MiscellaneousBits(65)]
 [StructLayout(LayoutKind.Sequential, Size = 4)]
-internal struct gcroot\u003CSystem\u003A\u003AString\u0020\u005E\u003E
+internal struct gcroot<System::String ^>
 {
 }

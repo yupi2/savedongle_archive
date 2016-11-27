@@ -12,6 +12,6 @@ using System.Runtime.InteropServices;
 [DebugInfoInPDB]
 [NativeCppClass]
 [StructLayout(LayoutKind.Sequential, Size = 5)]
-internal struct \u0024_s__RTTIBaseClassArray\u0024_extraBytes_4
+internal struct $_s__RTTIBaseClassArray$_extraBytes_4
 {
 }

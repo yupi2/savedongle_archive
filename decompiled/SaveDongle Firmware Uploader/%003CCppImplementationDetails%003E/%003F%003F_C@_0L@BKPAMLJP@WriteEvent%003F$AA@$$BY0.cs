@@ -8,14 +8,14 @@ using Microsoft.VisualC;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace \u003CCppImplementationDetails\u003E
+namespace <CppImplementationDetails>
 {
   [MiscellaneousBits(65)]
   [DebugInfoInPDB]
   [NativeCppClass]
   [UnsafeValueType]
   [StructLayout(LayoutKind.Sequential, Size = 11)]
-  internal struct \u003F\u003F_C\u0040_0L\u0040BKPAMLJP\u0040WriteEvent\u003F\u0024AA\u0040\u0024\u0024BY0A\u0040\u0024\u0024CBD
+  internal struct ??_C@_0L@BKPAMLJP@WriteEvent?$AA@$$BY0A@$$CBD
   {
   }
 }

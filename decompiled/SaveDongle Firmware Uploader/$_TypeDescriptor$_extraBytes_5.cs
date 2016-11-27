@@ -13,6 +13,6 @@ using System.Runtime.InteropServices;
 [MiscellaneousBits(65)]
 [NativeCppClass]
 [StructLayout(LayoutKind.Sequential, Size = 13)]
-internal struct \u0024_TypeDescriptor\u0024_extraBytes_5
+internal struct $_TypeDescriptor$_extraBytes_5
 {
 }

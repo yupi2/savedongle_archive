@@ -4,7 +4,7 @@
 // MVID: C2ABEB73-C84E-41BA-807E-B4913B3F1A22
 // Assembly location: C:\Temp\SaveDongle Firmware Uploader.exe
 
-using \u003CCppImplementationDetails\u003E;
+using <CppImplementationDetails>;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -117,7 +117,7 @@ namespace HIDBootLoader
         int num8 = form1_8.ckbox_ConfigWordProgramming.Enabled ? 1 : 0;
         form1_8.ckbox_ConfigWordProgramming_restore = num8 != 0;
         this.ReInitializeComponent();
-        Form1.memoryRegions = (_MEMORY_REGION*) \u003CModule\u003E.@new(54U);
+        Form1.memoryRegions = (_MEMORY_REGION*) <Module>.@new(54U);
         this.memoryRegionsDetected = (byte) 0;
         byte region = 0;
         do
@@ -148,10 +148,10 @@ namespace HIDBootLoader
         // ISSUE: cast to a reference type
         // ISSUE: explicit reference operation
         // ISSUE: cpblk instruction
-        __memcpy((_DEV_BROADCAST_DEVICEINTERFACE_W&) ((IntPtr) &deviceinterfaceW + 12), @\u003CModule\u003E.HIDBootLoader\u002EInterfaceClassGuid, 16);
-        \u003CModule\u003E.RegisterDeviceNotificationUM((void*) this.Handle, (void*) &deviceinterfaceW, 0U);
-        \u003CModule\u003E.HIDBootLoader\u002EStatus = this.TryToFindHIDDeviceFromVIDPID() ? 1 : 0;
-        \u003CModule\u003E.HIDBootLoader\u002EMyDeviceAttachedStatus = 0;
+        __memcpy((_DEV_BROADCAST_DEVICEINTERFACE_W&) ((IntPtr) &deviceinterfaceW + 12), @<Module>.HIDBootLoader.InterfaceClassGuid, 16);
+        <Module>.RegisterDeviceNotificationUM((void*) this.Handle, (void*) &deviceinterfaceW, 0U);
+        <Module>.HIDBootLoader.Status = this.TryToFindHIDDeviceFromVIDPID() ? 1 : 0;
+        <Module>.HIDBootLoader.MyDeviceAttachedStatus = 0;
         this.DeviceRemoved();
         this.ListBoxUpdate(1);
         this.tmr_ThreadStatus.Enabled = true;
@@ -163,7 +163,7 @@ namespace HIDBootLoader
       }
     }
 
-    private unsafe void \u007EForm1()
+    private unsafe void ~Form1()
     {
       IContainer components = this.components;
       if (components != null)
@@ -175,7 +175,7 @@ namespace HIDBootLoader
         this.pData = memoryRegion;
         if ((IntPtr) memoryRegion != IntPtr.Zero)
         {
-          \u003CModule\u003E.free((void*) memoryRegion);
+          <Module>.free((void*) memoryRegion);
           this.setMemoryRegion(region, (byte*) 0);
         }
         ++region;
@@ -187,12 +187,12 @@ namespace HIDBootLoader
     {
       if (Directory.Exists("c:\\Temp"))
         return;
-      \u003CModule\u003E._mkdir((sbyte*) &\u003CModule\u003E.\u003F\u003F_C\u0040_07BNLNPKOB\u0040c\u003F3\u003F2Temp\u003F\u0024AA\u0040);
+      <Module>._mkdir((sbyte*) &<Module>.??_C@_07BNLNPKOB@c?3?2Temp?$AA@);
     }
 
     protected unsafe uint NDS_CRC16(_iobuf* fp, uint size)
     {
-      \u0024ArrayType\u0024\u0024\u0024BY07K arrayTypeBy07K;
+      $ArrayType$$$BY07K arrayTypeBy07K;
       // ISSUE: explicit reference operation
       // ISSUE: cast to a reference type
       // ISSUE: explicit reference operation
@@ -219,14 +219,14 @@ namespace HIDBootLoader
       // ISSUE: explicit reference operation
       ^(int&) ((IntPtr) &arrayTypeBy07K + 28) = 1246797825;
       uint maxValue = uint.MaxValue;
-      \u003CModule\u003E.fseek(fp, 4, 0);
+      <Module>.fseek(fp, 4, 0);
       if (0U < size)
       {
         uint num1 = size;
         do
         {
           byte num2;
-          int num3 = (int) \u003CModule\u003E.fread((void*) &num2, 1U, 1U, fp);
+          int num3 = (int) <Module>.fread((void*) &num2, 1U, 1U, fp);
           maxValue ^= (uint) num2;
           byte num4 = 0;
           do
@@ -268,59 +268,59 @@ namespace HIDBootLoader
 
     protected unsafe void ExtractHexFile(_iobuf* fp, uint offset, uint size)
     {
-      \u003CModule\u003E.fseek(fp, (int) offset + 256, 0);
-      _iobuf* iobufPtr = \u003CModule\u003E.fopen((sbyte*) &\u003CModule\u003E.\u003F\u003F_C\u0040_0BA\u0040BJPDJJDH\u0040c\u003F3\u003F2Temp\u003F2tmp\u003F4tmp\u003F\u0024AA\u0040, (sbyte*) &\u003CModule\u003E.\u003F\u003F_C\u0040_02GMLFBBN\u0040wb\u003F\u0024AA\u0040);
-      byte* data = (byte*) \u003CModule\u003E.malloc(size - 256U);
-      int num1 = (int) \u003CModule\u003E.fread((void*) data, 1U, size - 256U, fp);
+      <Module>.fseek(fp, (int) offset + 256, 0);
+      _iobuf* iobufPtr = <Module>.fopen((sbyte*) &<Module>.??_C@_0BA@BJPDJJDH@c?3?2Temp?2tmp?4tmp?$AA@, (sbyte*) &<Module>.??_C@_02GMLFBBN@wb?$AA@);
+      byte* data = (byte*) <Module>.malloc(size - 256U);
+      int num1 = (int) <Module>.fread((void*) data, 1U, size - 256U, fp);
       // ISSUE: explicit reference operation
       // ISSUE: cast to a reference type
       // ISSUE: explicit reference operation
-      \u003CModule\u003E.fseek(fp, ^(int&) @\u003CModule\u003E.HIDBootLoader\u002Ehexinfo + 512, 0);
-      \u0024ArrayType\u0024\u0024\u0024BY0BAA\u0040E arrayTypeBy0BaAE;
-      int num2 = (int) \u003CModule\u003E.fread((void*) &arrayTypeBy0BaAE, 1U, 256U, fp);
+      <Module>.fseek(fp, ^(int&) @<Module>.HIDBootLoader.hexinfo + 512, 0);
+      $ArrayType$$$BY0BAA@E arrayTypeBy0BaAE;
+      int num2 = (int) <Module>.fread((void*) &arrayTypeBy0BaAE, 1U, 256U, fp);
       this.SimpleEncryptDecrypt(data, (byte*) &arrayTypeBy0BaAE, size - 256U);
-      int num3 = (int) \u003CModule\u003E.fwrite((void*) data, 1U, size - 256U, iobufPtr);
-      \u003CModule\u003E.fclose(iobufPtr);
-      \u003CModule\u003E.free((void*) data);
+      int num3 = (int) <Module>.fwrite((void*) data, 1U, size - 256U, iobufPtr);
+      <Module>.fclose(iobufPtr);
+      <Module>.free((void*) data);
     }
 
     protected unsafe void UpdateFirmwareDescriptor()
     {
       // ISSUE: cast to a reference type
       // ISSUE: explicit reference operation
-      int num1 = ^(int&) (this.comboBox_Firmware.SelectedIndex * 4 + (IntPtr) &\u003CModule\u003E.HIDBootLoader\u002Eg_index);
-      \u003CModule\u003E.HIDBootLoader\u002Eg_id = num1;
+      int num1 = ^(int&) (this.comboBox_Firmware.SelectedIndex * 4 + (IntPtr) &<Module>.HIDBootLoader.g_index);
+      <Module>.HIDBootLoader.g_id = num1;
       switch (this.comboBox_Language.SelectedIndex)
       {
         case 0:
-          this.textBox1.Text = \u003CModule\u003E.HIDBootLoader\u002Eg_number_of_version <= 0 ? "Firmware Description:" : "Firmware Description:" + Environment.NewLine + new string((sbyte*) (num1 * 512 + (IntPtr) &\u003CModule\u003E.HIDBootLoader\u002Ehex_description));
+          this.textBox1.Text = <Module>.HIDBootLoader.g_number_of_version <= 0 ? "Firmware Description:" : "Firmware Description:" + Environment.NewLine + new string((sbyte*) (num1 * 512 + (IntPtr) &<Module>.HIDBootLoader.hex_description));
           break;
         case 1:
-          this.textBox1.Text = \u003CModule\u003E.HIDBootLoader\u002Eg_number_of_version <= 0 ? "固件版本说明:" : "固件版本说明:" + Environment.NewLine + new string((sbyte*) (num1 * 512 + (IntPtr) &\u003CModule\u003E.HIDBootLoader\u002Ehex_description));
+          this.textBox1.Text = <Module>.HIDBootLoader.g_number_of_version <= 0 ? "固件版本说明:" : "固件版本说明:" + Environment.NewLine + new string((sbyte*) (num1 * 512 + (IntPtr) &<Module>.HIDBootLoader.hex_description));
           break;
       }
-      if (\u003CModule\u003E.HIDBootLoader\u002Eg_number_of_version <= 0)
+      if (<Module>.HIDBootLoader.g_number_of_version <= 0)
         return;
-      _iobuf* fp = \u003CModule\u003E.fopen((sbyte*) &\u003CModule\u003E.HIDBootLoader\u002Eg_pszSourcePath, (sbyte*) &\u003CModule\u003E.\u003F\u003F_C\u0040_02JDPG\u0040rb\u003F\u0024AA\u0040);
+      _iobuf* fp = <Module>.fopen((sbyte*) &<Module>.HIDBootLoader.g_pszSourcePath, (sbyte*) &<Module>.??_C@_02JDPG@rb?$AA@);
       int num2 = num1 * 44;
       // ISSUE: cast to a reference type
       // ISSUE: explicit reference operation
       // ISSUE: cast to a reference type
       // ISSUE: explicit reference operation
-      this.ExtractHexFile(fp, (uint) (^(int&) (num2 + (IntPtr) &\u003CModule\u003E.HIDBootLoader\u002Ehexinfo) + 512), (uint) ^(int&) (num2 + ((IntPtr) &\u003CModule\u003E.HIDBootLoader\u002Ehexinfo + 4)));
-      \u003CModule\u003E.fclose(fp);
+      this.ExtractHexFile(fp, (uint) (^(int&) (num2 + (IntPtr) &<Module>.HIDBootLoader.hexinfo) + 512), (uint) ^(int&) (num2 + ((IntPtr) &<Module>.HIDBootLoader.hexinfo + 4)));
+      <Module>.fclose(fp);
     }
 
     protected unsafe void UpdateFirmwareListBox()
     {
-      if (\u003CModule\u003E.HIDBootLoader\u002Eg_number_of_version == 0)
+      if (<Module>.HIDBootLoader.g_number_of_version == 0)
         return;
       int num1 = 0;
-      if (0 < \u003CModule\u003E.HIDBootLoader\u002Eg_number_of_version)
+      if (0 < <Module>.HIDBootLoader.g_number_of_version)
       {
-        g_index\u0024\u0024BY0A\u0040H* gIndexBy0AHPtr = &\u003CModule\u003E.HIDBootLoader\u002Eg_index;
-        int num2 = (int) ((IntPtr) &\u003CModule\u003E.HIDBootLoader\u002Ehexinfo + 10);
-        int num3 = (int) ((IntPtr) &\u003CModule\u003E.HIDBootLoader\u002Ehexinfo + 8);
+        g_index$$BY0A@H* gIndexBy0AHPtr = &<Module>.HIDBootLoader.g_index;
+        int num2 = (int) ((IntPtr) &<Module>.HIDBootLoader.hexinfo + 10);
+        int num3 = (int) ((IntPtr) &<Module>.HIDBootLoader.hexinfo + 8);
         do
         {
           if (1 == (int) *(byte*) num3)
@@ -336,7 +336,7 @@ namespace HIDBootLoader
           num3 += 44;
           num2 += 44;
         }
-        while (num1 < \u003CModule\u003E.HIDBootLoader\u002Eg_number_of_version);
+        while (num1 < <Module>.HIDBootLoader.g_number_of_version);
       }
       this.comboBox_Firmware.SelectedIndex = 0;
       this.UpdateFirmwareDescriptor();
@@ -344,7 +344,7 @@ namespace HIDBootLoader
 
     protected void ClearAll()
     {
-      \u003CModule\u003E.HIDBootLoader\u002Eg_number_of_version = 0;
+      <Module>.HIDBootLoader.g_number_of_version = 0;
       this.comboBox_Firmware.Items.Clear();
       this.comboBox_Firmware.Text = "";
       switch (this.comboBox_Language.SelectedIndex)
@@ -356,23 +356,23 @@ namespace HIDBootLoader
           this.textBox1.Text = "固件版本说明:";
           break;
       }
-      \u003CModule\u003E.HIDBootLoader\u002Eg_first_time = 0;
+      <Module>.HIDBootLoader.g_first_time = 0;
     }
 
     protected unsafe void Load_mHexFile(sbyte* filename)
     {
       this.CreateTempFolder();
-      _iobuf* fp = \u003CModule\u003E.fopen(filename, (sbyte*) &\u003CModule\u003E.\u003F\u003F_C\u0040_02JDPG\u0040rb\u003F\u0024AA\u0040);
-      \u003CModule\u003E.fseek(fp, 0, 2);
-      uint num1 = (uint) \u003CModule\u003E.ftell(fp);
+      _iobuf* fp = <Module>.fopen(filename, (sbyte*) &<Module>.??_C@_02JDPG@rb?$AA@);
+      <Module>.fseek(fp, 0, 2);
+      uint num1 = (uint) <Module>.ftell(fp);
       int num2 = (int) this.NDS_CRC16(fp, num1 - 4U);
-      \u003CModule\u003E.fseek(fp, 0, 0);
+      <Module>.fseek(fp, 0, 0);
       uint num3;
-      int num4 = (int) \u003CModule\u003E.fread((void*) &num3, 4U, 1U, fp);
+      int num4 = (int) <Module>.fread((void*) &num3, 4U, 1U, fp);
       int num5 = (int) num3;
       if (num2 != num5)
       {
-        \u003CModule\u003E.fclose(fp);
+        <Module>.fclose(fp);
         switch (this.comboBox_Language.SelectedIndex)
         {
           case 0:
@@ -397,28 +397,28 @@ namespace HIDBootLoader
       }
       else
       {
-        \u003CModule\u003E.fseek(fp, 4, 0);
-        int num6 = (int) \u003CModule\u003E.fread((void*) &\u003CModule\u003E.HIDBootLoader\u002Eg_number_of_version, 4U, 1U, fp);
-        \u003CModule\u003E.fseek(fp, 16, 0);
-        int num7 = (int) \u003CModule\u003E.fread((void*) &\u003CModule\u003E.HIDBootLoader\u002Ehexinfo, 44U, (uint) \u003CModule\u003E.HIDBootLoader\u002Eg_number_of_version, fp);
+        <Module>.fseek(fp, 4, 0);
+        int num6 = (int) <Module>.fread((void*) &<Module>.HIDBootLoader.g_number_of_version, 4U, 1U, fp);
+        <Module>.fseek(fp, 16, 0);
+        int num7 = (int) <Module>.fread((void*) &<Module>.HIDBootLoader.hexinfo, 44U, (uint) <Module>.HIDBootLoader.g_number_of_version, fp);
         int num8 = 0;
-        if (0 < \u003CModule\u003E.HIDBootLoader\u002Eg_number_of_version)
+        if (0 < <Module>.HIDBootLoader.g_number_of_version)
         {
-          sbyte* numPtr = (sbyte*) &\u003CModule\u003E.HIDBootLoader\u002Ehex_description;
-          HEX_INFO* hexInfoPtr = (HEX_INFO*) &\u003CModule\u003E.HIDBootLoader\u002Ehexinfo;
+          sbyte* numPtr = (sbyte*) &<Module>.HIDBootLoader.hex_description;
+          HEX_INFO* hexInfoPtr = (HEX_INFO*) &<Module>.HIDBootLoader.hexinfo;
           do
           {
-            \u003CModule\u003E.fseek(fp, *(int*) hexInfoPtr, 0);
-            int num9 = (int) \u003CModule\u003E.fread((void*) numPtr, 1U, 512U, fp);
+            <Module>.fseek(fp, *(int*) hexInfoPtr, 0);
+            int num9 = (int) <Module>.fread((void*) numPtr, 1U, 512U, fp);
             ++num8;
             hexInfoPtr += 44;
             numPtr += 512;
           }
-          while (num8 < \u003CModule\u003E.HIDBootLoader\u002Eg_number_of_version);
+          while (num8 < <Module>.HIDBootLoader.g_number_of_version);
         }
-        \u003CModule\u003E.fclose(fp);
+        <Module>.fclose(fp);
         sbyte* numPtr1 = filename;
-        sbyte* numPtr2 = (sbyte*) &\u003CModule\u003E.HIDBootLoader\u002Eg_pszSourcePath;
+        sbyte* numPtr2 = (sbyte*) &<Module>.HIDBootLoader.g_pszSourcePath;
         sbyte num10;
         do
         {
@@ -539,7 +539,7 @@ namespace HIDBootLoader
           {
             case 0:
               this.enablePrint = true;
-              this.listBox1.Items.Add((object) ("Program <" + new string((sbyte*) (\u003CModule\u003E.HIDBootLoader\u002Eg_id * 44 + ((IntPtr) &\u003CModule\u003E.HIDBootLoader\u002Ehexinfo + 10))) + ">  success!"));
+              this.listBox1.Items.Add((object) ("Program <" + new string((sbyte*) (<Module>.HIDBootLoader.g_id * 44 + ((IntPtr) &<Module>.HIDBootLoader.hexinfo + 10))) + ">  success!"));
               this.listBox1.SelectedIndex = this.listBox1.Items.Count - 1;
               this.enablePrint = true;
               this.listBox1.Items.Add((object) "To re-program again,");
@@ -554,7 +554,7 @@ namespace HIDBootLoader
               return;
             case 1:
               this.enablePrint = true;
-              this.listBox1.Items.Add((object) ("固件 <" + new string((sbyte*) (\u003CModule\u003E.HIDBootLoader\u002Eg_id * 44 + ((IntPtr) &\u003CModule\u003E.HIDBootLoader\u002Ehexinfo + 10))) + "> 升级成功！"));
+              this.listBox1.Items.Add((object) ("固件 <" + new string((sbyte*) (<Module>.HIDBootLoader.g_id * 44 + ((IntPtr) &<Module>.HIDBootLoader.hexinfo + 10))) + "> 升级成功！"));
               this.listBox1.SelectedIndex = this.listBox1.Items.Count - 1;
               this.enablePrint = true;
               this.listBox1.Items.Add((object) "如需重新刷入固件。。。");
@@ -578,7 +578,7 @@ namespace HIDBootLoader
               this.enablePrint = true;
               // ISSUE: cast to a reference type
               // ISSUE: explicit reference operation
-              this.listBox1.Items.Add((object) ("Loading <" + new string((sbyte*) (^(int&) (this.comboBox_Firmware.SelectedIndex * 4 + (IntPtr) &\u003CModule\u003E.HIDBootLoader\u002Eg_index) * 44 + ((IntPtr) &\u003CModule\u003E.HIDBootLoader\u002Ehexinfo + 10))) + "> success."));
+              this.listBox1.Items.Add((object) ("Loading <" + new string((sbyte*) (^(int&) (this.comboBox_Firmware.SelectedIndex * 4 + (IntPtr) &<Module>.HIDBootLoader.g_index) * 44 + ((IntPtr) &<Module>.HIDBootLoader.hexinfo + 10))) + "> success."));
               this.listBox1.SelectedIndex = this.listBox1.Items.Count - 1;
               this.enablePrint = true;
               this.listBox1.Items.Add((object) "Ready to program the device.");
@@ -589,7 +589,7 @@ namespace HIDBootLoader
               this.enablePrint = true;
               // ISSUE: cast to a reference type
               // ISSUE: explicit reference operation
-              this.listBox1.Items.Add((object) ("已成功导入 <" + new string((sbyte*) (^(int&) (this.comboBox_Firmware.SelectedIndex * 4 + (IntPtr) &\u003CModule\u003E.HIDBootLoader\u002Eg_index) * 44 + ((IntPtr) &\u003CModule\u003E.HIDBootLoader\u002Ehexinfo + 10))) + "> 固件。"));
+              this.listBox1.Items.Add((object) ("已成功导入 <" + new string((sbyte*) (^(int&) (this.comboBox_Firmware.SelectedIndex * 4 + (IntPtr) &<Module>.HIDBootLoader.g_index) * 44 + ((IntPtr) &<Module>.HIDBootLoader.hexinfo + 10))) + "> 固件。"));
               this.listBox1.SelectedIndex = this.listBox1.Items.Count - 1;
               this.enablePrint = true;
               this.listBox1.Items.Add((object) "可以按〈编程〉键进行固件更新。");
@@ -686,7 +686,7 @@ namespace HIDBootLoader
 
     protected unsafe void GetIconTitle(sbyte* title)
     {
-      \u0024ArrayType\u0024\u0024\u0024BY0DE\u0040E arrayTypeBy0DeE;
+      $ArrayType$$$BY0DE@E arrayTypeBy0DeE;
       // ISSUE: explicit reference operation
       // ISSUE: cast to a reference type
       // ISSUE: explicit reference operation
@@ -844,7 +844,7 @@ namespace HIDBootLoader
       // ISSUE: cast to a reference type
       // ISSUE: explicit reference operation
       ^(sbyte&) ((IntPtr) &arrayTypeBy0DeE + 51) = (sbyte) -97;
-      \u0024ArrayType\u0024\u0024\u0024BY0MA\u0040E arrayTypeBy0MaE;
+      $ArrayType$$$BY0MA@E arrayTypeBy0MaE;
       // ISSUE: explicit reference operation
       // ISSUE: cast to a reference type
       // ISSUE: explicit reference operation
@@ -1456,10 +1456,10 @@ namespace HIDBootLoader
 
     protected unsafe void ReInitializeComponent()
     {
-      \u0024ArrayType\u0024\u0024\u0024BY0EA\u0040D arrayTypeBy0EaD;
+      $ArrayType$$$BY0EA@D arrayTypeBy0EaD;
       this.GetIconTitle((sbyte*) &arrayTypeBy0EaD);
       this.Text = new string((sbyte*) &arrayTypeBy0EaD);
-      switch (\u003CModule\u003E.GetSystemDefaultUILanguage())
+      switch (<Module>.GetSystemDefaultUILanguage())
       {
         case 2052:
         case 1028:
@@ -1729,21 +1729,21 @@ namespace HIDBootLoader
       uint num1 = 0;
       uint num2 = 0;
       this.memoryRegionsDetected = (byte) 0;
-      void* fileW1 = \u003CModule\u003E.CreateFileW((char*) ((IntPtr) \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-      \u003CModule\u003E.HIDBootLoader\u002EErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
-      if ((int) \u003CModule\u003E.HIDBootLoader\u002EErrorStatusWrite != 0)
+      void* fileW1 = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
+      <Module>.HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
+      if ((int) <Module>.HIDBootLoader.ErrorStatusWrite != 0)
       {
         this.QueryThreadResults = (byte) 2;
         this.progressStatus = (byte) 100;
       }
       else
       {
-        void* fileW2 = \u003CModule\u003E.CreateFileW((char*) ((IntPtr) \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-        \u003CModule\u003E.HIDBootLoader\u002EErrorStatusRead = (uint) Marshal.GetLastWin32Error();
-        if ((int) \u003CModule\u003E.HIDBootLoader\u002EErrorStatusRead != 0)
+        void* fileW2 = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
+        <Module>.HIDBootLoader.ErrorStatusRead = (uint) Marshal.GetLastWin32Error();
+        if ((int) <Module>.HIDBootLoader.ErrorStatusRead != 0)
         {
           this.QueryThreadResults = (byte) 3;
-          \u003CModule\u003E.CloseHandle(fileW1);
+          <Module>.CloseHandle(fileW1);
           this.progressStatus = (byte) 100;
         }
         else
@@ -1756,11 +1756,11 @@ namespace HIDBootLoader
           // ISSUE: cast to a reference type
           // ISSUE: explicit reference operation
           ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 1) = (sbyte) 2;
-          \u003CModule\u003E.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num1, (_OVERLAPPED*) 0);
+          <Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num1, (_OVERLAPPED*) 0);
           if (Marshal.GetLastWin32Error() == 0)
           {
             this.progressStatus = (byte) 50;
-            \u003CModule\u003E.ReadFile(fileW2, (void*) &bootloaderCommand2, 65U, &num2, (_OVERLAPPED*) 0);
+            <Module>.ReadFile(fileW2, (void*) &bootloaderCommand2, 65U, &num2, (_OVERLAPPED*) 0);
             if (Marshal.GetLastWin32Error() == 0)
             {
               this.progressStatus = (byte) 90;
@@ -1814,8 +1814,8 @@ namespace HIDBootLoader
           }
           else
             this.QueryThreadResults = (byte) 2;
-          \u003CModule\u003E.CloseHandle(fileW1);
-          \u003CModule\u003E.CloseHandle(fileW2);
+          <Module>.CloseHandle(fileW1);
+          <Module>.CloseHandle(fileW2);
           this.progressStatus = (byte) 100;
         }
       }
@@ -1850,9 +1850,9 @@ namespace HIDBootLoader
       // ISSUE: initblk instruction
       __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand + 1), 0, 65);
       uint num = 0;
-      void* fileW = \u003CModule\u003E.CreateFileW((char*) ((IntPtr) \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-      \u003CModule\u003E.HIDBootLoader\u002EErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
-      if ((int) \u003CModule\u003E.HIDBootLoader\u002EErrorStatusWrite != 0)
+      void* fileW = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
+      <Module>.HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
+      if ((int) <Module>.HIDBootLoader.ErrorStatusWrite != 0)
       {
         this.EraseThreadResults = (byte) 2;
       }
@@ -1865,9 +1865,9 @@ namespace HIDBootLoader
         // ISSUE: cast to a reference type
         // ISSUE: explicit reference operation
         ^(sbyte&) ((IntPtr) &bootloaderCommand + 1) = (sbyte) 4;
-        \u003CModule\u003E.WriteFile(fileW, (void*) &bootloaderCommand, 65U, &num, (_OVERLAPPED*) 0);
+        <Module>.WriteFile(fileW, (void*) &bootloaderCommand, 65U, &num, (_OVERLAPPED*) 0);
         this.EraseThreadResults = Marshal.GetLastWin32Error() != 0 ? (byte) 2 : (byte) 1;
-        \u003CModule\u003E.CloseHandle(fileW);
+        <Module>.CloseHandle(fileW);
       }
     }
 
@@ -1913,9 +1913,9 @@ namespace HIDBootLoader
       // ISSUE: initblk instruction
       __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand + 1), 0, 65);
       uint num = 0;
-      void* fileW = \u003CModule\u003E.CreateFileW((char*) ((IntPtr) \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-      \u003CModule\u003E.HIDBootLoader\u002EErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
-      if ((int) \u003CModule\u003E.HIDBootLoader\u002EErrorStatusWrite != 0)
+      void* fileW = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
+      <Module>.HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
+      if ((int) <Module>.HIDBootLoader.ErrorStatusWrite != 0)
       {
         this.UnlockConfigThreadResults = (byte) 2;
       }
@@ -1931,9 +1931,9 @@ namespace HIDBootLoader
         // ISSUE: cast to a reference type
         // ISSUE: explicit reference operation
         ^(sbyte&) ((IntPtr) &bootloaderCommand + 2) = this.unlockStatus ? (sbyte) 0 : (sbyte) 1;
-        \u003CModule\u003E.WriteFile(fileW, (void*) &bootloaderCommand, 65U, &num, (_OVERLAPPED*) 0);
+        <Module>.WriteFile(fileW, (void*) &bootloaderCommand, 65U, &num, (_OVERLAPPED*) 0);
         this.UnlockConfigThreadResults = Marshal.GetLastWin32Error() != 0 ? (byte) 2 : (byte) 1;
-        \u003CModule\u003E.CloseHandle(fileW);
+        <Module>.CloseHandle(fileW);
       }
     }
 
@@ -1978,7 +1978,7 @@ namespace HIDBootLoader
       // ISSUE: cast to a reference type
       // ISSUE: initblk instruction
       __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand3 + 1), 0, 65);
-      uint num1 = \u003CModule\u003E.GetTickCount();
+      uint num1 = <Module>.GetTickCount();
       int num2 = 0;
       uint num3 = 0;
       uint num4 = 0;
@@ -1986,9 +1986,9 @@ namespace HIDBootLoader
       uint num6 = 0;
       uint num7 = 0;
       uint num8 = 0;
-      void* eventW1 = \u003CModule\u003E.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &\u003CModule\u003E.\u003F\u003F_C\u0040_0L\u0040BKPAMLJP\u0040WriteEvent\u003F\u0024AA\u0040);
-      void* eventW2 = \u003CModule\u003E.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &\u003CModule\u003E.\u003F\u003F_C\u0040_0M\u0040INNKCKGP\u0040WriteEvent2\u003F\u0024AA\u0040);
-      void* eventW3 = \u003CModule\u003E.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &\u003CModule\u003E.\u003F\u003F_C\u0040_09PIDNBOJN\u0040ReadEvent\u003F\u0024AA\u0040);
+      void* eventW1 = <Module>.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &<Module>.??_C@_0L@BKPAMLJP@WriteEvent?$AA@);
+      void* eventW2 = <Module>.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &<Module>.??_C@_0M@INNKCKGP@WriteEvent2?$AA@);
+      void* eventW3 = <Module>.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &<Module>.??_C@_09PIDNBOJN@ReadEvent?$AA@);
       _OVERLAPPED overlapped1;
       // ISSUE: explicit reference operation
       // ISSUE: cast to a reference type
@@ -2040,10 +2040,10 @@ namespace HIDBootLoader
       // ISSUE: cast to a reference type
       // ISSUE: explicit reference operation
       ^(int&) ((IntPtr) &overlapped3 + 16) = (int) eventW3;
-      \u003CModule\u003E.SetEvent(eventW3);
-      \u003CModule\u003E.SetEvent(eventW2);
-      \u003CModule\u003E.SetEvent(eventW1);
-      void* fileW1 = \u003CModule\u003E.CreateFileW((char*) ((IntPtr) \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 1073741824U, (void*) 0);
+      <Module>.SetEvent(eventW3);
+      <Module>.SetEvent(eventW2);
+      <Module>.SetEvent(eventW1);
+      void* fileW1 = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 1073741824U, (void*) 0);
       if (Marshal.GetLastWin32Error() != 0)
       {
         this.enablePrint = true;
@@ -2052,13 +2052,13 @@ namespace HIDBootLoader
       }
       else
       {
-        void* fileW2 = \u003CModule\u003E.CreateFileW((char*) ((IntPtr) \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 1073741824U, (void*) 0);
+        void* fileW2 = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 1073741824U, (void*) 0);
         if (Marshal.GetLastWin32Error() != 0)
         {
           this.enablePrint = true;
           this.ReadThreadResults = (byte) 2;
           this.progressStatus = (byte) 100;
-          \u003CModule\u003E.CloseHandle(fileW1);
+          <Module>.CloseHandle(fileW1);
         }
         else
         {
@@ -2131,7 +2131,7 @@ namespace HIDBootLoader
                 // ISSUE: cast to a reference type
                 // ISSUE: explicit reference operation
                 ^(int&) ((IntPtr) &overlapped1 + 16) = (int) eventW1;
-                if (\u003CModule\u003E.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num3, &overlapped1) != 0)
+                if (<Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num3, &overlapped1) != 0)
                 {
                   num8 = 1U;
                   num10 = (uint) this.bytesPerPacket / (uint) this.bytesPerAddress + num10;
@@ -2161,12 +2161,12 @@ namespace HIDBootLoader
                 // ISSUE: cast to a reference type
                 // ISSUE: explicit reference operation
                 ^(int&) ((IntPtr) &overlapped3 + 16) = (int) eventW3;
-                \u003CModule\u003E.SetEvent(eventW3);
+                <Module>.SetEvent(eventW3);
                 // ISSUE: explicit reference operation
                 // ISSUE: cast to a reference type
                 // ISSUE: explicit reference operation
                 ^(sbyte&) @bootloaderCommand3 = (sbyte) 0;
-                if (\u003CModule\u003E.ReadFile(fileW2, (void*) &bootloaderCommand3, 65U, &num5, &overlapped3) == 0 && Marshal.GetLastWin32Error() != 997)
+                if (<Module>.ReadFile(fileW2, (void*) &bootloaderCommand3, 65U, &num5, &overlapped3) == 0 && Marshal.GetLastWin32Error() != 997)
                   goto label_49;
               }
 label_16:
@@ -2187,8 +2187,8 @@ label_16:
                     }
                     uint num15 = (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5);
                     this.progressStatus = (byte) (num10 * 100U / ((uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + num15));
-                    \u003CModule\u003E.Sleep(0U);
-                    uint tickCount = \u003CModule\u003E.GetTickCount();
+                    <Module>.Sleep(0U);
+                    uint tickCount = <Module>.GetTickCount();
                     if (tickCount - num1 > 10000U)
                     {
                       if (num2 != 1)
@@ -2265,7 +2265,7 @@ label_16:
                       uint num18 = (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5);
                       if (num10 < (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + num18)
                       {
-                        if (\u003CModule\u003E.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num3, &overlapped1) != 0)
+                        if (<Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num3, &overlapped1) != 0)
                         {
                           ++num8;
                           ++num6;
@@ -2347,7 +2347,7 @@ label_16:
                       uint num18 = (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5);
                       if (num10 < (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + num18)
                       {
-                        if (\u003CModule\u003E.WriteFile(fileW1, (void*) &bootloaderCommand2, 65U, &num4, &overlapped2) != 0)
+                        if (<Module>.WriteFile(fileW1, (void*) &bootloaderCommand2, 65U, &num4, &overlapped2) != 0)
                         {
                           ++num8;
                           ++num6;
@@ -2413,7 +2413,7 @@ label_16:
                 // ISSUE: explicit reference operation
                 ^(sbyte&) @bootloaderCommand3 = (sbyte) 0;
               }
-              while (\u003CModule\u003E.ReadFile(fileW2, (void*) &bootloaderCommand3, 65U, &num5, &overlapped3) != 0 || Marshal.GetLastWin32Error() == 997);
+              while (<Module>.ReadFile(fileW2, (void*) &bootloaderCommand3, 65U, &num5, &overlapped3) != 0 || Marshal.GetLastWin32Error() == 997);
               goto label_53;
 label_48:
               ++region;
@@ -2424,44 +2424,44 @@ label_49:
             this.enablePrint = true;
             this.ReadThreadResults = (byte) 2;
             this.progressStatus = (byte) 100;
-            \u003CModule\u003E.CloseHandle(fileW1);
-            \u003CModule\u003E.CloseHandle(fileW2);
+            <Module>.CloseHandle(fileW1);
+            <Module>.CloseHandle(fileW2);
             return;
 label_50:
             this.enablePrint = true;
             this.ReadThreadResults = (byte) 2;
             this.progressStatus = (byte) 100;
-            \u003CModule\u003E.CloseHandle(fileW1);
-            \u003CModule\u003E.CloseHandle(fileW2);
+            <Module>.CloseHandle(fileW1);
+            <Module>.CloseHandle(fileW2);
             return;
 label_51:
             this.enablePrint = true;
             this.ReadThreadResults = (byte) 2;
             this.progressStatus = (byte) 100;
-            \u003CModule\u003E.CloseHandle(fileW1);
-            \u003CModule\u003E.CloseHandle(fileW2);
+            <Module>.CloseHandle(fileW1);
+            <Module>.CloseHandle(fileW2);
             return;
 label_52:
             this.enablePrint = true;
             this.ReadThreadResults = (byte) 2;
             this.progressStatus = (byte) 100;
-            \u003CModule\u003E.CloseHandle(fileW1);
-            \u003CModule\u003E.CloseHandle(fileW2);
+            <Module>.CloseHandle(fileW1);
+            <Module>.CloseHandle(fileW2);
             return;
 label_53:
             this.enablePrint = true;
             this.ReadThreadResults = (byte) 2;
             this.progressStatus = (byte) 100;
-            \u003CModule\u003E.CloseHandle(fileW1);
-            \u003CModule\u003E.CloseHandle(fileW2);
+            <Module>.CloseHandle(fileW1);
+            <Module>.CloseHandle(fileW2);
             return;
           }
 label_54:
           this.enablePrint = true;
           this.ReadThreadResults = (byte) 1;
           this.progressStatus = (byte) 100;
-          \u003CModule\u003E.CloseHandle(fileW1);
-          \u003CModule\u003E.CloseHandle(fileW2);
+          <Module>.CloseHandle(fileW1);
+          <Module>.CloseHandle(fileW2);
         }
       }
     }
@@ -2492,7 +2492,7 @@ label_54:
       // ISSUE: cast to a reference type
       // ISSUE: initblk instruction
       __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand3 + 1), 0, 65);
-      uint num1 = \u003CModule\u003E.GetTickCount();
+      uint num1 = <Module>.GetTickCount();
       int num2 = 0;
       uint num3 = 0;
       uint num4 = 0;
@@ -2500,9 +2500,9 @@ label_54:
       uint num6 = 0;
       uint num7 = 0;
       uint num8 = 0;
-      void* eventW1 = \u003CModule\u003E.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &\u003CModule\u003E.\u003F\u003F_C\u0040_0L\u0040BKPAMLJP\u0040WriteEvent\u003F\u0024AA\u0040);
-      void* eventW2 = \u003CModule\u003E.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &\u003CModule\u003E.\u003F\u003F_C\u0040_0M\u0040INNKCKGP\u0040WriteEvent2\u003F\u0024AA\u0040);
-      void* eventW3 = \u003CModule\u003E.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &\u003CModule\u003E.\u003F\u003F_C\u0040_09PIDNBOJN\u0040ReadEvent\u003F\u0024AA\u0040);
+      void* eventW1 = <Module>.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &<Module>.??_C@_0L@BKPAMLJP@WriteEvent?$AA@);
+      void* eventW2 = <Module>.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &<Module>.??_C@_0M@INNKCKGP@WriteEvent2?$AA@);
+      void* eventW3 = <Module>.CreateEventW((_SECURITY_ATTRIBUTES*) 0, 1, 1, (char*) &<Module>.??_C@_09PIDNBOJN@ReadEvent?$AA@);
       _OVERLAPPED overlapped1;
       // ISSUE: explicit reference operation
       // ISSUE: cast to a reference type
@@ -2554,10 +2554,10 @@ label_54:
       // ISSUE: cast to a reference type
       // ISSUE: explicit reference operation
       ^(int&) ((IntPtr) &overlapped3 + 16) = (int) eventW3;
-      \u003CModule\u003E.SetEvent(eventW3);
-      \u003CModule\u003E.SetEvent(eventW2);
-      \u003CModule\u003E.SetEvent(eventW1);
-      void* fileW1 = \u003CModule\u003E.CreateFileW((char*) ((IntPtr) \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 1073741824U, (void*) 0);
+      <Module>.SetEvent(eventW3);
+      <Module>.SetEvent(eventW2);
+      <Module>.SetEvent(eventW1);
+      void* fileW1 = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 1073741824U, (void*) 0);
       if (Marshal.GetLastWin32Error() != 0)
       {
         this.enablePrint = true;
@@ -2566,13 +2566,13 @@ label_54:
       }
       else
       {
-        void* fileW2 = \u003CModule\u003E.CreateFileW((char*) ((IntPtr) \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 1073741824U, (void*) 0);
+        void* fileW2 = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 1073741824U, (void*) 0);
         if (Marshal.GetLastWin32Error() != 0)
         {
           this.enablePrint = true;
           this.ReadThreadResults = (byte) 3;
           this.progressStatus = (byte) 100;
-          \u003CModule\u003E.CloseHandle(fileW1);
+          <Module>.CloseHandle(fileW1);
         }
         else
         {
@@ -2647,7 +2647,7 @@ label_54:
                   // ISSUE: cast to a reference type
                   // ISSUE: explicit reference operation
                   ^(int&) ((IntPtr) &overlapped1 + 16) = (int) eventW1;
-                  if (\u003CModule\u003E.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num3, &overlapped1) != 0)
+                  if (<Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num3, &overlapped1) != 0)
                   {
                     num8 = 1U;
                     num10 = (uint) this.bytesPerPacket / (uint) this.bytesPerAddress + num10;
@@ -2677,12 +2677,12 @@ label_54:
                   // ISSUE: cast to a reference type
                   // ISSUE: explicit reference operation
                   ^(int&) ((IntPtr) &overlapped3 + 16) = (int) eventW3;
-                  \u003CModule\u003E.SetEvent(eventW3);
+                  <Module>.SetEvent(eventW3);
                   // ISSUE: explicit reference operation
                   // ISSUE: cast to a reference type
                   // ISSUE: explicit reference operation
                   ^(sbyte&) @bootloaderCommand3 = (sbyte) 0;
-                  if (\u003CModule\u003E.ReadFile(fileW2, (void*) &bootloaderCommand3, 65U, &num5, &overlapped3) == 0 && Marshal.GetLastWin32Error() != 997)
+                  if (<Module>.ReadFile(fileW2, (void*) &bootloaderCommand3, 65U, &num5, &overlapped3) == 0 && Marshal.GetLastWin32Error() != 997)
                     goto label_52;
                 }
                 do
@@ -2701,8 +2701,8 @@ label_54:
                           goto label_50;
                       }
                       this.progressStatus = (byte) ((uint) (((int) num10 - *(int*) (num9 + (IntPtr) Form1.memoryRegions + 1)) * 100) / (uint) *(int*) (num9 + (IntPtr) Form1.memoryRegions + 5));
-                      \u003CModule\u003E.Sleep(0U);
-                      uint tickCount = \u003CModule\u003E.GetTickCount();
+                      <Module>.Sleep(0U);
+                      uint tickCount = <Module>.GetTickCount();
                       if (tickCount - num1 > 10000U)
                       {
                         if (num2 != 1)
@@ -2779,7 +2779,7 @@ label_54:
                         _MEMORY_REGION* memoryRegionPtr4 = (_MEMORY_REGION*) (num9 + (IntPtr) Form1.memoryRegions + 5);
                         if (num10 < (uint) (*(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + *(int*) memoryRegionPtr4))
                         {
-                          if (\u003CModule\u003E.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num3, &overlapped1) != 0)
+                          if (<Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num3, &overlapped1) != 0)
                           {
                             ++num8;
                             ++num6;
@@ -2861,7 +2861,7 @@ label_54:
                         _MEMORY_REGION* memoryRegionPtr4 = (_MEMORY_REGION*) (num9 + (IntPtr) Form1.memoryRegions + 5);
                         if (num10 < (uint) (*(int*) (num9 + (IntPtr) Form1.memoryRegions + 1) + *(int*) memoryRegionPtr4))
                         {
-                          if (\u003CModule\u003E.WriteFile(fileW1, (void*) &bootloaderCommand2, 65U, &num4, &overlapped2) != 0)
+                          if (<Module>.WriteFile(fileW1, (void*) &bootloaderCommand2, 65U, &num4, &overlapped2) != 0)
                           {
                             ++num8;
                             ++num6;
@@ -2931,7 +2931,7 @@ label_54:
                   // ISSUE: explicit reference operation
                   ^(sbyte&) @bootloaderCommand3 = (sbyte) 0;
                 }
-                while (\u003CModule\u003E.ReadFile(fileW2, (void*) &bootloaderCommand3, 65U, &num5, &overlapped3) != 0 || Marshal.GetLastWin32Error() == 997);
+                while (<Module>.ReadFile(fileW2, (void*) &bootloaderCommand3, 65U, &num5, &overlapped3) != 0 || Marshal.GetLastWin32Error() == 997);
                 goto label_57;
               }
 label_50:
@@ -2943,58 +2943,58 @@ label_51:
             this.enablePrint = true;
             this.ReadThreadResults = (byte) 2;
             this.progressStatus = (byte) 100;
-            \u003CModule\u003E.CloseHandle(fileW1);
-            \u003CModule\u003E.CloseHandle(fileW2);
+            <Module>.CloseHandle(fileW1);
+            <Module>.CloseHandle(fileW2);
             return;
 label_52:
             this.enablePrint = true;
             this.ReadThreadResults = (byte) 2;
             this.progressStatus = (byte) 100;
-            \u003CModule\u003E.CloseHandle(fileW1);
-            \u003CModule\u003E.CloseHandle(fileW2);
+            <Module>.CloseHandle(fileW1);
+            <Module>.CloseHandle(fileW2);
             return;
 label_53:
             this.enablePrint = true;
             this.ReadThreadResults = (byte) 2;
             this.progressStatus = (byte) 100;
-            \u003CModule\u003E.CloseHandle(fileW1);
-            \u003CModule\u003E.CloseHandle(fileW2);
+            <Module>.CloseHandle(fileW1);
+            <Module>.CloseHandle(fileW2);
             return;
 label_54:
             this.enablePrint = true;
             this.ReadThreadResults = (byte) 2;
             this.progressStatus = (byte) 100;
-            \u003CModule\u003E.CloseHandle(fileW1);
-            \u003CModule\u003E.CloseHandle(fileW2);
+            <Module>.CloseHandle(fileW1);
+            <Module>.CloseHandle(fileW2);
             return;
 label_55:
             this.enablePrint = true;
             this.ReadThreadResults = (byte) 2;
             this.progressStatus = (byte) 100;
-            \u003CModule\u003E.CloseHandle(fileW1);
-            \u003CModule\u003E.CloseHandle(fileW2);
+            <Module>.CloseHandle(fileW1);
+            <Module>.CloseHandle(fileW2);
             return;
 label_56:
             this.enablePrint = true;
             this.VerifyThreadResults = (byte) 4;
             this.progressStatus = (byte) 100;
-            \u003CModule\u003E.CloseHandle(fileW1);
-            \u003CModule\u003E.CloseHandle(fileW2);
+            <Module>.CloseHandle(fileW1);
+            <Module>.CloseHandle(fileW2);
             return;
 label_57:
             this.enablePrint = true;
             this.ReadThreadResults = (byte) 2;
             this.progressStatus = (byte) 100;
-            \u003CModule\u003E.CloseHandle(fileW1);
-            \u003CModule\u003E.CloseHandle(fileW2);
+            <Module>.CloseHandle(fileW1);
+            <Module>.CloseHandle(fileW2);
             return;
           }
 label_58:
           this.enablePrint = true;
           this.VerifyThreadResults = (byte) 1;
           this.progressStatus = (byte) 100;
-          \u003CModule\u003E.CloseHandle(fileW1);
-          \u003CModule\u003E.CloseHandle(fileW2);
+          <Module>.CloseHandle(fileW1);
+          <Module>.CloseHandle(fileW2);
         }
       }
     }
@@ -3020,7 +3020,7 @@ label_58:
       StreamReader streamReader = (StreamReader) null;
       Stream stream = (Stream) null;
       // ISSUE: untyped stack allocation
-      int num1 = (int) __untypedstackalloc(\u003CModule\u003E.___CxxQueryExceptionSize());
+      int num1 = (int) __untypedstackalloc(<Module>.___CxxQueryExceptionSize());
       uint num2 = 0;
       this.DisableButtons();
       OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -3038,7 +3038,7 @@ label_58:
       {
         // ISSUE: unable to correctly present filter
         exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
         {
           SuccessfulFiltering;
         }
@@ -3048,7 +3048,7 @@ label_58:
       )
       {
         uint num4 = 0;
-        \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
         try
         {
           try
@@ -3057,7 +3057,7 @@ label_58:
           catch (Exception ex2) when (
           {
             // ISSUE: unable to correctly present filter
-            num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
             if ((int) num4 != 0)
             {
               SuccessfulFiltering;
@@ -3074,7 +3074,7 @@ label_58:
         }
         finally
         {
-          \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
         }
       }
 label_11:
@@ -3090,7 +3090,7 @@ label_11:
       {
         // ISSUE: unable to correctly present filter
         exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
         {
           SuccessfulFiltering;
         }
@@ -3100,7 +3100,7 @@ label_11:
       )
       {
         uint num4 = 0;
-        \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
         try
         {
           try
@@ -3109,7 +3109,7 @@ label_11:
           catch (Exception ex2) when (
           {
             // ISSUE: unable to correctly present filter
-            num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
             if ((int) num4 != 0)
             {
               SuccessfulFiltering;
@@ -3126,7 +3126,7 @@ label_11:
         }
         finally
         {
-          \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
         }
       }
 label_22:
@@ -3145,7 +3145,7 @@ label_22:
           {
             // ISSUE: unable to correctly present filter
             exceptionCode = (uint) Marshal.GetExceptionCode();
-            if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+            if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
             {
               SuccessfulFiltering;
             }
@@ -3155,7 +3155,7 @@ label_22:
           )
           {
             uint num4 = 0;
-            \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+            <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
             try
             {
               try
@@ -3172,7 +3172,7 @@ label_22:
               catch (Exception ex2) when (
               {
                 // ISSUE: unable to correctly present filter
-                num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+                num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
                 if ((int) num4 != 0)
                 {
                   SuccessfulFiltering;
@@ -3188,7 +3188,7 @@ label_22:
             }
             finally
             {
-              \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+              <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
             }
           }
           bool flag2 = false;
@@ -3314,7 +3314,7 @@ label_59:
           {
             // ISSUE: unable to correctly present filter
             exceptionCode = (uint) Marshal.GetExceptionCode();
-            if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+            if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
             {
               SuccessfulFiltering;
             }
@@ -3324,7 +3324,7 @@ label_59:
           )
           {
             uint num4 = 0;
-            \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+            <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
             try
             {
               try
@@ -3333,7 +3333,7 @@ label_59:
               catch (Exception ex2) when (
               {
                 // ISSUE: unable to correctly present filter
-                num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+                num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
                 if ((int) num4 != 0)
                 {
                   SuccessfulFiltering;
@@ -3350,7 +3350,7 @@ label_59:
             }
             finally
             {
-              \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+              <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
             }
           }
 label_70:
@@ -3366,7 +3366,7 @@ label_70:
           {
             // ISSUE: unable to correctly present filter
             exceptionCode = (uint) Marshal.GetExceptionCode();
-            if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+            if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
             {
               SuccessfulFiltering;
             }
@@ -3376,7 +3376,7 @@ label_70:
           )
           {
             uint num4 = 0;
-            \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+            <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
             try
             {
               try
@@ -3385,7 +3385,7 @@ label_70:
               catch (Exception ex2) when (
               {
                 // ISSUE: unable to correctly present filter
-                num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+                num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
                 if ((int) num4 != 0)
                 {
                   SuccessfulFiltering;
@@ -3402,7 +3402,7 @@ label_70:
             }
             finally
             {
-              \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+              <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
             }
           }
 label_81:
@@ -3418,7 +3418,7 @@ label_81:
           {
             // ISSUE: unable to correctly present filter
             exceptionCode = (uint) Marshal.GetExceptionCode();
-            if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+            if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
             {
               SuccessfulFiltering;
             }
@@ -3428,7 +3428,7 @@ label_81:
           )
           {
             uint num4 = 0;
-            \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+            <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
             try
             {
               try
@@ -3437,7 +3437,7 @@ label_81:
               catch (Exception ex2) when (
               {
                 // ISSUE: unable to correctly present filter
-                num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+                num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
                 if ((int) num4 != 0)
                 {
                   SuccessfulFiltering;
@@ -3455,7 +3455,7 @@ label_81:
             }
             finally
             {
-              \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+              <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
             }
           }
 label_92:
@@ -3483,7 +3483,7 @@ label_92:
       {
         // ISSUE: unable to correctly present filter
         exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
         {
           SuccessfulFiltering;
         }
@@ -3493,7 +3493,7 @@ label_92:
       )
       {
         uint num4 = 0;
-        \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
         try
         {
           try
@@ -3502,7 +3502,7 @@ label_92:
           catch (Exception ex2) when (
           {
             // ISSUE: unable to correctly present filter
-            num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
             if ((int) num4 != 0)
             {
               SuccessfulFiltering;
@@ -3519,7 +3519,7 @@ label_92:
         }
         finally
         {
-          \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
         }
       }
 label_110:
@@ -3535,7 +3535,7 @@ label_110:
       {
         // ISSUE: unable to correctly present filter
         exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
         {
           SuccessfulFiltering;
         }
@@ -3545,7 +3545,7 @@ label_110:
       )
       {
         uint num4 = 0;
-        \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
         try
         {
           try
@@ -3554,7 +3554,7 @@ label_110:
           catch (Exception ex2) when (
           {
             // ISSUE: unable to correctly present filter
-            num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
             if ((int) num4 != 0)
             {
               SuccessfulFiltering;
@@ -3571,7 +3571,7 @@ label_110:
         }
         finally
         {
-          \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
         }
       }
 label_123:
@@ -3586,7 +3586,7 @@ label_123:
       {
         // ISSUE: unable to correctly present filter
         exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
         {
           SuccessfulFiltering;
         }
@@ -3596,7 +3596,7 @@ label_123:
       )
       {
         uint num4 = 0;
-        \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
         try
         {
           try
@@ -3605,7 +3605,7 @@ label_123:
           catch (Exception ex2) when (
           {
             // ISSUE: unable to correctly present filter
-            num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
             if ((int) num4 != 0)
             {
               SuccessfulFiltering;
@@ -3623,7 +3623,7 @@ label_123:
         }
         finally
         {
-          \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
         }
       }
     }
@@ -3633,7 +3633,7 @@ label_123:
       StreamWriter streamWriter = (StreamWriter) null;
       FileStream fileStream = (FileStream) null;
       // ISSUE: untyped stack allocation
-      int num1 = (int) __untypedstackalloc(\u003CModule\u003E.___CxxQueryExceptionSize());
+      int num1 = (int) __untypedstackalloc(<Module>.___CxxQueryExceptionSize());
       this.DisableButtons();
       if (this.dialog_ExportHex.ShowDialog() != DialogResult.OK)
         return;
@@ -3642,10 +3642,10 @@ label_123:
       {
         streamWriter = new StreamWriter(this.dialog_ExportHex.FileName, false);
       }
-      catch (Exception ex1) when (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) &\u003CModule\u003E.\u003F\u003F_R0PAD\u00408, 0, (void*) &numPtr) != 0)
+      catch (Exception ex1) when (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) &<Module>.??_R0PAD@8, 0, (void*) &numPtr) != 0)
       {
         uint num2 = 0;
-        \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
         try
         {
           try
@@ -3664,7 +3664,7 @@ label_123:
           catch (Exception ex2) when (
           {
             // ISSUE: unable to correctly present filter
-            num2 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+            num2 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
             if ((int) num2 != 0)
             {
               SuccessfulFiltering;
@@ -3680,7 +3680,7 @@ label_123:
         }
         finally
         {
-          \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num2);
+          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num2);
         }
       }
       byte region = 0;
@@ -3782,10 +3782,10 @@ label_123:
       __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand2 + 1), 0, 65);
       uint num1 = 0;
       uint num2 = 0;
-      void* fileW1 = \u003CModule\u003E.CreateFileW((char*) ((IntPtr) \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-      \u003CModule\u003E.HIDBootLoader\u002EErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
-      void* fileW2 = \u003CModule\u003E.CreateFileW((char*) ((IntPtr) \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-      \u003CModule\u003E.HIDBootLoader\u002EErrorStatusRead = (uint) Marshal.GetLastWin32Error();
+      void* fileW1 = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
+      <Module>.HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
+      void* fileW2 = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
+      <Module>.HIDBootLoader.ErrorStatusRead = (uint) Marshal.GetLastWin32Error();
       bool flag1 = false;
       bool flag2 = false;
       this.enablePrint = true;
@@ -3798,7 +3798,7 @@ label_123:
       // ISSUE: cast to a reference type
       // ISSUE: explicit reference operation
       ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 1) = (sbyte) 4;
-      \u003CModule\u003E.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num1, (_OVERLAPPED*) 0);
+      <Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num1, (_OVERLAPPED*) 0);
       if (Marshal.GetLastWin32Error() == 0)
       {
         // ISSUE: explicit reference operation
@@ -3809,7 +3809,7 @@ label_123:
         // ISSUE: explicit reference operation
         ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 1) = (sbyte) 2;
         this.progressStatus = (byte) 50;
-        \u003CModule\u003E.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num1, (_OVERLAPPED*) 0);
+        <Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num1, (_OVERLAPPED*) 0);
         if (Marshal.GetLastWin32Error() != 0)
         {
           this.enablePrint = true;
@@ -3817,7 +3817,7 @@ label_123:
         }
         else
         {
-          \u003CModule\u003E.ReadFile(fileW2, (void*) &bootloaderCommand2, 65U, &num2, (_OVERLAPPED*) 0);
+          <Module>.ReadFile(fileW2, (void*) &bootloaderCommand2, 65U, &num2, (_OVERLAPPED*) 0);
           if (Marshal.GetLastWin32Error() != 0)
           {
             this.enablePrint = true;
@@ -3954,13 +3954,13 @@ label_31:
                           // ISSUE: cast to a reference type
                           // ISSUE: explicit reference operation
                           ^(sbyte&) ((IntPtr) &bootloaderCommand3 + 1) = (sbyte) 6;
-                          \u003CModule\u003E.WriteFile(fileW1, (void*) &bootloaderCommand3, 65U, &num1, (_OVERLAPPED*) 0);
+                          <Module>.WriteFile(fileW1, (void*) &bootloaderCommand3, 65U, &num1, (_OVERLAPPED*) 0);
                           if (Marshal.GetLastWin32Error() == 0)
                             flag4 = false;
                           else
                             goto label_45;
                         }
-                        \u003CModule\u003E.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num1, (_OVERLAPPED*) 0);
+                        <Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num1, (_OVERLAPPED*) 0);
                         if (Marshal.GetLastWin32Error() == 0)
                           flag3 = true;
                         else
@@ -3982,7 +3982,7 @@ label_31:
                   // ISSUE: cast to a reference type
                   // ISSUE: explicit reference operation
                   ^(sbyte&) ((IntPtr) &bootloaderCommand1 + 1) = (sbyte) 6;
-                  \u003CModule\u003E.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num1, (_OVERLAPPED*) 0);
+                  <Module>.WriteFile(fileW1, (void*) &bootloaderCommand1, 65U, &num1, (_OVERLAPPED*) 0);
                   if (Marshal.GetLastWin32Error() != 0)
                     goto label_47;
 label_40:
@@ -4033,45 +4033,45 @@ label_41:
       int wparam1 = (int) m.WParam;
       int wparam2 = (int) m.WParam;
       int wparam3 = (int) m.WParam;
-      \u003CModule\u003E.HIDBootLoader\u002EStatus = this.TryToFindHIDDeviceFromVIDPID() ? 1 : 0;
-      if (\u003CModule\u003E.HIDBootLoader\u002EStatus == 1)
+      <Module>.HIDBootLoader.Status = this.TryToFindHIDDeviceFromVIDPID() ? 1 : 0;
+      if (<Module>.HIDBootLoader.Status == 1)
       {
-        if (\u003CModule\u003E.HIDBootLoader\u002EMyDeviceAttachedStatus != 0)
+        if (<Module>.HIDBootLoader.MyDeviceAttachedStatus != 0)
           return;
-        \u003CModule\u003E.CreateFileW((char*) ((IntPtr) \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-        \u003CModule\u003E.HIDBootLoader\u002EErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
-        \u003CModule\u003E.CreateFileW((char*) ((IntPtr) \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-        \u003CModule\u003E.HIDBootLoader\u002EErrorStatusRead = (uint) Marshal.GetLastWin32Error();
-        if ((int) \u003CModule\u003E.HIDBootLoader\u002EErrorStatusRead == 0 && (int) \u003CModule\u003E.HIDBootLoader\u002EErrorStatusWrite == 0)
+        <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
+        <Module>.HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
+        <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
+        <Module>.HIDBootLoader.ErrorStatusRead = (uint) Marshal.GetLastWin32Error();
+        if ((int) <Module>.HIDBootLoader.ErrorStatusRead == 0 && (int) <Module>.HIDBootLoader.ErrorStatusWrite == 0)
         {
           this.DeviceAttached();
-          \u003CModule\u003E.HIDBootLoader\u002EMyDeviceAttachedStatus = 1;
+          <Module>.HIDBootLoader.MyDeviceAttachedStatus = 1;
         }
         else
         {
-          \u003CModule\u003E.HIDBootLoader\u002EMyDeviceAttachedStatus = 0;
+          <Module>.HIDBootLoader.MyDeviceAttachedStatus = 0;
           this.DeviceRemoved();
         }
       }
       else
       {
-        \u003CModule\u003E.HIDBootLoader\u002EMyDeviceAttachedStatus = 0;
+        <Module>.HIDBootLoader.MyDeviceAttachedStatus = 0;
         this.DeviceRemoved();
-        \u003CModule\u003E.CloseHandle((void*) -1);
-        \u003CModule\u003E.CloseHandle((void*) -1);
+        <Module>.CloseHandle((void*) -1);
+        <Module>.CloseHandle((void*) -1);
       }
     }
 
     [return: MarshalAs(UnmanagedType.U1)]
     private unsafe bool TryToFindHIDDeviceFromVIDPID()
     {
-      _SP_DEVICE_INTERFACE_DATA* DeviceInterfaceData = (_SP_DEVICE_INTERFACE_DATA*) \u003CModule\u003E.@new(28U);
+      _SP_DEVICE_INTERFACE_DATA* DeviceInterfaceData = (_SP_DEVICE_INTERFACE_DATA*) <Module>.@new(28U);
       uint MemberIndex = 0;
       uint DeviceInterfaceDetailDataSize = 0;
       string str1 = "Vid_04d8&Pid_003c";
-      void* classDevsUm = \u003CModule\u003E.SetupDiGetClassDevsUM(&\u003CModule\u003E.HIDBootLoader\u002EInterfaceClassGuid, (char*) 0, (HWND__*) 0, 18U);
+      void* classDevsUm = <Module>.SetupDiGetClassDevsUM(&<Module>.HIDBootLoader.InterfaceClassGuid, (char*) 0, (HWND__*) 0, 18U);
       *(int*) DeviceInterfaceData = 28;
-      if (\u003CModule\u003E.SetupDiEnumDeviceInterfacesUM(classDevsUm, (_SP_DEVINFO_DATA*) 0, &\u003CModule\u003E.HIDBootLoader\u002EInterfaceClassGuid, 0U, DeviceInterfaceData) != 0)
+      if (<Module>.SetupDiEnumDeviceInterfacesUM(classDevsUm, (_SP_DEVINFO_DATA*) 0, &<Module>.HIDBootLoader.InterfaceClassGuid, 0U, DeviceInterfaceData) != 0)
       {
         while (259 != Marshal.GetLastWin32Error())
         {
@@ -4080,18 +4080,18 @@ label_41:
           // ISSUE: cast to a reference type
           // ISSUE: explicit reference operation
           ^(int&) @spDevinfoData = 28;
-          if (\u003CModule\u003E.SetupDiEnumDeviceInfoUM(classDevsUm, MemberIndex, &spDevinfoData) != 0)
+          if (<Module>.SetupDiEnumDeviceInfoUM(classDevsUm, MemberIndex, &spDevinfoData) != 0)
           {
             uint num;
             uint PropertyBufferSize;
-            \u003CModule\u003E.SetupDiGetDeviceRegistryPropertyUM(classDevsUm, &spDevinfoData, 1U, &num, (byte*) 0, 0U, &PropertyBufferSize);
-            byte* PropertyBuffer = (byte*) \u003CModule\u003E.malloc(PropertyBufferSize);
+            <Module>.SetupDiGetDeviceRegistryPropertyUM(classDevsUm, &spDevinfoData, 1U, &num, (byte*) 0, 0U, &PropertyBufferSize);
+            byte* PropertyBuffer = (byte*) <Module>.malloc(PropertyBufferSize);
             if ((IntPtr) PropertyBuffer != IntPtr.Zero)
             {
-              if (\u003CModule\u003E.SetupDiGetDeviceRegistryPropertyUM(classDevsUm, &spDevinfoData, 1U, &num, PropertyBuffer, PropertyBufferSize, (uint*) 0) != 0)
+              if (<Module>.SetupDiGetDeviceRegistryPropertyUM(classDevsUm, &spDevinfoData, 1U, &num, PropertyBuffer, PropertyBufferSize, (uint*) 0) != 0)
               {
                 string str2 = new string((char*) PropertyBuffer);
-                \u003CModule\u003E.free((void*) PropertyBuffer);
+                <Module>.free((void*) PropertyBuffer);
                 string lowerInvariant = str2.ToLowerInvariant();
                 str1 = str1.ToLowerInvariant();
                 if (!lowerInvariant.Contains(str1))
@@ -4100,59 +4100,59 @@ label_41:
                   if ((int) MemberIndex != 10000000)
                   {
                     *(int*) DeviceInterfaceData = 28;
-                    if (\u003CModule\u003E.SetupDiEnumDeviceInterfacesUM(classDevsUm, (_SP_DEVINFO_DATA*) 0, &\u003CModule\u003E.HIDBootLoader\u002EInterfaceClassGuid, MemberIndex, DeviceInterfaceData) == 0)
+                    if (<Module>.SetupDiEnumDeviceInterfacesUM(classDevsUm, (_SP_DEVINFO_DATA*) 0, &<Module>.HIDBootLoader.InterfaceClassGuid, MemberIndex, DeviceInterfaceData) == 0)
                       goto label_18;
                   }
                   else
                   {
-                    \u003CModule\u003E.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+                    <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
                     return false;
                   }
                 }
                 else
                 {
-                  *(int*) \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt = 6;
-                  \u003CModule\u003E.SetupDiGetDeviceInterfaceDetailUM(classDevsUm, DeviceInterfaceData, (_SP_DEVICE_INTERFACE_DETAIL_DATA_W*) 0, 0U, &DeviceInterfaceDetailDataSize, (_SP_DEVINFO_DATA*) 0);
-                  \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt = (_SP_DEVICE_INTERFACE_DETAIL_DATA_W*) \u003CModule\u003E.malloc(DeviceInterfaceDetailDataSize);
-                  if ((IntPtr) \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt == IntPtr.Zero)
+                  *(int*) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt = 6;
+                  <Module>.SetupDiGetDeviceInterfaceDetailUM(classDevsUm, DeviceInterfaceData, (_SP_DEVICE_INTERFACE_DETAIL_DATA_W*) 0, 0U, &DeviceInterfaceDetailDataSize, (_SP_DEVINFO_DATA*) 0);
+                  <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt = (_SP_DEVICE_INTERFACE_DETAIL_DATA_W*) <Module>.malloc(DeviceInterfaceDetailDataSize);
+                  if ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt == IntPtr.Zero)
                   {
-                    \u003CModule\u003E.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+                    <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
                     return false;
                   }
-                  *(int*) \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt = 6;
-                  if (\u003CModule\u003E.SetupDiGetDeviceInterfaceDetailUM(classDevsUm, DeviceInterfaceData, \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt, DeviceInterfaceDetailDataSize, (uint*) 0, (_SP_DEVINFO_DATA*) 0) == 0)
+                  *(int*) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt = 6;
+                  if (<Module>.SetupDiGetDeviceInterfaceDetailUM(classDevsUm, DeviceInterfaceData, <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt, DeviceInterfaceDetailDataSize, (uint*) 0, (_SP_DEVINFO_DATA*) 0) == 0)
                   {
-                    \u003CModule\u003E.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+                    <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
                     return false;
                   }
-                  \u003CModule\u003E.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+                  <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
                   return true;
                 }
               }
               else
               {
-                \u003CModule\u003E.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+                <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
                 return false;
               }
             }
             else
             {
-              \u003CModule\u003E.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+              <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
               return false;
             }
           }
           else
           {
-            \u003CModule\u003E.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+            <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
             return false;
           }
         }
-        \u003CModule\u003E.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+        <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
         return false;
       }
 label_18:
       Marshal.GetLastWin32Error();
-      \u003CModule\u003E.SetupDiDestroyDeviceInfoListUM(classDevsUm);
+      <Module>.SetupDiDestroyDeviceInfoListUM(classDevsUm);
       return false;
     }
 
@@ -4198,7 +4198,7 @@ label_18:
         this.pData = memoryRegion;
         if ((IntPtr) memoryRegion != IntPtr.Zero)
         {
-          \u003CModule\u003E.free((void*) memoryRegion);
+          <Module>.free((void*) memoryRegion);
           this.setMemoryRegion(region, (byte*) 0);
         }
         ++region;
@@ -4236,9 +4236,9 @@ label_18:
       __memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand + 1), 0, 65);
       uint num = 0;
       this.progressStatus = (byte) 0;
-      void* fileW = \u003CModule\u003E.CreateFileW((char*) ((IntPtr) \u003CModule\u003E.HIDBootLoader\u002EMyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
-      \u003CModule\u003E.HIDBootLoader\u002EErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
-      if ((int) \u003CModule\u003E.HIDBootLoader\u002EErrorStatusWrite != 0)
+      void* fileW = <Module>.CreateFileW((char*) ((IntPtr) <Module>.HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, (_SECURITY_ATTRIBUTES*) 0, 3U, 0U, (void*) 0);
+      <Module>.HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
+      if ((int) <Module>.HIDBootLoader.ErrorStatusWrite != 0)
       {
         this.ResetThreadResults = (byte) 2;
         this.progressStatus = (byte) 100;
@@ -4253,7 +4253,7 @@ label_18:
         // ISSUE: explicit reference operation
         ^(sbyte&) ((IntPtr) &bootloaderCommand + 1) = (sbyte) 8;
         this.progressStatus = (byte) 10;
-        \u003CModule\u003E.WriteFile(fileW, (void*) &bootloaderCommand, 65U, &num, (_OVERLAPPED*) 0);
+        <Module>.WriteFile(fileW, (void*) &bootloaderCommand, 65U, &num, (_OVERLAPPED*) 0);
         this.ResetThreadResults = Marshal.GetLastWin32Error() != 0 ? (byte) 2 : (byte) 1;
         this.progressStatus = (byte) 100;
       }
@@ -4298,7 +4298,7 @@ label_18:
                 this.pData = memoryRegion;
                 if ((IntPtr) memoryRegion != IntPtr.Zero)
                 {
-                  \u003CModule\u003E.free((void*) memoryRegion);
+                  <Module>.free((void*) memoryRegion);
                   this.setMemoryRegion(region1, (byte*) 0);
                 }
                 ++region1;
@@ -4310,7 +4310,7 @@ label_18:
                 do
                 {
                   _MEMORY_REGION* memoryRegions = Form1.memoryRegions;
-                  void* voidPtr = \u003CModule\u003E.malloc((uint) (*(int*) ((int) region2 * 9 + (IntPtr) Form1.memoryRegions + 5) + 1) * (uint) this.bytesPerAddress);
+                  void* voidPtr = <Module>.malloc((uint) (*(int*) ((int) region2 * 9 + (IntPtr) Form1.memoryRegions + 5) + 1) * (uint) this.bytesPerAddress);
                   this.pData = (byte*) voidPtr;
                   this.setMemoryRegion(region2, (byte*) voidPtr);
                   if ((IntPtr) this.pData != IntPtr.Zero)
@@ -4328,7 +4328,7 @@ label_62:
                   this.pData = memoryRegion;
                   if ((IntPtr) memoryRegion != IntPtr.Zero)
                   {
-                    \u003CModule\u003E.free((void*) memoryRegion);
+                    <Module>.free((void*) memoryRegion);
                     this.setMemoryRegion(region3, (byte*) 0);
                   }
                   ++region3;
@@ -4402,7 +4402,7 @@ label_67:
               this.VerifyThreadResults = byte.MaxValue;
               this.progressStatus = (byte) 100;
               this.progressBar_Status.Value = 100;
-              \u003CModule\u003E.HIDBootLoader\u002EMyDeviceAttachedStatus = 0;
+              <Module>.HIDBootLoader.MyDeviceAttachedStatus = 0;
               this.gbol_SuccessProgram = true;
               this.DeviceRemoved();
               break;
@@ -4636,7 +4636,7 @@ label_67:
     private unsafe string HexToString(uint input, byte bytes)
     {
       byte num1 = 0;
-      \u0024ArrayType\u0024\u0024\u0024BY08_W arrayTypeBy08W;
+      $ArrayType$$$BY08_W arrayTypeBy08W;
       do
       {
         // ISSUE: cast to a reference type
@@ -4830,11 +4830,11 @@ label_67:
       if (openFileDialog.ShowDialog() != DialogResult.OK)
         return;
       this.Load_mHexFile((sbyte*) (void*) Marshal.StringToHGlobalAnsi(openFileDialog.FileName));
-      if (\u003CModule\u003E.HIDBootLoader\u002Eg_first_time == 1)
+      if (<Module>.HIDBootLoader.g_first_time == 1)
         this.LoadTmpHexToMem();
       else
-        \u003CModule\u003E.remove((sbyte*) &\u003CModule\u003E.\u003F\u003F_C\u0040_0BA\u0040BJPDJJDH\u0040c\u003F3\u003F2Temp\u003F2tmp\u003F4tmp\u003F\u0024AA\u0040);
-      \u003CModule\u003E.HIDBootLoader\u002Eg_first_time = 1;
+        <Module>.remove((sbyte*) &<Module>.??_C@_0BA@BJPDJJDH@c?3?2Temp?2tmp?4tmp?$AA@);
+      <Module>.HIDBootLoader.g_first_time = 1;
     }
 
     private unsafe void LoadTmpHexToMem()
@@ -4843,7 +4843,7 @@ label_67:
       StreamReader streamReader = (StreamReader) null;
       Stream stream = (Stream) null;
       // ISSUE: untyped stack allocation
-      int num1 = (int) __untypedstackalloc(\u003CModule\u003E.___CxxQueryExceptionSize());
+      int num1 = (int) __untypedstackalloc(<Module>.___CxxQueryExceptionSize());
       string path = "c:\\Temp\\tmp.tmp";
       uint num2 = 0;
       this.DisableButtons();
@@ -4858,7 +4858,7 @@ label_67:
       {
         // ISSUE: unable to correctly present filter
         exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
         {
           SuccessfulFiltering;
         }
@@ -4868,7 +4868,7 @@ label_67:
       )
       {
         uint num4 = 0;
-        \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
         try
         {
           try
@@ -4877,7 +4877,7 @@ label_67:
           catch (Exception ex2) when (
           {
             // ISSUE: unable to correctly present filter
-            num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
             if ((int) num4 != 0)
             {
               SuccessfulFiltering;
@@ -4894,7 +4894,7 @@ label_67:
         }
         finally
         {
-          \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
         }
       }
 label_11:
@@ -4910,7 +4910,7 @@ label_11:
       {
         // ISSUE: unable to correctly present filter
         exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
         {
           SuccessfulFiltering;
         }
@@ -4920,7 +4920,7 @@ label_11:
       )
       {
         uint num4 = 0;
-        \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
         try
         {
           try
@@ -4929,7 +4929,7 @@ label_11:
           catch (Exception ex2) when (
           {
             // ISSUE: unable to correctly present filter
-            num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
             if ((int) num4 != 0)
             {
               SuccessfulFiltering;
@@ -4946,7 +4946,7 @@ label_11:
         }
         finally
         {
-          \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
         }
       }
 label_22:
@@ -4960,7 +4960,7 @@ label_22:
       {
         // ISSUE: unable to correctly present filter
         exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
         {
           SuccessfulFiltering;
         }
@@ -4970,7 +4970,7 @@ label_22:
       )
       {
         uint num4 = 0;
-        \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
         try
         {
           try
@@ -4989,7 +4989,7 @@ label_22:
           catch (Exception ex2) when (
           {
             // ISSUE: unable to correctly present filter
-            num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
             if ((int) num4 != 0)
             {
               SuccessfulFiltering;
@@ -5005,7 +5005,7 @@ label_22:
         }
         finally
         {
-          \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
         }
       }
       bool flag2 = false;
@@ -5131,7 +5131,7 @@ label_59:
       {
         // ISSUE: unable to correctly present filter
         exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
         {
           SuccessfulFiltering;
         }
@@ -5141,7 +5141,7 @@ label_59:
       )
       {
         uint num4 = 0;
-        \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
         try
         {
           try
@@ -5150,7 +5150,7 @@ label_59:
           catch (Exception ex2) when (
           {
             // ISSUE: unable to correctly present filter
-            num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
             if ((int) num4 != 0)
             {
               SuccessfulFiltering;
@@ -5167,7 +5167,7 @@ label_59:
         }
         finally
         {
-          \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
         }
       }
 label_70:
@@ -5183,7 +5183,7 @@ label_70:
       {
         // ISSUE: unable to correctly present filter
         exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
         {
           SuccessfulFiltering;
         }
@@ -5193,7 +5193,7 @@ label_70:
       )
       {
         uint num4 = 0;
-        \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
         try
         {
           try
@@ -5202,7 +5202,7 @@ label_70:
           catch (Exception ex2) when (
           {
             // ISSUE: unable to correctly present filter
-            num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
             if ((int) num4 != 0)
             {
               SuccessfulFiltering;
@@ -5219,7 +5219,7 @@ label_70:
         }
         finally
         {
-          \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
         }
       }
 label_81:
@@ -5235,7 +5235,7 @@ label_81:
       {
         // ISSUE: unable to correctly present filter
         exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
         {
           SuccessfulFiltering;
         }
@@ -5245,7 +5245,7 @@ label_81:
       )
       {
         uint num4 = 0;
-        \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
         try
         {
           try
@@ -5254,7 +5254,7 @@ label_81:
           catch (Exception ex2) when (
           {
             // ISSUE: unable to correctly present filter
-            num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
             if ((int) num4 != 0)
             {
               SuccessfulFiltering;
@@ -5272,7 +5272,7 @@ label_81:
         }
         finally
         {
-          \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
         }
       }
 label_92:
@@ -5298,7 +5298,7 @@ label_92:
       {
         // ISSUE: unable to correctly present filter
         exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
         {
           SuccessfulFiltering;
         }
@@ -5308,7 +5308,7 @@ label_92:
       )
       {
         uint num4 = 0;
-        \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
         try
         {
           try
@@ -5317,7 +5317,7 @@ label_92:
           catch (Exception ex2) when (
           {
             // ISSUE: unable to correctly present filter
-            num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
             if ((int) num4 != 0)
             {
               SuccessfulFiltering;
@@ -5334,7 +5334,7 @@ label_92:
         }
         finally
         {
-          \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
         }
       }
 label_108:
@@ -5350,7 +5350,7 @@ label_108:
       {
         // ISSUE: unable to correctly present filter
         exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
         {
           SuccessfulFiltering;
         }
@@ -5360,7 +5360,7 @@ label_108:
       )
       {
         uint num4 = 0;
-        \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
         try
         {
           try
@@ -5369,7 +5369,7 @@ label_108:
           catch (Exception ex2) when (
           {
             // ISSUE: unable to correctly present filter
-            num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
             if ((int) num4 != 0)
             {
               SuccessfulFiltering;
@@ -5386,7 +5386,7 @@ label_108:
         }
         finally
         {
-          \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
         }
       }
 label_120:
@@ -5402,7 +5402,7 @@ label_120:
       {
         // ISSUE: unable to correctly present filter
         exceptionCode = (uint) Marshal.GetExceptionCode();
-        if (\u003CModule\u003E.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
+        if (<Module>.___CxxExceptionFilter((void*) Marshal.GetExceptionPointers(), (void*) 0, 0, (void*) 0) != 0)
         {
           SuccessfulFiltering;
         }
@@ -5412,7 +5412,7 @@ label_120:
       )
       {
         uint num4 = 0;
-        \u003CModule\u003E.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
+        <Module>.___CxxRegisterExceptionObject((void*) Marshal.GetExceptionPointers(), (void*) num1);
         try
         {
           try
@@ -5421,7 +5421,7 @@ label_120:
           catch (Exception ex2) when (
           {
             // ISSUE: unable to correctly present filter
-            num4 = (uint) \u003CModule\u003E.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
+            num4 = (uint) <Module>.___CxxDetectRethrow((void*) Marshal.GetExceptionPointers());
             if ((int) num4 != 0)
             {
               SuccessfulFiltering;
@@ -5438,11 +5438,11 @@ label_120:
         }
         finally
         {
-          \u003CModule\u003E.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
+          <Module>.___CxxUnregisterExceptionObject((void*) num1, (int) num4);
         }
       }
 label_132:
-      \u003CModule\u003E.remove((sbyte*) &\u003CModule\u003E.\u003F\u003F_C\u0040_0BA\u0040BJPDJJDH\u0040c\u003F3\u003F2Temp\u003F2tmp\u003F4tmp\u003F\u0024AA\u0040);
+      <Module>.remove((sbyte*) &<Module>.??_C@_0BA@BJPDJJDH@c?3?2Temp?2tmp?4tmp?$AA@);
     }
 
     private void comboBox_Firmware_SelectedIndexChanged(object sender, EventArgs e)
@@ -5458,7 +5458,7 @@ label_132:
       {
         try
         {
-          this.\u007EForm1();
+          this.~Form1();
         }
         finally
         {

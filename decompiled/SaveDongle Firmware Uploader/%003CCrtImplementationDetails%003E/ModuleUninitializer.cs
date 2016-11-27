@@ -4,7 +4,7 @@
 // MVID: C2ABEB73-C84E-41BA-807E-B4913B3F1A22
 // Assembly location: C:\Temp\SaveDongle Firmware Uploader.exe
 
-using \u003CCrtImplementationDetails\u003E;
+using <CrtImplementationDetails>;
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
@@ -12,7 +12,7 @@ using System.Runtime.ConstrainedExecution;
 using System.Security;
 using System.Threading;
 
-namespace \u003CCrtImplementationDetails\u003E
+namespace <CrtImplementationDetails>
 {
   internal class ModuleUninitializer : Stack
   {

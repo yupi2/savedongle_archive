@@ -8,14 +8,14 @@ using Microsoft.VisualC;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace \u003CCppImplementationDetails\u003E
+namespace <CppImplementationDetails>
 {
   [DebugInfoInPDB]
   [NativeCppClass]
   [UnsafeValueType]
   [MiscellaneousBits(65)]
   [StructLayout(LayoutKind.Sequential, Size = 64)]
-  internal struct \u0024ArrayType\u0024\u0024\u0024BY0EA\u0040D
+  internal struct $ArrayType$$$BY0EA@D
   {
   }
 }

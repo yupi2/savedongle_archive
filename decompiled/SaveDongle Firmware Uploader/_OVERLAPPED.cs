@@ -18,13 +18,13 @@ internal struct _OVERLAPPED
   [MiscellaneousBits(66)]
   [DebugInfoInPDB]
   [StructLayout(LayoutKind.Explicit, Size = 8)]
-  internal struct \u0024UnnamedClass\u00240x000256ae\u002497\u0024
+  internal struct $UnnamedClass$0x000256ae$97$
   {
     [DebugInfoInPDB]
     [MiscellaneousBits(65)]
     [NativeCppClass]
     [StructLayout(LayoutKind.Sequential, Size = 8)]
-    internal struct \u0024UnnamedClass\u00240x000256ae\u002498\u0024
+    internal struct $UnnamedClass$0x000256ae$98$
     {
     }
   }

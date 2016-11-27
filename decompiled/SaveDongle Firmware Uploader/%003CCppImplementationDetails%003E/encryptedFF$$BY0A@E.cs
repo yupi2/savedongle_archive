@@ -8,14 +8,14 @@ using Microsoft.VisualC;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace \u003CCppImplementationDetails\u003E
+namespace <CppImplementationDetails>
 {
   [UnsafeValueType]
   [NativeCppClass]
   [DebugInfoInPDB]
   [MiscellaneousBits(65)]
   [StructLayout(LayoutKind.Sequential, Size = 64)]
-  internal struct encryptedFF\u0024\u0024BY0A\u0040E
+  internal struct encryptedFF$$BY0A@E
   {
   }
 }

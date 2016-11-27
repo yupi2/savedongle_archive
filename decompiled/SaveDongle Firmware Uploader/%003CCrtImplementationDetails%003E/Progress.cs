@@ -9,7 +9,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace \u003CCrtImplementationDetails\u003E
+namespace <CrtImplementationDetails>
 {
   [NativeCppClass]
   [DebugInfoInPDB]

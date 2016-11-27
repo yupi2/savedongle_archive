@@ -7,7 +7,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace \u003CCrtImplementationDetails\u003E
+namespace <CrtImplementationDetails>
 {
   [Serializable]
   internal class ModuleLoadException : System.Exception

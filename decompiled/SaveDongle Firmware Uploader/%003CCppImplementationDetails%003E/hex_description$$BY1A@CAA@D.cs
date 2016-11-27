@@ -8,14 +8,14 @@ using Microsoft.VisualC;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace \u003CCppImplementationDetails\u003E
+namespace <CppImplementationDetails>
 {
   [DebugInfoInPDB]
   [NativeCppClass]
   [MiscellaneousBits(65)]
   [UnsafeValueType]
   [StructLayout(LayoutKind.Sequential, Size = 8192)]
-  internal struct hex_description\u0024\u0024BY1A\u0040CAA\u0040D
+  internal struct hex_description$$BY1A@CAA@D
   {
   }
 }

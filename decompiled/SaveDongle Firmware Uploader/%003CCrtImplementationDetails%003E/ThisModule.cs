@@ -8,7 +8,7 @@ using Microsoft.VisualC;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace \u003CCrtImplementationDetails\u003E
+namespace <CrtImplementationDetails>
 {
   [MiscellaneousBits(64)]
   [NativeCppClass]

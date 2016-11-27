@@ -20,14 +20,14 @@ internal struct _TP_CALLBACK_ENVIRON_V3
   [DebugInfoInPDB]
   [CLSCompliant(false)]
   [StructLayout(LayoutKind.Explicit, Size = 4)]
-  public struct \u003Cunnamed\u002Dtype\u002Du\u003E
+  public struct <unnamed-type-u>
   {
     [NativeCppClass]
     [CLSCompliant(false)]
     [MiscellaneousBits(65)]
     [DebugInfoInPDB]
     [StructLayout(LayoutKind.Sequential, Size = 4)]
-    public struct \u003Cunnamed\u002Dtype\u002Ds\u003E
+    public struct <unnamed-type-s>
     {
     }
   }

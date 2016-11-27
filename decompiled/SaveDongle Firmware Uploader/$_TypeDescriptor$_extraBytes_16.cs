@@ -13,6 +13,6 @@ using System.Runtime.InteropServices;
 [MiscellaneousBits(65)]
 [UnsafeValueType]
 [StructLayout(LayoutKind.Sequential, Size = 24)]
-internal struct \u0024_TypeDescriptor\u0024_extraBytes_16
+internal struct $_TypeDescriptor$_extraBytes_16
 {
 }

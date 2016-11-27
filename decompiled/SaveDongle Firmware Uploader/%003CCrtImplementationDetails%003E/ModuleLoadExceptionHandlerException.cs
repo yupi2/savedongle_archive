@@ -4,28 +4,28 @@
 // MVID: C2ABEB73-C84E-41BA-807E-B4913B3F1A22
 // Assembly location: C:\Temp\SaveDongle Firmware Uploader.exe
 
-using \u003CCrtImplementationDetails\u003E;
+using <CrtImplementationDetails>;
 using System;
 using System.Runtime.Serialization;
 using System.Security;
 
-namespace \u003CCrtImplementationDetails\u003E
+namespace <CrtImplementationDetails>
 {
   [Serializable]
   internal class ModuleLoadExceptionHandlerException : ModuleLoadException
   {
     private const string formatString = "\n{0}: {1}\n--- Start of primary exception ---\n{2}\n--- End of primary exception ---\n\n--- Start of nested exception ---\n{3}\n--- End of nested exception ---\n";
-    private System.Exception \u003Cbacking_store\u003ENestedException;
+    private System.Exception <backing_store>NestedException;
 
     public System.Exception NestedException
     {
       get
       {
-        return this.\u003Cbacking_store\u003ENestedException;
+        return this.<backing_store>NestedException;
       }
       set
       {
-        this.\u003Cbacking_store\u003ENestedException = value;
+        this.<backing_store>NestedException = value;
       }
     }
 

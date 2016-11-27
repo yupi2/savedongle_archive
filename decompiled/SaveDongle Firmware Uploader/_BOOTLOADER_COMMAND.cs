@@ -22,7 +22,7 @@ internal struct _BOOTLOADER_COMMAND
   [DebugInfoInPDB]
   [UnsafeValueType]
   [StructLayout(LayoutKind.Sequential, Size = 65)]
-  public struct \u003Cunnamed\u002Dtype\u002DEnterBootloader\u003E
+  public struct <unnamed-type-EnterBootloader>
   {
   }
 
@@ -32,7 +32,7 @@ internal struct _BOOTLOADER_COMMAND
   [MiscellaneousBits(65)]
   [NativeCppClass]
   [StructLayout(LayoutKind.Sequential, Size = 65)]
-  public struct \u003Cunnamed\u002Dtype\u002DQueryDevice\u003E
+  public struct <unnamed-type-QueryDevice>
   {
   }
 
@@ -42,7 +42,7 @@ internal struct _BOOTLOADER_COMMAND
   [MiscellaneousBits(65)]
   [DebugInfoInPDB]
   [StructLayout(LayoutKind.Sequential, Size = 66)]
-  public struct \u003Cunnamed\u002Dtype\u002DQueryResults\u003E
+  public struct <unnamed-type-QueryResults>
   {
   }
 
@@ -52,7 +52,7 @@ internal struct _BOOTLOADER_COMMAND
   [NativeCppClass]
   [DebugInfoInPDB]
   [StructLayout(LayoutKind.Sequential, Size = 65)]
-  public struct \u003Cunnamed\u002Dtype\u002DUnlockConfig\u003E
+  public struct <unnamed-type-UnlockConfig>
   {
   }
 
@@ -62,7 +62,7 @@ internal struct _BOOTLOADER_COMMAND
   [DebugInfoInPDB]
   [CLSCompliant(false)]
   [StructLayout(LayoutKind.Sequential, Size = 65)]
-  public struct \u003Cunnamed\u002Dtype\u002DEraseDevice\u003E
+  public struct <unnamed-type-EraseDevice>
   {
   }
 
@@ -72,7 +72,7 @@ internal struct _BOOTLOADER_COMMAND
   [DebugInfoInPDB]
   [CLSCompliant(false)]
   [StructLayout(LayoutKind.Sequential, Size = 65)]
-  public struct \u003Cunnamed\u002Dtype\u002DProgramDevice\u003E
+  public struct <unnamed-type-ProgramDevice>
   {
   }
 
@@ -82,7 +82,7 @@ internal struct _BOOTLOADER_COMMAND
   [MiscellaneousBits(65)]
   [UnsafeValueType]
   [StructLayout(LayoutKind.Sequential, Size = 65)]
-  public struct \u003Cunnamed\u002Dtype\u002DProgramComplete\u003E
+  public struct <unnamed-type-ProgramComplete>
   {
   }
 
@@ -92,7 +92,7 @@ internal struct _BOOTLOADER_COMMAND
   [NativeCppClass]
   [CLSCompliant(false)]
   [StructLayout(LayoutKind.Sequential, Size = 65)]
-  public struct \u003Cunnamed\u002Dtype\u002DGetData\u003E
+  public struct <unnamed-type-GetData>
   {
   }
 
@@ -102,7 +102,7 @@ internal struct _BOOTLOADER_COMMAND
   [DebugInfoInPDB]
   [UnsafeValueType]
   [StructLayout(LayoutKind.Sequential, Size = 65)]
-  public struct \u003Cunnamed\u002Dtype\u002DGetDataResults\u003E
+  public struct <unnamed-type-GetDataResults>
   {
   }
 
@@ -112,7 +112,7 @@ internal struct _BOOTLOADER_COMMAND
   [CLSCompliant(false)]
   [NativeCppClass]
   [StructLayout(LayoutKind.Sequential, Size = 65)]
-  public struct \u003Cunnamed\u002Dtype\u002DResetDevice\u003E
+  public struct <unnamed-type-ResetDevice>
   {
   }
 
@@ -122,7 +122,7 @@ internal struct _BOOTLOADER_COMMAND
   [NativeCppClass]
   [DebugInfoInPDB]
   [StructLayout(LayoutKind.Sequential, Size = 66)]
-  public struct \u003Cunnamed\u002Dtype\u002DGetEncryptedFFResults\u003E
+  public struct <unnamed-type-GetEncryptedFFResults>
   {
   }
 
@@ -132,7 +132,7 @@ internal struct _BOOTLOADER_COMMAND
   [MiscellaneousBits(65)]
   [NativeCppClass]
   [StructLayout(LayoutKind.Sequential, Size = 65)]
-  public struct \u003Cunnamed\u002Dtype\u002DPacketData\u003E
+  public struct <unnamed-type-PacketData>
   {
   }
 }

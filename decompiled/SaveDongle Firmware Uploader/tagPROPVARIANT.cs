@@ -19,19 +19,19 @@ internal struct tagPROPVARIANT
   [NativeCppClass]
   [DebugInfoInPDB]
   [StructLayout(LayoutKind.Explicit, Size = 16)]
-  internal struct \u0024UnnamedClass\u00240xfd8b67b9\u0024178\u0024
+  internal struct $UnnamedClass$0xfd8b67b9$178$
   {
     [MiscellaneousBits(65)]
     [NativeCppClass]
     [DebugInfoInPDB]
     [StructLayout(LayoutKind.Sequential, Size = 16)]
-    internal struct \u0024UnnamedClass\u00240xfd8b67b9\u0024179\u0024
+    internal struct $UnnamedClass$0xfd8b67b9$179$
     {
       [NativeCppClass]
       [DebugInfoInPDB]
       [MiscellaneousBits(66)]
       [StructLayout(LayoutKind.Explicit, Size = 8)]
-      internal struct \u0024UnnamedClass\u00240xfd8b67b9\u0024180\u0024
+      internal struct $UnnamedClass$0xfd8b67b9$180$
       {
       }
     }
@@ -42,19 +42,19 @@ internal struct tagPROPVARIANT
   [MiscellaneousBits(66)]
   [DebugInfoInPDB]
   [StructLayout(LayoutKind.Explicit, Size = 16)]
-  internal struct \u0024UnnamedClass\u00240x000256ae\u0024368\u0024
+  internal struct $UnnamedClass$0x000256ae$368$
   {
     [MiscellaneousBits(65)]
     [DebugInfoInPDB]
     [NativeCppClass]
     [StructLayout(LayoutKind.Sequential, Size = 16)]
-    internal struct \u0024UnnamedClass\u00240x000256ae\u0024369\u0024
+    internal struct $UnnamedClass$0x000256ae$369$
     {
       [MiscellaneousBits(66)]
       [NativeCppClass]
       [DebugInfoInPDB]
       [StructLayout(LayoutKind.Explicit, Size = 8)]
-      internal struct \u0024UnnamedClass\u00240x000256ae\u0024370\u0024
+      internal struct $UnnamedClass$0x000256ae$370$
       {
       }
     }
