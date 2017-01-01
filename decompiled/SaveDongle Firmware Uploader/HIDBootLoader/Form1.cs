@@ -323,11 +323,11 @@ namespace HIDBootLoader
 			HIDBootLoader.g_first_time = 0;
 		}
 
-		protected unsafe void Load_mHexFile(sbyte* filename)
+		protected unsafe void Load_mHexFile(char* filename)
 		{
 			this.CreateTempFolder();
 			FILE* fp = fopen(filename, "rb");
-			fseek(fp, 0, 2);
+			fseek(fp, 0, SEEK_END);
 			uint num1 = ftell(fp);
 			int num2 = this.NDS_CRC16(fp, num1 - 4U);
 			fseek(fp, 0, 0);
