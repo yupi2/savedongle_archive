@@ -949,7 +949,14 @@ namespace HIDBootLoader
 			uint num1 = 0;
 			uint num2 = 0;
 			this.memoryRegionsDetected = 0;
-			void* fileW1 = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, NULL, 3U, 0U, NULL);
+			HANDLE fileW1 = CreateFileW(
+				(char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4),
+				GENERIC_WRITE,
+				FILE_SHARE_READ | FILE_SHARE_WRITE,
+				NULL,
+				OPEN_EXISTING,
+				0U,
+				NULL);
 			HIDBootLoader.ErrorStatusWrite = Marshal.GetLastWin32Error();
 			if (HIDBootLoader.ErrorStatusWrite != 0)
 			{
@@ -958,7 +965,14 @@ namespace HIDBootLoader
 			}
 			else
 			{
-				void* fileW2 = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, NULL, 3U, 0U, NULL);
+				void* fileW2 = CreateFileW(
+					(char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4),
+					GENERIC_READ,
+					FILE_SHARE_READ | FILE_SHARE_WRITE,
+					NULL,
+					OPEN_EXISTING,
+					0U,
+					NULL);
 				HIDBootLoader.ErrorStatusRead = (uint) Marshal.GetLastWin32Error();
 				if (HIDBootLoader.ErrorStatusRead != 0)
 				{
@@ -1048,7 +1062,14 @@ namespace HIDBootLoader
 		{
 			_BOOTLOADER_COMMAND bootloaderCommand = {0};
 			uint num = 0;
-			void* fileW = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, NULL, 3U, 0U, NULL);
+			HANDLE fileW = CreateFileW(
+				(char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4),
+				GENERIC_WRITE,
+				FILE_SHARE_READ | FILE_SHARE_WRITE,
+				NULL,
+				OPEN_EXISTING,
+				0U,
+				NULL);
 			HIDBootLoader.ErrorStatusWrite = Marshal.GetLastWin32Error();
 			if (HIDBootLoader.ErrorStatusWrite != 0)
 			{
@@ -1101,7 +1122,14 @@ namespace HIDBootLoader
 			^(sbyte&) @bootloaderCommand = 0;
 			__memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand + 1), 0, 65);
 			uint num = 0;
-			void* fileW = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, NULL, 3U, 0U, NULL);
+			HANDLE fileW = CreateFileW(
+				(char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4),
+				GENERIC_WRITE,
+				FILE_SHARE_READ | FILE_SHARE_WRITE,
+				NULL,
+				OPEN_EXISTING,
+				0U,
+				NULL);
 			HIDBootLoader.ErrorStatusWrite = Marshal.GetLastWin32Error();
 			if (HIDBootLoader.ErrorStatusWrite != 0)
 			{
@@ -1173,7 +1201,14 @@ namespace HIDBootLoader
 			SetEvent(eventW3);
 			SetEvent(eventW2);
 			SetEvent(eventW1);
-			void* fileW1 = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, NULL, 3U, 1073741824U, NULL);
+			HANDLE fileW1 = CreateFileW(
+				(char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4),
+				GENERIC_WRITE,
+				FILE_SHARE_READ | FILE_SHARE_WRITE,
+				NULL,
+				OPEN_EXISTING,
+				FILE_FLAG_OVERLAPPED,
+				NULL);
 			if (Marshal.GetLastWin32Error() != 0)
 			{
 				this.enablePrint = true;
@@ -1182,7 +1217,14 @@ namespace HIDBootLoader
 			}
 			else
 			{
-				void* fileW2 = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, NULL, 3U, 1073741824U, NULL);
+				HANDLE fileW2 = CreateFileW(
+					(char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4),
+					GENERIC_READ,
+					FILE_SHARE_READ | FILE_SHARE_WRITE,
+					NULL,
+					OPEN_EXISTING,
+					FILE_FLAG_OVERLAPPED,
+					NULL);
 				if (Marshal.GetLastWin32Error() != 0)
 				{
 					this.enablePrint = true;
@@ -1500,7 +1542,14 @@ label_54:
 			SetEvent(eventW3);
 			SetEvent(eventW2);
 			SetEvent(eventW1);
-			void* fileW1 = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, NULL, 3U, 1073741824U, NULL);
+			HANDLE fileW1 = CreateFileW(
+				(char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4),
+				GENERIC_WRITE,
+				FILE_SHARE_READ | FILE_SHARE_WRITE,
+				NULL,
+				OPEN_EXISTING,
+				FILE_FLAG_OVERLAPPED,
+				NULL);
 			if (Marshal.GetLastWin32Error() != 0)
 			{
 				this.enablePrint = true;
@@ -1509,7 +1558,14 @@ label_54:
 			}
 			else
 			{
-				void* fileW2 = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, NULL, 3U, 1073741824U, NULL);
+				HANDLE fileW2 = CreateFileW(
+					(char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4),
+					GENERIC_READ,
+					FILE_SHARE_READ | FILE_SHARE_WRITE,
+					NULL,
+					OPEN_EXISTING,
+					FILE_FLAG_OVERLAPPED,
+					NULL);
 				if (Marshal.GetLastWin32Error() != 0)
 				{
 					this.enablePrint = true;
@@ -2123,17 +2179,27 @@ label_92:
 
 		private unsafe void ProgramThreadStart()
 		{
-			_BOOTLOADER_COMMAND bootloaderCommand1;
-			^(sbyte&) @bootloaderCommand1 = (sbyte) 0;
-			__memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand1 + 1), 0, 65);
-			_BOOTLOADER_COMMAND bootloaderCommand2;
-			^(sbyte&) @bootloaderCommand2 = (sbyte) 0;
-			__memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand2 + 1), 0, 65);
+			_BOOTLOADER_COMMAND bootloaderCommand1 = {0};
+			_BOOTLOADER_COMMAND bootloaderCommand2 = {0};
 			uint num1 = 0;
 			uint num2 = 0;
-			void* fileW1 = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, NULL, 3U, 0U, NULL);
+			HANDLE fileW1 = CreateFileW(
+				(char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4),
+				GENERIC_WRITE,
+				FILE_SHARE_READ | FILE_SHARE_WRITE,
+				NULL,
+				OPEN_EXISTING,
+				0U,
+				NULL);
 			HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
-			void* fileW2 = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, NULL, 3U, 0U, NULL);
+			HANDLE fileW2 = CreateFileW(
+				(char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4),
+				GENERIC_READ,
+				FILE_SHARE_READ | FILE_SHARE_WRITE,
+				NULL,
+				OPEN_EXISTING,
+				0U,
+				NULL);
 			HIDBootLoader.ErrorStatusRead = (uint) Marshal.GetLastWin32Error();
 			bool flag1 = false;
 			bool flag2 = false;
@@ -2348,9 +2414,23 @@ label_41:
 			{
 				if (HIDBootLoader.MyDeviceAttachedStatus != 0)
 					return;
-				CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, NULL, 3U, 0U, NULL);
+				CreateFileW(
+					(char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4),
+					GENERIC_WRITE,
+					FILE_SHARE_READ | FILE_SHARE_WRITE,
+					NULL,
+					OPEN_EXISTING,
+					0U,
+					NULL);
 				HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
-				CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 2147483648U, 3U, NULL, 3U, 0U, NULL);
+				CreateFileW(
+					(char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4),
+					GENERIC_READ,
+					FILE_SHARE_READ | FILE_SHARE_WRITE,
+					NULL,
+					OPEN_EXISTING,
+					0U,
+					NULL);
 				HIDBootLoader.ErrorStatusRead = (uint) Marshal.GetLastWin32Error();
 				if ((int) HIDBootLoader.ErrorStatusRead == 0 && (int) HIDBootLoader.ErrorStatusWrite == 0)
 				{
@@ -2533,12 +2613,17 @@ label_18:
 
 		private unsafe void ResetThreadStart()
 		{
-			_BOOTLOADER_COMMAND bootloaderCommand;
-			^(sbyte&) @bootloaderCommand = (sbyte) 0;
-			__memset((_BOOTLOADER_COMMAND&) ((IntPtr) &bootloaderCommand + 1), 0, 65);
+			_BOOTLOADER_COMMAND bootloaderCommand = {0};
 			uint num = 0;
 			this.progressStatus = (byte) 0;
-			void* fileW = CreateFileW((char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4), 1073741824U, 3U, NULL, 3U, 0U, NULL);
+			HANDLE fileW = CreateFileW(
+				(char*) ((IntPtr) HIDBootLoader.MyStructureWithDetailedInterfaceDataInIt + 4),
+				GENERIC_WRITE,
+				FILE_SHARE_READ | FILE_SHARE_WRITE,
+				NULL,
+				OPEN_EXISTING,
+				0U,
+				NULL);
 			HIDBootLoader.ErrorStatusWrite = (uint) Marshal.GetLastWin32Error();
 			if ((int) HIDBootLoader.ErrorStatusWrite != 0)
 			{

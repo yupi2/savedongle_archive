@@ -8,7 +8,7 @@ typedef unsigned int uint;
 typedef unsigned char byte;
 typedef unsigned short ushort;
 
-// sdbt extract-hex SaveDongle_vXX.bin extracted.bin
+// sdbt extract-ihex SaveDongle_vXX.bin extracted_vXX.i32hex
 // sdbt build "Version Title" eng_desc.txt chi_desc.txt payload.bin output.bin
 // sdbt make_debug_bin output.bin
 
@@ -17,7 +17,7 @@ typedef unsigned short ushort;
 // SEEK_SET = 0, SEEK_CUR = 1, SEEK_END = 2
 
 // total size is 44 bytes
-typedef struct _HEX_INFO {
+typedef struct _IHEX_INFO {
 	uint offset_of_payload_description;
 
 	uint payload_size;
@@ -25,30 +25,31 @@ typedef struct _HEX_INFO {
 	ushort is_enabled;
 
 	char version_title[33 + 1];
-} *PHEX_INFO, HEX_INFO;
+} *PIHEX_INFO, IHEX_INFO;
 
 const char constant_bin_format_version[8] = "v1.0";
 
-typedef struct _HEX_HEADER {
+typedef struct _IHEX_HEADER {
 	uint checksum; // the checksum of the file starting at the fifth byte
 
 	uint g_number_of_versions;
 
 	char bin_format_version[7 + 1]; // Unknown
 
-	HEX_INFO hexinfo;
+	IHEX_INFO ihexinfo;
 
 	char english_description[255 + 1];
 	char chinese_gb2312_description[255 + 1];
 
 	byte encryption_key[256];
-} *PHEX_HEADER, HEX_HEADER;
+} *PIHEX_HEADER, IHEX_HEADER;
 
-#define SMALLEST_BIN_FILE (sizeof(HEX_HEADER) + 0x100)
-#define LARGEST_BIN_FILE (sizeof(HEX_HEADER) + 0xfffe)
+// arbitrary values because real values are unknown
+#define SMALLEST_BIN_FILE (sizeof(IHEX_HEADER) + 0x100)
+#define LARGEST_BIN_FILE (sizeof(IHEX_HEADER) + 0xfffe)
 
-//static HEX_DESCRIPTION hexdescription[16];
-//static HEX_INFO hexinfo[40];
+//static IHEX_DESCRIPTION ihexdescription[16];
+//static IHEX_INFO ihexinfo[40];
 
 void SimpleEncryptDecrypt(byte* data, byte* key, uint size)
 {
@@ -108,8 +109,8 @@ uint my_NDS_CRC16(void* PTR, uint size)
 int return_help(int exitcode)
 {
 	puts("==== sdbt (SaveDongle bin tool) Example Usage:\n"
-		"\tsdbt extract extracted_vXX.bin SaveDongle_vXX.bin\n"
-		"\tsdbt build output.bin \"Version Title\" payload.bin eng_desc.txt chi_desc.txt\n"
+		"\tsdbt extract-ihex SaveDongle_vXX.bin extracted_vXX.i32hex\n"
+		"\tsdbt build \"Version Title\" eng_desc.txt chi_desc.txt payload.bin output.bin\n"
 		"\t\tThe version title can't be longer than 33 bytes!\n"
 		"\t\tThe payload bin can't be bigger than XXXXX bytes!\n"
 		"\t\teng_desc.txt can't be bigger than 255 bytes and must be GB2312-encoded!\n"
@@ -141,68 +142,64 @@ int main(int argc, char* argv[]) {
 	uint size, payload_size;
 	char *buf, *payloadPtr;
 	char *argument1;
-	HEX_HEADER hexheader, *hexheaderPtr;
+	IHEX_HEADER ihexheader, *ihexheaderPtr;
 
-	memset(&hexheader, 0, sizeof(hexheader));
+	memset(&ihexheader, 0, sizeof(ihexheader));
 
 	if (argc < 3)
 		return return_help(1);
 
 	argument1 = argv[1];
 
-	if (!strcmp(argument1, "extract-hex")) {
+	if (!strcmp(argument1, "extract-ihex")) {
 		if (argc != 4) {
 			printf("error incorrect argument amount\n");
 			return 1;
 		}
 
 		binFP = fopen(argv[2], "rb");
-
 		my_assert(!!binFP, "error can not open bin file");
 
 		fseek(binFP, 0, SEEK_END);
 
 		size = ftell(binFP);
-
 		if (size < SMALLEST_BIN_FILE || size > LARGEST_BIN_FILE)
 			my_assert(0, "error incorrect bin size");
 
-		payload_size = size - sizeof(HEX_HEADER);
+		payload_size = size - sizeof(IHEX_HEADER);
 
 		fseek(binFP, 0, SEEK_SET);
 
 		buf = malloc(size);
-
-		my_assert(!!size, "error malloc failed");
+		my_assert(!!buf, "error malloc failed");
 
 		my_assert(
 			fread(buf, 1, size, binFP) == size,
 			"error fread failed");
 
-		hexheaderPtr = (HEX_HEADER*) buf;
-		payloadPtr = buf + sizeof(HEX_HEADER);
+		ihexheaderPtr = (IHEX_HEADER*) buf;
+		payloadPtr = buf + sizeof(IHEX_HEADER);
 
-		my_assert(hexheaderPtr->g_number_of_versions == 1,
+		my_assert(ihexheaderPtr->g_number_of_versions == 1,
 			"error incorrect number of versions");
-		my_assert(0 == memcmp(hexheaderPtr->bin_format_version, constant_bin_format_version, sizeof(constant_bin_format_version)),
+		my_assert(0 == memcmp(ihexheaderPtr->bin_format_version, constant_bin_format_version, sizeof(constant_bin_format_version)),
 			"error bin format version is incorrect");
-		my_assert(hexheaderPtr->hexinfo.is_enabled == 1,
-			"error hex payload not enabled");
+		my_assert(ihexheaderPtr->ihexinfo.is_enabled == 1,
+			"error ihex payload not enabled");
 		// 256 = encryption_key
-		my_assert(hexheaderPtr->hexinfo.payload_size == payload_size+256,
+		my_assert(ihexheaderPtr->ihexinfo.payload_size == payload_size+256,
 			"error header is incorrect");
-		my_assert(hexheaderPtr->hexinfo.offset_of_payload_description == 0x3c,
+		my_assert(ihexheaderPtr->ihexinfo.offset_of_payload_description == 0x3c,
 			"error payload offset is incorrect");
 
-		my_assert(my_NDS_CRC16(buf+4, size-4) == hexheaderPtr->checksum,
+		my_assert(my_NDS_CRC16(buf+4, size-4) == ihexheaderPtr->checksum,
 			"error incorrect checksum");
 
-		SimpleEncryptDecrypt(payloadPtr, hexheaderPtr->encryption_key, payload_size);
+		SimpleEncryptDecrypt(payloadPtr, ihexheaderPtr->encryption_key, payload_size);
 
 		delete_file(argv[3]);
 
 		outputFP = fopen(argv[3], "wb");
-
 		my_assert(!!outputFP, "error can not open output file");
 
 		my_assert(fwrite(payloadPtr, 1, payload_size, outputFP) == payload_size,
